@@ -16,7 +16,6 @@ export default function Navbar() {
 
   return (
     <nav className="w-full bg-white backdrop-blur-md shadow-sm border-b border-gray-100 sticky top-0 z-100">
-      {isOpen ? "open" : "close"}
       <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between lg:h-24 h-18 items-center">
           <div className="flex items-center bg-white lg:px-8 lg:py-2 rounded-2xl lg:mt-20 lg:shadow-lg">
@@ -86,7 +85,7 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-        <div className="p-4 border-t border-gray-100 flex flex-col space-y-4">
+        <div className="p-4 border-t border-gray-100 flex flex-col space-y-4 mb-5">
           <button
             onClick={() => {
               window.dispatchEvent(new CustomEvent("trigger-app-promo"));

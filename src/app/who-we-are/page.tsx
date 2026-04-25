@@ -14,9 +14,6 @@ export default function WhoWeArePage() {
       <WhoWeAreHero />
       <MissionSection />
       <InvestmentDetail />
-      <div className="mb-20">
-        <HaveQuestions />
-      </div>
     </main>
   );
 }

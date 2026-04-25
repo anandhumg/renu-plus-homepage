@@ -1,44 +1,31 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function InvestmentDetail() {
   return (
-    <section className="mt-40 mb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 grid-cols-1 gap-16 items-center">
-          <div className="relative w-full h-[500px]">
-             <Image 
-                src="/who-we-are/investment.jpg" 
-                alt="Smart Investment" 
-                fill 
-                className="object-cover rounded-[30px] lg:rounded-tr-[150px] shadow-2xl" 
-             />
+    <section className="md:my-20 my-10">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-16 gap-6 items-center">
+          <div className="relative w-full h-[400px] md:h-[600px]">
+            <Image
+              src="/about-us/img-3.png"
+              alt="Smart Investment"
+              fill
+              className="object-contain"
+            />
           </div>
           <div>
             <h2 className="text-head lg:text-[40px] text-[30px] mb-8">
-              Your Smartest Investment Yet
+              Beat Inflation With Exclusive Savings
             </h2>
-            <div className="text-body space-y-8">
+            <div className="text-body space-y-8 mb-8 text-[18px] leading-[1.6]">
               <p>
-                For an annual fee of <span className="text-primary font-bold text-3xl font-kaisei">$159</span>, you can easily recoup your investment with just one transaction, thanks to the extensive savings available.
+                In today's climate of rising prices and inflation, our membership provides a much-needed financial reprieve, helping you make ends meet while enjoying the benefits of significant savings.
               </p>
-              <p>
-                Whether you're starting a home renovation project, pursuing fitness goals, or refreshing your wardrobe, Renu Plus offers valuable support in achieving your aspirations with unbeatable savings on every dollar.
-              </p>
-              <div className="pt-4">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                  </div>
-                  <span className="font-medium text-black">Recoup fees in 1-2 transactions</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                  </div>
-                  <span className="font-medium text-black">Access to 100+ Retail Partners</span>
-                </div>
-              </div>
             </div>
+            <Link href="/sign-up-login" className="bg-primary text-[18px] text-white px-6 py-3 rounded-full font-lato hover:bg-primary/80 transition-all shadow-md inline-block">
+              Join Now & Save
+            </Link>
           </div>
         </div>
       </div>

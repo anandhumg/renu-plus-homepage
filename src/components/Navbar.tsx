@@ -6,17 +6,17 @@ import React, { useState } from "react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Who We Are", href: "#" },
-    { name: "How It Works", href: "#" },
+    { name: "Who We Are", href: "/who-we-are" },
+    { name: "How It Works", href: "/how-it-works" },
     { name: "Discount Offers", href: "#" },
     { name: "Partner", href: "#" },
   ];
 
   return (
     <nav className="w-full bg-white backdrop-blur-md shadow-sm border-b border-gray-100 sticky top-0 z-100">
+      {isOpen ? "open" : "close"}
       <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between lg:h-24 h-18 items-center">
           <div className="flex items-center bg-white lg:px-8 lg:py-2 rounded-2xl lg:mt-20 lg:shadow-lg">
@@ -39,12 +39,12 @@ export default function Navbar() {
           </div>
 
           <div className="hidden lg:flex items-center space-x-6">
-            <Link
-              href="#"
-              className="text-gray-800 hover:text-primary text-sm font-bold transition-colors"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("trigger-app-promo"))}
+              className="text-gray-800 hover:text-primary text-sm font-bold transition-colors cursor-pointer uppercase tracking-wider"
             >
-              LOG IN
-            </Link>
+              Get the app
+            </button>
             <Link
               href="#"
               className="bg-primary text-white px-7 py-3 rounded-full hover:bg-primary/90 transition-all shadow-[0_4px_15px_rgba(188,156,34,0.3)] text-sm font-bold uppercase tracking-wider"
@@ -87,16 +87,18 @@ export default function Navbar() {
           ))}
         </div>
         <div className="p-4 border-t border-gray-100 flex flex-col space-y-4">
-          <Link
-            href="#"
-            className="text-center py-3 text-gray-800 font-bold hover:text-primary rounded-full border border-primary"
-            onClick={() => setIsOpen(false)}
+          <button
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent("trigger-app-promo"));
+              setIsOpen(false);
+            }}
+            className="text-center py-3 text-gray-800 font-bold hover:text-primary rounded-full border border-primary cursor-pointer uppercase tracking-wider"
           >
-            LOG IN
-          </Link>
+            Get the app
+          </button>
           <Link
             href="#"
-            className="bg-primary text-white text-center py-4 rounded-full font-bold"
+            className="bg-primary text-white text-center py-4 rounded-full font-bold uppercase tracking-wider"
             onClick={() => setIsOpen(false)}
           >
             SIGN UP

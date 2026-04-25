@@ -3,6 +3,8 @@ import { Lato, Kaisei_Decol } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AppPromotionPopup from "@/components/AppPromotionPopup";
+
 
 const lato = Lato({
   variable: "--font-lato",
@@ -34,6 +36,7 @@ export default function RootLayout({
       <body className="min-h-full bg-white flex flex-col font-lato text-base text-[#333] m-0 p-0 break-word">
         <Navbar />
         {children}
+        <AppPromotionPopup />
         <Footer />
       </body>
     </html>

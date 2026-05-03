@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 export default function HaveQuestions() {
     return (
@@ -10,9 +9,9 @@ export default function HaveQuestions() {
                 Contact us today to learn more about our membership benefits and how you can start saving immediately.
             </div>
             <div className="flex justify-center mt-10">
-                <Link href="/" className="bg-primary text-[18px] text-white px-6 py-3 rounded-full font-ppmori hover:bg-primary/80 transition-colors">
-                    Talk to Us
-                </Link>
+                <button className="bg-primary text-[18px] font-ppmori-semibold text-white px-6 py-3 h-12  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
+                Talk to us
+                </button>
             </div>
         </section>
     );

@@ -52,7 +52,7 @@ export default function Navbar() {
           <div className="flex justify-between md:h-[85] h-16 items-center">
             {/* Logo */}
             <div
-              className={`flex relative items-center p-2 transition-all duration-300 aspect-[1.06] md:h-auto ${!isScrolled ? "md:px-8 md:py-2 md:mt-18 md:w-[100px]  w-[40px] " : "md:w-[70px]  w-[40px]"
+              className={`flex relative items-center p-2 transition-all duration-300 aspect-[1.06] md:h-auto ${!isScrolled ? "md:px-8 md:py-2 md:mt-18 md:w-25  w-10 " : "md:w-17.5  w-10"
                 }`}
             >
               {/* <Link href="/" className=" relative"> */}
@@ -152,7 +152,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/20 z-[110] backdrop-blur-sm"
+            className="fixed inset-0 bg-black/20 z-110 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
         )}
@@ -166,7 +166,7 @@ export default function Navbar() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white shadow-2xl z-[120] flex flex-col"
+            className="fixed top-0 right-0 h-full w-full sm:w-100 bg-white shadow-2xl z-120 flex flex-col"
           >
             <div className="p-6 flex justify-end">
               <button
@@ -177,7 +177,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="px-10 pb-10 flex flex-col space-y-8 flex-grow overflow-y-auto mt-4">
+            <div className="px-10 pb-10 flex flex-col space-y-8 grow overflow-y-auto mt-4">
               {navLinks.map((link) => (
                 <motion.div key={link.name} variants={linkVariants}>
                   <Link

@@ -7,27 +7,30 @@ export default function SmartStanding() {
         <section className="pt-20 bg-background">
             <div className="max-w-7xl mx-auto md:px-20 px-4">
                 <div className="text-center mb-12 ">
-                    <p className="md:text-[50px] text-[32px] font-ppmori-semibold text-foreground leading-[52px]">Your gateway to </p>
-                    <p className="md:text-[50px] text-[32px] font-ppmori-semibold text-head">Smarter Spending.</p>
-                    <p className="text-[20px] text-sub-foreground font-ppmori my-8">Affordable price & Unlimited savings</p>
+                    <p className="md:text-[50px] text-[30px] font-ppmori-semibold text-foreground md:leading-13 leading-10">Your gateway to </p>
+                    <p className="md:text-[50px] text-[30px] font-ppmori-semibold text-head">Smarter Spending.</p>
+                    <p className="md:text-[20px] text-[15px] text-sub-foreground font-ppmori md:my-8 my-4">Affordable price & Unlimited savings</p>
                     <div className="flex items-center justify-center">
                         <span className="text-[40px] text-foreground font-ppmori-semibold">${price}</span>
                         <span className="text-[24px] text-foreground font-ppmori">/Year</span>
                     </div>
                 </div>
-                <div className="mx-auto md:ml-4 md:px-10 px-4 flex gap-10 font-ppmori text-head text-[20px] justify-center">
+                <div className="md:flex hidden mx-auto md:ml-4 md:px-10 px-4 gap-10 font-ppmori text-head text-[20px] justify-center">
                     <p className="">Access to 200+ retail stores</p>
                     <p>|</p>
                     <p>Digital discount ID card</p>
                     <p>|</p>
                     <p>Exclusive membership discounts</p>
                 </div>
+                <div className="flex md:hidden mx-auto font-ppmori text-head text-[16px] justify-center items-center">
+                    <ul className="list-disc space-y-4">
+                        <li>Access to 200+ retail stores</li><li>Digital discount ID card</li><li>Exclusive membership discounts</li>
+                    </ul>
+                </div>
                 <div className="my-10 flex justify-center">
-                    <Link href="/" className="bg-primary text-[18px] font-ppmori-semibold flex justify-center items-center text-white px-6 py-2  rounded-full font-ppmori hover:bg-primary/80 transition-colors inline-block">
-                        <span className="mt-0.5">
-                            Subscribe Now
-                        </span>
-                    </Link>
+                    <button className="bg-primary text-[18px] font-ppmori-semibold text-white px-6 py-3 h-12  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
+                        Subscribe Now
+                    </button>
                 </div>
                 <div className="flex justify-center  mt-20 ml-10">
                     <div className="relative aspect-[1.06] md:h-screen md:w-auto w-full h-full">

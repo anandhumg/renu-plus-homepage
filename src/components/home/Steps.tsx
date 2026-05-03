@@ -1,10 +1,10 @@
 export default function Steps() {
     return (
-        <section className="py-40 bg-white">
+        <section className="md:py-40 py-20 bg-white">
             <div className="max-w-7xl mx-auto md:px-20 px-4">
                 <div className="grid md:grid-cols-3 gap-8">
                     {/* Step 1 */}
-                    <div className="text-center max-w-[280px] mx-auto">
+                    <div className="text-center max-w-70 mx-auto">
                         <div className="p-2 border border-dashed border-primary rounded-full w-fit h-fit mx-auto mb-4">
                             <div className="bg-[#F9F6F4] rounded-full w-20 h-20 flex items-center justify-center">
                                 <span className="text-primary font-bold text-2xl">1</span>
@@ -15,7 +15,7 @@ export default function Steps() {
                     </div>
 
                     {/* Step 2 */}
-                    <div className="text-center max-w-[280px] mx-auto">
+                    <div className="text-center max-w-70 mx-auto">
                         <div className="p-2 border border-dashed border-primary rounded-full w-fit h-fit mx-auto mb-4">
                             <div className="bg-[#F9F6F4] rounded-full w-20 h-20 flex items-center justify-center">
                                 <span className="text-primary font-bold text-2xl">2</span>
@@ -26,7 +26,7 @@ export default function Steps() {
                     </div>
 
                     {/* Step 3 */}
-                    <div className="text-center max-w-[280px] mx-auto">
+                    <div className="text-center max-w-70 mx-auto">
                         <div className="p-2 border border-dashed border-primary rounded-full w-fit h-fit mx-auto mb-4">
                             <div className="bg-[#F9F6F4] rounded-full w-20 h-20 flex items-center justify-center">
                                 <span className="text-primary font-bold text-2xl">3</span>

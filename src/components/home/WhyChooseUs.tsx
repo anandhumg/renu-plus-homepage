@@ -29,7 +29,7 @@ export default function WhyChooseUs() {
                             </div>
                             <p className="text-body text-[18px] leading-[1.6] mb-10"><span className="font-semibold">Convenient Access –</span> Use your virtual card online and in-store.</p>
                         </div>
-                        <Link href="/" className="bg-primary text-[18px] text-white px-6 py-3 rounded-full font-lato hover:bg-primary/80 transition-colors">
+                        <Link href="/" className="bg-primary text-[18px] text-white px-6 py-3 rounded-full font-ppmori hover:bg-primary/80 transition-colors">
                             Learn About Us
                         </Link>
                     </div>

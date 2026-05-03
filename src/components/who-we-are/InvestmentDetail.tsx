@@ -23,7 +23,7 @@ export default function InvestmentDetail() {
                 In today's climate of rising prices and inflation, our membership provides a much-needed financial reprieve, helping you make ends meet while enjoying the benefits of significant savings.
               </p>
             </div>
-            <Link href="/sign-up-login" className="bg-primary text-[18px] text-white px-6 py-3 rounded-full font-lato hover:bg-primary/80 transition-all shadow-md inline-block">
+            <Link href="/sign-up-login" className="bg-primary text-[18px] text-white px-6 py-3 rounded-full font-ppmori hover:bg-primary/80 transition-all shadow-md inline-block">
               Join Now & Save
             </Link>
           </div>

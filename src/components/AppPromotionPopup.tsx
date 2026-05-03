@@ -84,7 +84,7 @@ const AppPromotionPopup = () => {
                   </div>
                 </div>
 
-                <h2 className="text-3xl md:text-4xl font-kaisei font-bold mb-6 leading-tight text-black">
+                <h2 className="text-3xl md:text-4xl font-ppmori font-bold mb-6 leading-tight text-black">
                   Save more and <br />
                   <span className="text-primary">book faster</span> with the app
                 </h2>

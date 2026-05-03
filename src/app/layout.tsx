@@ -1,27 +1,19 @@
 import type { Metadata } from "next";
-import { Lato, Kaisei_Decol } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AppPromotionPopup from "@/components/AppPromotionPopup";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Toaster } from "react-hot-toast";
 
-
-const lato = Lato({
-  variable: "--font-lato",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const kaiseiDecol = Kaisei_Decol({
-  variable: "--font-kaisei",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
 
 export const metadata: Metadata = {
   title: "Discount Membership - Renu Plus",
   description: "Save big with Renu Plus! Access top retail discounts and maximize your budget. Sign up today and start saving.",
 };
+
+const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
 
 export default function RootLayout({
   children,
@@ -31,13 +23,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lato.variable} ${kaiseiDecol.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
-      <body className="min-h-full bg-white flex flex-col font-lato text-base text-[#333] m-0 p-0 break-word">
-        <Navbar />
-        {children}
-        <AppPromotionPopup />
-        <Footer />
+      <body className="bg-background flex flex-col font-ppmori m-0 p-0 break-word">
+        <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+          <AuthProvider>
+            <Navbar />
+            {children}
+            {/* <AppPromotionPopup /> */}
+            <Footer />
+            <Toaster position="top-center" />
+          </AuthProvider>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );

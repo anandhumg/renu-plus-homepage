@@ -18,7 +18,7 @@ export default function MissionSection() {
                 achieving your aspirations.
               </p>
             </div>
-            <Link href="/sign-up-login" className="bg-primary text-[18px] text-white px-6 py-3 rounded-full font-lato hover:bg-primary/80 transition-all shadow-md inline-block">
+            <Link href="/sign-up-login" className="bg-primary text-[18px] text-white px-6 py-3 rounded-full font-ppmori hover:bg-primary/80 transition-all shadow-md inline-block">
               Join Now & Save
             </Link>
           </div>

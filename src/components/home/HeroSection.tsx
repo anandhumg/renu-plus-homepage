@@ -1,24 +1,51 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="h-screen bg-[#e7dad1]">
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 gap-6 lg:items-center w-full h-full">
-        <div className="w-full h-full relative">
-          <Image src="/home/img-1.jpg" alt="Hero Image" fill className="object-cover" />
-        </div>
-        <div className="px-4">
-          <h2 className="lg:text-[45px] text-[32px] font-kaisei font-medium text-black leading-[1.2] mb-6">
+    <section className="h-screen bg-primary-bg relative overflow-hidden">
+      {/* Decorator element for elliptical gradient */}
+      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] bg-white rounded-full blur-[140px] z-0 pointer-events-none "></div>
+      <div className="bg-white/80 blur-2xl w-1/2 h-50 absolute left-[50%] top-[-10%]"></div>
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-[60%_40%] md:space-x-10 md:items-center pt-20 w-full h-full">
+        <div className="md:px-20 px-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="md:text-[60px] text-[32px] font-ppmori-semibold text-foreground leading-[1.2] mb-6"
+          >
             Discover the Power of Stretching Your Dollar With Renu Plus
-          </h2>
-          <p className="text-body lg:text-[22px] text-[18px] font-lato font-medium text-black mb-6">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-body md:text-[18px] text-[18px] font-ppmori text-sub-foreground mb-6"
+          >
             Enjoy Unbeatable Savings on Home Reno Projects, Dining, Travel, Home & Personal Essentials and more
-          </p>
-          <Link href="/" className="bg-primary text-[18px] text-white px-6 py-3 rounded-full font-lato hover:bg-primary/80 transition-colors">
-            Start Saving Today
-          </Link>
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          >
+            <button onClick={() => window.location.href = "/"} className="bg-primary text-[18px] font-ppmori-semibold text-white px-6 py-3 h-[48px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
+              Start Saving Today
+            </button>
+          </motion.div>
         </div>
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+          className="w-129 aspect-[1.125] h-auto mx-auto relative"
+        >
+          <Image src="/home/img-1.webp" alt="Hero Image" fill className="object-contain" />
+        </motion.div>
       </div>
     </section>
   );

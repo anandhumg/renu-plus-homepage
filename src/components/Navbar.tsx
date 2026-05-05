@@ -56,7 +56,7 @@ export default function Navbar() {
                 }`}
             >
               {/* <Link href="/" className=" relative"> */}
-              <Image src="/logo.png" alt="Logo" fill className="object-contain" />
+              <Image src="/logo.png" alt="Logo" fill priority className="object-contain" />
               {/* </Link> */}
             </div>
 

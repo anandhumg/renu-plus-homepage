@@ -38,14 +38,11 @@ export default function HeroSection() {
             </button>
           </motion.div>
         </div>
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+        <div
           className="md:w-129 w-full aspect-[1.125] h-auto mx-auto relative order-1 md:order-2"
         >
-          <Image src="/home/img-1.webp" alt="Hero Image" fill className="object-contain" />
-        </motion.div>
+          <Image src="/home/img-1.webp" alt="Hero Image" fill priority className="object-contain" />
+        </div>
       </div>
     </section>
   );

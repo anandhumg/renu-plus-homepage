@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
 
+import { LoadingProvider } from "@/contexts/LoadingContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,11 +30,13 @@ export default function RootLayout({
       <body className="bg-background flex flex-col font-ppmori m-0 p-0 break-word">
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
           <AuthProvider>
-            <Navbar />
-            {children}
-            {/* <AppPromotionPopup /> */}
-            <Footer />
-            <Toaster position="top-center" />
+            <LoadingProvider>
+              <Navbar />
+              {children}
+              {/* <AppPromotionPopup /> */}
+              <Footer />
+              <Toaster position="top-center" />
+            </LoadingProvider>
           </AuthProvider>
         </GoogleOAuthProvider>
       </body>

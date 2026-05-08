@@ -3,8 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useLoading } from "@/contexts/LoadingContext";
 
 export default function HeroSection() {
+  const { isLoaded } = useLoading();
   return (
     <section className="h-screen bg-primary-bg relative overflow-hidden">
       {/* Decorator element for elliptical gradient */}
@@ -14,7 +16,7 @@ export default function HeroSection() {
         <div className="md:px-20 px-4 order-2 md:order-1">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="md:text-[60px] text-[32px] font-ppmori-semibold text-foreground leading-[1.2] mb-6"
           >
@@ -22,7 +24,7 @@ export default function HeroSection() {
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-body md:text-[18px] text-[18px] font-ppmori text-sub-foreground mb-6"
           >
@@ -30,7 +32,7 @@ export default function HeroSection() {
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
             <button onClick={() => window.location.href = "/"} className="bg-primary md:text-[18px] text-[16px] font-ppmori-semibold text-white md:px-6 px-5 md:py-3 py-2  md:h-[48px] h-[44px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
@@ -38,11 +40,14 @@ export default function HeroSection() {
             </button>
           </motion.div>
         </div>
-        <div
-          className="md:w-129 w-full aspect-[1.125] h-auto mx-auto relative order-1 md:order-2"
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+          className="md:w-160 w-full aspect-[1.125] h-auto mx-auto relative order-1 md:order-2"
         >
-          <Image src="/home/img-1.webp" alt="Hero Image" fill priority className="object-contain" />
-        </div>
+          <Image src="/home/img-2.webp" alt="Hero Image" fill priority className="object-contain" />
+        </motion.div>
       </div>
     </section>
   );

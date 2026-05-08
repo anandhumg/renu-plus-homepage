@@ -6,8 +6,10 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { User, LogOut, ChevronDown, Menu, X, QrCode } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { useLoading } from "@/contexts/LoadingContext";
 
 export default function Navbar() {
+  const { isLoaded } = useLoading();
   const [isOpen, setIsOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -43,7 +45,7 @@ export default function Navbar() {
     <>
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        animate={isLoaded ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
         transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
         className={`w-full fixed top-0 z-100 transition-colors duration-300 ${isScrolled ? "bg-white/70 backdrop-blur-3xl shadow-sm" : "bg-transparent"
           }`}

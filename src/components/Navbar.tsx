@@ -7,6 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { User, LogOut, ChevronDown, Menu, X, QrCode } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useLoading } from "@/contexts/LoadingContext";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const { isLoaded } = useLoading();
@@ -14,12 +15,25 @@ export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleGetApp = () => {
+    if (pathname === "/") {
+      const element = document.getElementById("app-promotion");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.dispatchEvent(new CustomEvent("trigger-app-promo"));
+    }
+    setIsOpen(false);
+  };
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -74,7 +88,7 @@ export default function Navbar() {
                   Become a partner
                 </Link>
                 <button
-                  onClick={() => window.dispatchEvent(new CustomEvent("trigger-app-promo"))}
+                  onClick={handleGetApp}
                   className="flex items-center justify-center space-x-2 border border-[#111827] px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-sm font-ppmori-semibold cursor-pointer"
                 >
                   <QrCode size={16} />
@@ -205,10 +219,7 @@ export default function Navbar() {
                 </motion.div>
                 <motion.div variants={linkVariants}>
                   <button
-                    onClick={() => {
-                      window.dispatchEvent(new CustomEvent("trigger-app-promo"));
-                      setIsOpen(false);
-                    }}
+                    onClick={handleGetApp}
                     className="text-left text-3xl font-ppmori-semibold text-gray-900 hover:text-primary transition-colors cursor-pointer w-full"
                   >
                     Get the app

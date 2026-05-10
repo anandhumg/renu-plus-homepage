@@ -1,7 +1,13 @@
+import Image from "next/image";
+import Leaf1 from "../../../public/common/leaf.svg"
 
 export default function HaveQuestions() {
     return (
-        <section className="bg-background py-20">
+        <section className="relative bg-background py-20">
+            {/* Decorative leaf top-left */}
+            <div className="absolute top-0 left-0 w-40 h-40 opacity-100 pointer-events-none select-none">
+                <Image src={Leaf1} alt="Leaf" fill className="object-contain" />
+            </div>
             <div className="text-foreground font-ppmori-semibold lg:text-[40px] text-[30px] text-center">
                 Got questions?
             </div>
@@ -10,7 +16,7 @@ export default function HaveQuestions() {
             </div>
             <div className="flex justify-center mt-10">
                 <button className="bg-primary text-[18px] font-ppmori-semibold text-white px-6 py-3 h-12  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
-                Talk to us
+                    Talk to us
                 </button>
             </div>
         </section>

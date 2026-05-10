@@ -33,7 +33,7 @@ export default function RootLayout({
             <LoadingProvider>
               <Navbar />
               {children}
-              {/* <AppPromotionPopup /> */}
+              <AppPromotionPopup />
               <Footer />
               <Toaster position="top-center" />
             </LoadingProvider>

@@ -12,15 +12,15 @@ export default function SmarterSpending() {
                                 Save more every day
                             </span>
                         </div>
-                        <div className="md:hidden block relative w-auto h-full mb-6">
-                            <Image src="/home/img-2.png" alt="Smarter Spending" width={1000} height={1000} className="object-cover h-full" />
+                        <div className="relative aspect-[1.04] w-[649px] h-auto md:hidden">
+                            <Image src="/home/img-6.webp" alt="Smarter Spending" fill className="object-cover h-full" />
                         </div>
-                        <div className="text-sub-foreground font-ppmori text-[16px] leading-[1.6]">
+                        <div className="text-sub-foreground font-ppmori lg:text-[16px] text-[12px] leading-[1.6]">
                             Renu Plus has been helping people save money since 2013. Through our trusted discount membership, you gain access to exclusive savings across a wide variety of retailers. Shop smarter and enjoy great deals on everyday essentials - both online and in-store, while making the most of your budget.
                         </div>
                     </div>
-                    <div className="md:block hidden relative w-auto h-full">
-                        <Image src="/home/img-2.png" alt="Smarter Spending" width={1000} height={1000} className="object-cover h-full" />
+                    <div className="relative aspect-[1.04] w-[649px] h-auto">
+                        <Image src="/home/img-6.webp" alt="Smarter Spending" fill className="object-cover h-full" />
                     </div>
                 </div>
             </div>

@@ -6,18 +6,20 @@ import MakeTransactionCount from "@/components/home/MakeTransactionCount";
 import SmarterSpending from "@/components/home/SmarterSpending";
 import SmartStanding from "@/components/home/SmartStanding";
 import Steps from "@/components/home/Steps";
+import AppPromotionSection from "@/components/home/AppPromotionSection";
 
 export default function Home() {
   return (
     <main className="">
       <HeroSection />
+      <PartnerLogos />
       <Steps />
       <SmartStanding />
-      <PartnerLogos />
       <MakeTransactionCount />
       <SmarterSpending />
-      <BigSavings />
+      {/* <BigSavings /> */}
       <HaveQuestions />
+      <AppPromotionSection id="app-promotion" />
     </main>
   );
 }

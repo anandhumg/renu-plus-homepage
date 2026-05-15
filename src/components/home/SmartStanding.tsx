@@ -11,7 +11,7 @@ function AnimatedCounter({ to }: { to: number }) {
 
     useEffect(() => {
         if (inView) {
-            const controls = animate(count, to, { duration: 1.5, ease: "easeOut" });
+            const controls = animate(count, to, { duration: 0.8, ease: "easeOut" });
             return controls.stop;
         }
     }, [inView, count, to]);
@@ -30,10 +30,10 @@ export default function SmartStanding() {
     const price = process.env.NEXT_PUBLIC_PACKAGE_PRICE || "49";
 
     const coins = [
-        { src: Coin1, size: 80, top: "10%", right: "25%", duration: 15, delay: 0 },
-        { src: Coin2, size: 70, top: "25%", left: "25%", duration: 20, delay: 2 },
-        { src: Coin1, size: 60, bottom: "20%", right: "20%", duration: 18, delay: 1 },
-        { src: Coin2, size: 90, top: "60%", left: "15%", duration: 22, delay: 3 },
+        { src: Coin1, className: "w-[60px] h-[60px] md:w-[80px] md:h-[80px] top-[3%] right-[5%] md:top-[10%] md:right-[25%]", duration: 15, delay: 0 },
+        { src: Coin2, className: "w-[50px] h-[50px] md:w-[70px] md:h-[70px] top-[20%] left-[5%] md:top-[25%] md:left-[25%]", duration: 20, delay: 2 },
+        { src: Coin1, className: "w-[45px] h-[45px] md:w-[60px] md:h-[60px] bottom-[10%] right-[5%] md:bottom-[20%] md:right-[20%]", duration: 18, delay: 1 },
+        { src: Coin2, className: "w-[50px] h-[50px] md:w-[90px] md:h-[90px] top-[75%] left-[5%] md:top-[60%] md:left-[15%]", duration: 22, delay: 3 },
     ];
 
     return (
@@ -42,16 +42,6 @@ export default function SmartStanding() {
             {coins.map((coin, index) => (
                 <motion.div
                     key={index}
-                    style={{
-                        position: "absolute",
-                        top: coin.top,
-                        left: coin.left,
-                        right: coin.right,
-                        bottom: coin.bottom,
-                        width: coin.size,
-                        height: coin.size,
-                        zIndex: 10,
-                    }}
                     animate={{
                         rotate: 360,
                         y: [0, -15, 0],
@@ -69,7 +59,7 @@ export default function SmartStanding() {
                             delay: coin.delay,
                         }
                     }}
-                    className="pointer-events-none opacity-80"
+                    className={`absolute z-10 pointer-events-none opacity-80 ${coin.className}`}
                 >
                     <Image src={coin.src} alt="Coin" fill className="object-contain" />
                 </motion.div>

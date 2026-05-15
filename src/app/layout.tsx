@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
 
 import { LoadingProvider } from "@/contexts/LoadingContext";
+import SmoothScrolling from "@/components/SmoothScrolling";
 
 export default function RootLayout({
   children,
@@ -31,11 +32,13 @@ export default function RootLayout({
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
           <AuthProvider>
             <LoadingProvider>
-              <Navbar />
-              {children}
-              <AppPromotionPopup />
-              <Footer />
-              <Toaster position="top-center" />
+              <SmoothScrolling>
+                <Navbar />
+                {children}
+                <AppPromotionPopup />
+                <Footer />
+                <Toaster position="top-center" />
+              </SmoothScrolling>
             </LoadingProvider>
           </AuthProvider>
         </GoogleOAuthProvider>

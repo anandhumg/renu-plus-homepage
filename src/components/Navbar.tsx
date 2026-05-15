@@ -68,7 +68,7 @@ export default function Navbar() {
           <div className="flex justify-between md:h-[85] h-16 items-center">
             {/* Logo */}
             <div
-              className={`flex relative items-center p-2 transition-all duration-300 aspect-[1.06] md:h-auto ${!isScrolled ? "md:px-8 md:py-2 md:mt-18 md:w-25  w-10 " : "md:w-17.5  w-10"
+              className={`flex relative items-center p-2 transition-all duration-300 aspect-[1.06] md:h-auto ${!isScrolled ? "md:px-8 md:py-2 md:mt-18 md:w-25 mt-10 w-20" : "md:w-17.5 w-12"
                 }`}
             >
               {/* <Link href="/" className=" relative"> */}

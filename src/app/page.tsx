@@ -17,7 +17,6 @@ export default function Home() {
       <SmartStanding />
       <MakeTransactionCount />
       <SmarterSpending />
-      {/* <BigSavings /> */}
       <HaveQuestions />
       <AppPromotionSection id="app-promotion" />
     </main>

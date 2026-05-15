@@ -3,9 +3,9 @@ import Leaf1 from "../../../public/common/leaf.svg"
 
 export default function HaveQuestions() {
     return (
-        <section className="relative bg-background py-20">
+        <section className="relative bg-background py-20 px-4">
             {/* Decorative leaf top-left */}
-            <div className="absolute top-0 left-0 w-40 h-40 opacity-100 pointer-events-none select-none">
+            <div className="absolute top-0 left-0 md:w-40 w-25 h-25 md:h-40 opacity-100 pointer-events-none select-none">
                 <Image src={Leaf1} alt="Leaf" fill className="object-contain" />
             </div>
             <div className="text-foreground font-ppmori-semibold lg:text-[40px] text-[30px] text-center">

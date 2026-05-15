@@ -4,13 +4,13 @@ import Img5 from "../../../public/home/img-5.webp"
 
 export default function Steps() {
     return (
-        <section className="md:py-40 py-20 bg-white relative overflow-hidden">
+        <section className="md:py-40 py-30 bg-white relative overflow-hidden">
             {/* Decorative leaf top-left */}
-            <div className="absolute top-0 left-0 w-40 h-40 opacity-100 pointer-events-none select-none">
+            <div className="absolute top-0 left-0 md:w-40 md:h-40 w-30 h-30 opacity-100 pointer-events-none select-none">
                 <Image src={Leaf1} alt="Leaf" fill className="object-contain" />
             </div>
             {/* Decorative leaf bottom-right */}
-            <div className="absolute bottom-0 right-0 w-40 h-40 opacity-100 pointer-events-none select-none">
+            <div className="absolute bottom-0 right-0 md:w-40 md:h-40 w-30 h-30 opacity-100 pointer-events-none select-none">
                 <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-180" />
             </div>
 
@@ -19,8 +19,8 @@ export default function Steps() {
 
                     {/* Left: Text + Steps */}
                     <div>
-                        <h2 className="text-[40px] font-ppmori-semibold text-foreground mb-3">Start Saving in Minutes</h2>
-                        <p className="text-[18px] font-ppmori text-[#4B5563] mb-10 max-w-md">
+                        <h2 className="md:text-[40px] text-[28px] font-ppmori-semibold text-foreground mb-3">Start Saving in Minutes</h2>
+                        <p className="md:text-[18px] text-[16px] font-ppmori text-[#4B5563] mb-10 max-w-md">
                             Get access to exclusive discounts with a simple membership – no complex setup, no waiting.
                         </p>
 
@@ -37,8 +37,8 @@ export default function Steps() {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="text-[20px] font-ppmori-semibold text-foreground mb-1">Join & Activate</h3>
-                                    <p className="text-[16px] text-[#4B5563] font-ppmori">Sign up and get instant access with a simple annual membership</p>
+                                    <h3 className="md:text-[20px] text-[18px] font-ppmori-semibold text-foreground mb-1">Join & Activate</h3>
+                                    <p className="md:text-[16px] text-[16px] text-[#4B5563] font-ppmori">Sign up and get instant access with a simple annual membership</p>
                                 </div>
                             </div>
 
@@ -54,8 +54,8 @@ export default function Steps() {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="text-[20px] font-ppmori-semibold text-foreground mb-1">Get Your Digital ID</h3>
-                                    <p className="text-[16px] text-[#4B5563] font-ppmori">Instantly access your membership ID on your phone, ready to use anytime.</p>
+                                    <h3 className="md:text-[20px] text-[18px] font-ppmori-semibold text-foreground mb-1">Get Your Digital ID</h3>
+                                    <p className="md:text-[16px] text-[16px] text-[#4B5563] font-ppmori">Instantly access your membership ID on your phone, ready to use anytime.</p>
                                 </div>
                             </div>
 
@@ -73,15 +73,15 @@ export default function Steps() {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="text-[20px] font-ppmori-semibold text-foreground mb-1">Show & Save</h3>
-                                    <p className="text-[16px] text-[#4B5563] font-ppmori">Present your ID at partner stores and unlock exclusive pricing.</p>
+                                    <h3 className="md:text-[20px] text-[18px] font-ppmori-semibold text-foreground mb-1">Show & Save</h3>
+                                    <p className="md:text-[16px] text-[16px] text-[#4B5563] font-ppmori">Present your ID at partner stores and unlock exclusive pricing.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Right: Image placeholder */}
-                    <div className="relative  w-[500px] aspect-3/4 rounded-3xl flex flex-col items-center justify-center  gap-3">
+                    <div className="relative  md:w-[500px] w-full aspect-3/4 rounded-3xl flex flex-col items-center justify-center  gap-3">
                         <Image src={Img5} alt="Hero Image" fill priority className="object-contain" />
                     </div>
 

@@ -17,14 +17,14 @@ const AppPromotionSection: React.FC<AppPromotionSectionProps> = ({ id, isPopup =
       id={id}
       className={`relative w-full mx-auto px-4 sm:px-6 lg:px-8 ${isPopup ? "py-0" : "py-16 md:py-24 bg-white"}`}
     >
-      <div className={`relative overflow-hidden max-w-7xl  mx-auto bg-linear-to-b to-[#FFDFB5]/50  from-white rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between shadow-sm border border-[#F3E8DF] ${isPopup ? "min-h-[60vh]" : "h-[80vh] overflow-hidden"}`}>
+      <div className={`relative overflow-hidden max-w-7xl  mx-auto bg-linear-to-b to-[#FFDFB5]/50  from-white md:rounded-[2.5rem] rounded-lg flex flex-col md:flex-row items-center justify-between shadow-sm border border-[#F3E8DF] ${isPopup ? "md:min-h-[60vh]" : "md:h-[80vh] overflow-hidden"}`}>
 
         {/* Left Content */}
         <div className="flex-1 p-8 md:p-16 z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6 }}
           >
             {/* Logo */}
@@ -57,7 +57,7 @@ const AppPromotionSection: React.FC<AppPromotionSectionProps> = ({ id, isPopup =
           <motion.div
             initial={{ y: 150, opacity: 0 }}
             whileInView={{ y: 90, opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="relative z-10 w-[280px] md:w-[320px] aspect-1/2 mt-auto"
           >

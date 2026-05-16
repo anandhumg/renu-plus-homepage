@@ -37,9 +37,9 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Who We Are", href: "/who-we-are" },
-    { name: "How It Works", href: "/how-it-works" },
-    { name: "Discount Offers", href: "/#offers" },
+    { name: "Who We Are", href: "/" },
+    { name: "How It Works", href: "/" },
+    { name: "Discount Offers", href: "/" },
   ];
 
   const sidebarVariants: Variants = {
@@ -67,14 +67,13 @@ export default function Navbar() {
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between md:h-[85] h-16 items-center">
             {/* Logo */}
-            <div
+            <Link
+              href="/"
               className={`flex relative items-center p-2 transition-all duration-300 aspect-[1.06] md:h-auto ${!isScrolled ? "md:px-8 md:py-2 md:mt-18 md:w-25 mt-10 w-20" : "md:w-17.5 w-12"
                 }`}
             >
-              {/* <Link href="/" className=" relative"> */}
               <Image src="/logo.png" alt="Logo" fill priority className="object-contain" />
-              {/* </Link> */}
-            </div>
+            </Link>
 
             {/* Right Side Actions */}
             <div className="flex items-center space-x-3 lg:space-x-4">
@@ -117,9 +116,9 @@ export default function Navbar() {
                   {isProfileOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2">
                       <Link
-                        href="/profile"
+                        href="/"
                         className="flex items-center space-x-2 px-4 py-3 text-sm font-ppmori text-gray-600 hover:bg-gray-50 transition-colors"
-                        onClick={() => setIsProfileOpen(false)}
+                      // onClick={() => setIsProfileOpen(false)}
                       >
                         <User size={16} />
                         <span>My Profile</span>
@@ -127,7 +126,7 @@ export default function Navbar() {
                       <button
                         onClick={() => {
                           logout();
-                          setIsProfileOpen(false);
+                          // setIsProfileOpen(false);
                         }}
                         className="w-full flex items-center space-x-2 px-4 py-3 text-sm font-ppmori text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
                       >
@@ -139,7 +138,7 @@ export default function Navbar() {
                 </div>
               ) : (
                 <Link
-                  href="/login"
+                  href="/"
                   className="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-all text-sm font-ppmori-semibold"
                 >
                   Join now
@@ -212,7 +211,7 @@ export default function Navbar() {
                   <Link
                     href="/#partner"
                     className="text-3xl font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block"
-                    onClick={() => setIsOpen(false)}
+                  // onClick={() => setIsOpen(false)}
                   >
                     Become a partner
                   </Link>

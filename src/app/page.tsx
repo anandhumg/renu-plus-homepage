@@ -7,6 +7,7 @@ import SmarterSpending from "@/components/home/SmarterSpending";
 import SmartStanding from "@/components/home/SmartStanding";
 import Steps from "@/components/home/Steps";
 import AppPromotionSection from "@/components/home/AppPromotionSection";
+import TopPartnerStores from "@/components/home/TopPartnerStores";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Steps />
       <SmartStanding />
       <MakeTransactionCount />
+      <TopPartnerStores />
       <SmarterSpending />
       <HaveQuestions />
       <AppPromotionSection id="app-promotion" />

@@ -32,9 +32,9 @@ export default function HowItWorksSection() {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-20 gap-10 items-center">
-                    
+
                     {/* Steps list side */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
@@ -46,8 +46,8 @@ export default function HowItWorksSection() {
                         </h2>
                         <div className="text-sub-foreground font-ppmori lg:text-[18px] text-[16px] leading-[1.6] max-w-xl space-y-6">
                             {steps.map((step, index) => (
-                                <motion.div 
-                                    key={index} 
+                                <motion.div
+                                    key={index}
                                     initial={{ opacity: 0, y: 15 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
@@ -64,7 +64,7 @@ export default function HowItWorksSection() {
                     </motion.div>
 
                     {/* Image side */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, scale: 0.95, x: 50 }}
                         whileInView={{ opacity: 1, scale: 1, x: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
@@ -83,4 +83,4 @@ export default function HowItWorksSection() {
             </div>
         </section>
     );
-}
+}

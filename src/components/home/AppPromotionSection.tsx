@@ -43,7 +43,7 @@ const AppPromotionSection: React.FC<AppPromotionSectionProps> = ({ id, isPopup =
             </p>
 
             {/* CTA Button */}
-            <button className="bg-primary text-white px-8 py-3 rounded-full font-ppmori-semibold text-lg hover:bg-[#A38000] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+            <button className="bg-primary text-white px-8 py-2.5 cursor-pointer md:hidden rounded-full font-ppmori-semibold text-md hover:bg-[#A38000] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
               Download Renu plus
             </button>
           </motion.div>

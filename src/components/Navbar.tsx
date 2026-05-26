@@ -37,9 +37,9 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Who We Are", href: "/" },
-    { name: "How It Works", href: "/" },
-    { name: "Discount Offers", href: "/" },
+    { name: "Who We Are", href: "/about-us" },
+    { name: "How It Works", href: "/how-it-works" },
+    { name: "Discount Offers", href: "/discount-offers" },
   ];
 
   const sidebarVariants: Variants = {
@@ -192,7 +192,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="px-10 pb-10 flex flex-col space-y-8 grow overflow-y-auto mt-4">
+            <div className="px-10 pb-10 flex flex-col space-y-8 grow overflow-y-auto overflow-x-hidden mt-4">
               {navLinks.map((link) => (
                 <motion.div key={link.name} variants={linkVariants}>
                   <Link

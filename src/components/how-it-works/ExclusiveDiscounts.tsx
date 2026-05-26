@@ -1,26 +1,59 @@
+"use client";
+
+import { useLoading } from "@/contexts/LoadingContext";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function ExclusiveDiscounts() {
+    const { isLoaded } = useLoading();
+
     return (
-        <section className="md:h-screen bg-white md:px-20 px-4 mt-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 gap-6 lg:items-center w-full h-full">
-                <div className="w-full h-[300px] md:h-[600px] relative">
-                    <Image src="/how-it-works/img-1.png" alt="Who We Are" fill className="object-contain" />
-                </div>
-                <div className="">
-                    <h1 className="text-head lg:text-[45px] text-[32px] mb-6">
-                        Exclusive Discounts at Various Retailers
-                    </h1>
-                    <p className="text-body mb-6 text-[18px] leading-[1.6] max-w-xl">
-                        Your membership discounts are applicable at numerous partnered retailers,
-                        where they provide substantial savings exclusively for Renu Plus members.
-                        These discounts apply to regularly priced items, ensuring you receive the best deals
-                        on your purchases, while items already discounted are excluded. With your virtual card,
-                        you can conveniently shop both online and in-store, enjoying expert assistance along
-                        the way.
-                    </p>
+        <section className="md:min-h-[85vh] md:bg-primary-bg bg-white relative overflow-hidden flex flex-col justify-center pt-24 pb-12">
+            {/* Decorator element for elliptical gradient */}
+            <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] bg-white rounded-full blur-[140px] z-0 pointer-events-none"></div>
+            <div className="bg-white/80 blur-2xl w-1/2 h-50 absolute left-[50%] top-[-10%] z-0 pointer-events-none"></div>
+
+            <div className="relative z-10 md:px-20 px-4 w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 gap-10 lg:items-center w-full h-full">
+                    {/* Image side - animated */}
+                    <motion.div 
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className="w-full h-[300px] md:h-[500px] relative order-2 lg:order-1"
+                    >
+                        <Image src="/how-it-works/img-1.png" alt="Exclusive Discounts" fill className="object-contain" priority />
+                    </motion.div>
+
+                    {/* Text side - animated */}
+                    <div className="order-1 lg:order-2 lg:pl-6">
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="text-foreground font-ppmori-semibold lg:text-[50px] md:text-[42px] text-[32px] leading-[1.2] mb-6"
+                        >
+                            Exclusive Discounts
+                            <br />
+                            <span className="text-head">at Various Retailers</span>
+                        </motion.h1>
+                        
+                        <motion.p 
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                            className="text-sub-foreground font-ppmori lg:text-[18px] text-[16px] leading-[1.6] max-w-xl"
+                        >
+                            Your membership discounts are applicable at numerous partnered retailers,
+                            where they provide substantial savings exclusively for Renu Plus members.
+                            These discounts apply to regularly priced items, ensuring you receive the best deals
+                            on your purchases, while items already discounted are excluded. With your virtual card,
+                            you can conveniently shop both online and in-store, enjoying expert assistance along
+                            the way.
+                        </motion.p>
+                    </div>
                 </div>
             </div>
         </section>
     );
-}
+}

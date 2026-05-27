@@ -103,7 +103,7 @@ const CheckoutForm = ({
       <button
         type="submit"
         disabled={!stripe || loading}
-        className="w-full bg-[#B68F00] text-white py-4 rounded-full font-bold uppercase tracking-widest hover:bg-[#A58000] transition-all shadow-lg shadow-primary/20 flex items-center justify-center space-x-2 disabled:opacity-70 cursor-pointer"
+        className="w-full bg-primary text-white py-4 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-lg shadow-primary/20 flex items-center justify-center space-x-2 disabled:opacity-70 cursor-pointer"
       >
         {loading ? (
           <>
@@ -302,10 +302,10 @@ export default function SubscribePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F9F6F4] text-gray-900 flex flex-col md:px-12 px-6 py-8">
+    <div className="min-h-screen bg-white text-gray-900 flex flex-col md:px-12 px-6 py-8">
       {/* Top Header Logo */}
       <div className="mb-10 flex items-center">
-        <Link href="/" className="relative w-28 h-12">
+        <Link href="/" className="relative aspect-[1.06]  w-28 ">
           <Image src="/logo.png" alt="Renu Plus Logo" fill priority className="object-contain object-left" />
         </Link>
       </div>
@@ -314,27 +314,28 @@ export default function SubscribePage() {
         {/* LEFT COLUMN: Checkout Form Steps */}
         <div className="lg:col-span-7 space-y-12">
           <div>
-            <span className="bg-[#F3ECE7] text-[#7C5D48] text-[11px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-wider">
+            <span className="bg-background text-head text-[14px] font-ppmori-semibold px-3 py-1.5 rounded-full inline-block tracking-wider">
               Renu plus membership
             </span>
-            <h1 className="text-4xl sm:text-5xl font-ppmori font-bold tracking-tight text-gray-900 mt-5">
+            <h1 className="text-[32px] font-ppmori-semibold text-[#030712] mt-5">
               Start saving in minutes
             </h1>
-            <p className="text-gray-500 font-ppmori text-base mt-3 leading-relaxed">
-              Enjoy unbeatable savings on home reno projects, dining, travel, home & personal essentials and more.
+            <p className="text-sub-foreground font-ppmori text-[16px] mt-3 leading-relaxed">
+              Enjoy unbeatable savings on home reno projects
+              <br />
+              dining, travel, home & personal essentials and more.
             </p>
           </div>
 
-          <div className="space-y-8 border-t border-gray-200/60 pt-8">
+          <div className="space-y-8 border-t border-[#D1D5DB] py-8">
             {/* STEP 1: CREATE ACCOUNT */}
             <div className="relative">
-              <div className="flex items-center gap-4 mb-6">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
-                  isAuthenticated ? 'bg-green-100 text-green-700' : 'bg-[#B68F00] text-white'
-                }`}>
+              <div className="flex items-center gap-2 mb-6">
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-sm ${isAuthenticated ? 'bg-[#4D7C0F] text-white' : 'bg-head text-white'
+                  }`}>
                   {isAuthenticated ? <Check size={16} strokeWidth={3} /> : '1'}
                 </div>
-                <h3 className="text-lg font-bold font-ppmori text-gray-900">
+                <h3 className="text-[16px] font-ppmori-semibold text-foreground">
                   {isAuthenticated ? 'Account created' : 'Create your account'}
                 </h3>
               </div>
@@ -350,16 +351,16 @@ export default function SubscribePage() {
                   >
                     {!otpSent ? (
                       <form onSubmit={handleRequestOtp} className="space-y-4">
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Email Address</label>
-                          <div className="relative">
-                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                        <div className="space-y-8">
+                          <label className="text-[12px] font-ppmori-semibold text-foreground ml-3.5">Email</label>
+                          <div className="relative mt-2">
+                            <Mail className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
                             <input
                               type="email"
                               placeholder="Email"
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
-                              className="w-full pl-12 pr-4 py-4 bg-[#F4F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#B68F00]/20 outline-none transition-all text-gray-800 placeholder-gray-400"
+                              className="w-full pl-12 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
                               required
                             />
                           </div>
@@ -368,22 +369,23 @@ export default function SubscribePage() {
                         <button
                           type="submit"
                           disabled={step1Loading}
-                          className="w-full bg-[#B68F00] text-white py-4 rounded-full font-bold uppercase tracking-widest hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+                          className="w-full bg-primary text-white py-4 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
                         >
                           {step1Loading ? <Loader2 size={18} className="animate-spin" /> : 'Continue'}
                         </button>
                       </form>
                     ) : (
                       <form onSubmit={handleVerifyOtp} className="space-y-4">
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Verification Code</label>
-                          <div className="relative">
+                        <div className="space-y-8">
+                          <label className="text-[12px] font-ppmori-semibold text-foreground ml-3.5">Verification Code</label>
+                          <div className="relative mt-2">
+                            <Lock className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
                             <input
                               type="text"
                               placeholder="Enter 6-digit code"
                               value={otp}
                               onChange={(e) => setOtp(e.target.value)}
-                              className="w-full py-4 bg-[#F4F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#B68F00]/20 outline-none transition-all text-center text-xl tracking-[0.25em] font-bold text-gray-800 placeholder-gray-400"
+                              className="w-full pl-12 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold text-center tracking-[0.25em] font-bold"
                               maxLength={6}
                               required
                             />
@@ -393,14 +395,14 @@ export default function SubscribePage() {
                         <button
                           type="submit"
                           disabled={step1Loading}
-                          className="w-full bg-[#B68F00] text-white py-4 rounded-full font-bold uppercase tracking-widest hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+                          className="w-full bg-primary text-white py-4 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
                         >
                           {step1Loading ? <Loader2 size={18} className="animate-spin" /> : 'Verify Code'}
                         </button>
                         <button
                           type="button"
                           onClick={() => setOtpSent(false)}
-                          className="w-full text-xs text-gray-500 hover:text-[#B68F00] font-semibold transition-colors uppercase tracking-wider text-center"
+                          className="w-full text-xs text-gray-500 hover:text-primary font-semibold transition-colors uppercase tracking-wider text-center"
                         >
                           Use a different email
                         </button>
@@ -410,29 +412,34 @@ export default function SubscribePage() {
                     {!otpSent && (
                       <>
                         <div className="relative flex py-2 items-center">
-                          <div className="flex-grow border-t border-gray-200"></div>
-                          <span className="flex-shrink mx-4 text-gray-400 text-xs font-semibold uppercase">Or</span>
-                          <div className="flex-grow border-t border-gray-200"></div>
+                          <div className="grow border-t border-gray-200"></div>
+                          <span className="shrink mx-4 text-gray-400 text-xs font-semibold uppercase">Or</span>
+                          <div className="grow border-t border-gray-200"></div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="flex justify-center border border-gray-200 bg-white rounded-full py-3 hover:bg-gray-50 transition-colors shadow-sm cursor-pointer">
+                        <div className="grid grid-cols-2 gap-4 mx-10">
+                          <div className="">
                             <GoogleLogin
                               onSuccess={handleGoogleSuccess}
                               onError={() => toast.error('Google login failed')}
-                              type="icon"
+                              type="standard"
                               shape="circle"
+                              theme="outline"
+                              size="large"
+                              text="signin_with"
+
                             />
+
                           </div>
 
                           <button
                             onClick={handleAppleLogin}
-                            className="flex items-center justify-center space-x-3 border border-gray-200 bg-white rounded-full py-3 hover:bg-gray-50 transition-colors shadow-sm cursor-pointer"
+                            className="flex items-center justify-center space-x-4 border border-gray-200 bg-white rounded-full hover:bg-gray-50 transition-colors cursor-pointer"
                           >
                             <svg className="w-5 h-5" viewBox="0 0 384 512">
                               <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor" />
                             </svg>
-                            <span className="font-semibold text-gray-700 text-sm">Apple</span>
+                            <span className="text-sub-foreground text-sm">Sign in with Apple</span>
                           </button>
                         </div>
                       </>
@@ -445,7 +452,7 @@ export default function SubscribePage() {
                     animate={{ opacity: 1 }}
                     className="pl-12"
                   >
-                    <p className="text-gray-500 font-semibold text-sm">{user?.email}</p>
+                    <p className="text-sub-foreground font-ppmori-semibold text-[15px]">{user?.email}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -453,13 +460,13 @@ export default function SubscribePage() {
 
             {/* STEP 2: PERSONAL DETAILS */}
             <div className={`relative ${activeStep < 2 ? 'opacity-40' : ''}`}>
-              <div className="flex items-center gap-4 mb-6">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
-                  isAuthenticated && user?.firstName && user?.lastName ? 'bg-green-100 text-green-700' : 'bg-[#B68F00] text-white'
+              <div className="flex items-center gap-2 mb-6">
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-sm ${
+                  isAuthenticated && user?.firstName && user?.lastName ? 'bg-[#4D7C0F] text-white' : 'bg-head text-white'
                 }`}>
-                  {isAuthenticated && user?.firstName && user?.lastName ? <Check size={16} strokeWidth={3} /> : '2'}
+                  {isAuthenticated && user?.firstName && user?.lastName ? <Check size={14} strokeWidth={3} /> : '2'}
                 </div>
-                <h3 className="text-lg font-bold font-ppmori text-gray-900">
+                <h3 className="text-[16px] font-ppmori-semibold text-foreground">
                   {isAuthenticated && user?.firstName && user?.lastName ? 'Personal information saved' : 'Personal information'}
                 </h3>
               </div>
@@ -472,31 +479,31 @@ export default function SubscribePage() {
                 >
                   <form onSubmit={handleUpdateName} className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">First Name</label>
-                        <div className="relative">
-                          <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                      <div className="space-y-8">
+                        <label className="text-[12px] font-ppmori-semibold text-foreground ml-3.5">First Name</label>
+                        <div className="relative mt-2">
+                          <User className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
                           <input
                             type="text"
                             placeholder="First Name"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-[#F4F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#B68F00]/20 outline-none transition-all text-gray-800 placeholder-gray-400"
+                            className="w-full pl-12 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
                             required
                           />
                         </div>
                       </div>
 
-                      <div className="space-y-2">
-                        <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Last Name</label>
-                        <div className="relative">
-                          <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                      <div className="space-y-8">
+                        <label className="text-[12px] font-ppmori-semibold text-foreground ml-3.5">Last Name</label>
+                        <div className="relative mt-2">
+                          <User className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
                           <input
                             type="text"
                             placeholder="Last Name"
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-[#F4F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#B68F00]/20 outline-none transition-all text-gray-800 placeholder-gray-400"
+                            className="w-full pl-12 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
                             required
                           />
                         </div>
@@ -506,7 +513,7 @@ export default function SubscribePage() {
                     <button
                       type="submit"
                       disabled={step2Loading}
-                      className="w-full bg-[#B68F00] text-white py-4 rounded-full font-bold uppercase tracking-widest hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+                      className="w-full bg-primary text-white py-4 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
                     >
                       {step2Loading ? <Loader2 size={18} className="animate-spin" /> : 'Continue to Payment'}
                     </button>
@@ -514,12 +521,12 @@ export default function SubscribePage() {
                 </motion.div>
               ) : isAuthenticated && user?.firstName && user?.lastName ? (
                 <div className="pl-12">
-                  <p className="text-gray-500 font-semibold text-sm">
+                  <p className="text-sub-foreground font-ppmori-semibold text-[15px]">
                     {user.firstName} {user.lastName}
                   </p>
                 </div>
               ) : (
-                <div className="pl-12 flex items-center gap-2.5 text-gray-400 text-sm font-semibold bg-[#F4F1EE] p-4 rounded-2xl border border-gray-100 max-w-sm">
+                <div className="pl-12 flex items-center gap-2.5 text-gray-400 text-[14px] font-ppmori-semibold bg-[#F3F4F6] p-4 rounded-full max-w-sm">
                   <Lock size={14} />
                   <span>Complete step 1 to continue</span>
                 </div>
@@ -528,11 +535,11 @@ export default function SubscribePage() {
 
             {/* STEP 3: PAYMENT */}
             <div className={`relative ${activeStep < 3 ? 'opacity-40' : ''}`}>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-8 h-8 rounded-full bg-[#B68F00] text-white flex items-center justify-center font-bold text-sm">
+              <div className="flex items-center gap-2 mb-6">
+                <div className="w-6 h-6 rounded-full bg-head text-white flex items-center justify-center text-sm">
                   3
                 </div>
-                <h3 className="text-lg font-bold font-ppmori text-gray-900">Payment</h3>
+                <h3 className="text-[16px] font-ppmori-semibold text-foreground">Payment</h3>
               </div>
 
               {activeStep === 3 ? (
@@ -543,7 +550,7 @@ export default function SubscribePage() {
                 >
                   {intentLoading || !clientSecret || !paymentIntentId || !selectedPlan ? (
                     <div className="flex flex-col items-center justify-center py-10 space-y-3">
-                      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#B68F00]" />
+                      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary" />
                       <p className="text-sm text-gray-400 font-semibold">Preparing secure checkout...</p>
                     </div>
                   ) : (
@@ -554,7 +561,7 @@ export default function SubscribePage() {
                         appearance: {
                           theme: 'stripe',
                           variables: {
-                            borderRadius: '16px',
+                            borderRadius: '24px',
                             fontFamily: 'PP Mori, PPMori, sans-serif',
                           },
                         },
@@ -569,7 +576,7 @@ export default function SubscribePage() {
                   )}
                 </motion.div>
               ) : (
-                <div className="pl-12 flex items-center gap-2.5 text-gray-400 text-sm font-semibold bg-[#F4F1EE] p-4 rounded-2xl border border-gray-100 max-w-sm">
+                <div className="pl-12 flex items-center gap-2.5 text-gray-400 text-[14px] font-ppmori-semibold bg-[#F3F4F6] p-4 rounded-full max-w-sm">
                   <Lock size={14} />
                   <span>Complete steps 1 & 2 to continue</span>
                 </div>

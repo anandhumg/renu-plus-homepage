@@ -30,7 +30,7 @@ export default function HowItWorksSection() {
                 <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-180" />
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 md:mt-0 mt-20">
                 <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-20 gap-10 items-center">
 
                     {/* Steps list side */}
@@ -44,6 +44,21 @@ export default function HowItWorksSection() {
                         <h2 className="text-head font-ppmori-semibold lg:text-[40px] text-[28px] mb-10">
                             How it works
                         </h2>
+                        {/* Image side */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, x: 50 }}
+                            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="order-1 lg:order-2 md:hidden block relative mx-auto w-[90%] h-[300px] mb-10"
+                        >
+                            <Image
+                                src="/how-it-works/img-2.png"
+                                alt="How it works illustration"
+                                fill
+                                className="object-contain"
+                            />
+                        </motion.div>
                         <div className="text-sub-foreground font-ppmori lg:text-[18px] text-[16px] leading-[1.6] max-w-xl space-y-6">
                             {steps.map((step, index) => (
                                 <motion.div
@@ -69,7 +84,7 @@ export default function HowItWorksSection() {
                         whileInView={{ opacity: 1, scale: 1, x: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="order-1 lg:order-2 relative w-full h-[400px] md:h-[500px]"
+                        className="order-1 lg:order-2 md:block hidden relative w-full h-[400px] md:h-[500px]"
                     >
                         <Image
                             src="/how-it-works/img-2.png"

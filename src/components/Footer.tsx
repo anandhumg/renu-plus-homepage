@@ -46,8 +46,10 @@ export default function Footer() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12  md:px-20 px-4 mb-4">
 
-          <div className="col-span-1 sm:col-span-2 lg:col-span-2">
-            <Image src="/logo.png" alt="Logo" width={100} height={100} className="mb-8" />
+          <div className="col-span-2 sm:col-span-2 lg:col-span-2">
+            <div className="relative aspect-[1.06] md:h-auto md:w-25 w-20 mb-8">
+              <Image src="/logo.png" alt="Logo" fill className="object-contain" />
+            </div>
 
             <div className="mt-10 flex items-center space-x-4 text-gray-700 font-ppmori">
               <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">

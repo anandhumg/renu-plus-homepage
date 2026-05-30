@@ -95,67 +95,76 @@ export default function Navbar() {
                   <QrCode size={16} />
                   <span>Get the app</span>
                 </button>
-              </div>
 
-              {/* Profile / Join Now (Both Mobile & Desktop) */}
-              {isAuthenticated ? (
-                <div className="relative">
-                  <button
-                    onClick={() => setIsProfileOpen(!isProfileOpen)}
-                    className="flex items-center space-x-2 bg-gray-50 border border-gray-100 px-4 py-2 rounded-full hover:bg-gray-100 transition-all cursor-pointer"
+                {/* Profile / Join Now (Both Mobile & Desktop) */}
+                {isAuthenticated ? (
+                  <div className="relative">
+                    <button
+                      onClick={() => setIsProfileOpen(!isProfileOpen)}
+                      className="flex items-center space-x-2 bg-gray-50 border border-gray-100 px-4 py-2 rounded-full hover:bg-gray-100 transition-all cursor-pointer"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+                        {user?.profilePicture ? (
+                          <img src={user.profilePicture} alt="Profile" className="w-full h-full object-cover" />
+                        ) : (
+                          <User size={18} className="text-primary" />
+                        )}
+                      </div>
+                      <span className="hidden sm:block text-sm font-ppmori-semibold text-gray-700">{user?.firstName}</span>
+                      <ChevronDown size={16} className={`transition-transform ${isProfileOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {isProfileOpen && (
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2">
+                        <Link
+                          href="/"
+                          className="flex items-center space-x-2 px-4 py-3 text-sm font-ppmori text-gray-600 hover:bg-gray-50 transition-colors"
+                        // onClick={() => setIsProfileOpen(false)}
+                        >
+                          <User size={16} />
+                          <span>My Profile</span>
+                        </Link>
+                        <button
+                          onClick={() => {
+                            logout();
+                            // setIsProfileOpen(false);
+                          }}
+                          className="w-full flex items-center space-x-2 px-4 py-3 text-sm font-ppmori text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
+                        >
+                          <LogOut size={16} />
+                          <span>Logout</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href="/"
+                    className="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-all text-sm font-ppmori-semibold"
                   >
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
-                      {user?.profilePicture ? (
-                        <img src={user.profilePicture} alt="Profile" className="w-full h-full object-cover" />
-                      ) : (
-                        <User size={18} className="text-primary" />
-                      )}
-                    </div>
-                    <span className="hidden sm:block text-sm font-ppmori-semibold text-gray-700">{user?.firstName}</span>
-                    <ChevronDown size={16} className={`transition-transform ${isProfileOpen ? 'rotate-180' : ''}`} />
-                  </button>
-
-                  {isProfileOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2">
-                      <Link
-                        href="/"
-                        className="flex items-center space-x-2 px-4 py-3 text-sm font-ppmori text-gray-600 hover:bg-gray-50 transition-colors"
-                      // onClick={() => setIsProfileOpen(false)}
-                      >
-                        <User size={16} />
-                        <span>My Profile</span>
-                      </Link>
-                      <button
-                        onClick={() => {
-                          logout();
-                          // setIsProfileOpen(false);
-                        }}
-                        className="w-full flex items-center space-x-2 px-4 py-3 text-sm font-ppmori text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
-                      >
-                        <LogOut size={16} />
-                        <span>Logout</span>
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  href="/"
-                  className="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-all text-sm font-ppmori-semibold"
-                >
-                  Join now
-                </Link>
-              )}
+                    Join now
+                  </Link>
+                )}
+              </div>
 
               {/* Menu Toggle Button */}
               <button
                 onClick={() => setIsOpen(true)}
-                className="border border-gray-300 p-2 rounded-full text-foreground hover:border-primary hover:text-primary transition-colors focus:outline-none cursor-pointer bg-white/50 backdrop-blur-sm"
+                className="border border-gray-300 p-2 rounded-full text-foreground hover:border-primary hover:text-primary transition-colors focus:outline-none cursor-pointer bg-white/50 backdrop-blur-sm md:block hidden"
                 aria-label="Open menu"
               >
                 <Menu size={20} strokeWidth={2.5} />
               </button>
+              <button
+                onClick={() => setIsOpen(true)}
+                className="md:hidden block"
+                aria-label="Open menu"
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 4.00171H19.0003M0.998047 10.0015H18.9928M7.5 16.0012H18.9928" stroke="#6B7589" stroke-width="1.96867" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
 
+              </button>
             </div>
           </div>
         </div>

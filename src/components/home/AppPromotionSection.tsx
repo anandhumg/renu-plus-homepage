@@ -17,10 +17,10 @@ const AppPromotionSection: React.FC<AppPromotionSectionProps> = ({ id, isPopup =
       id={id}
       className={`relative w-full mx-auto px-4 sm:px-6 lg:px-8 ${isPopup ? "py-0" : "py-16 md:py-24 bg-white"}`}
     >
-      <div className={`relative overflow-hidden max-w-7xl  mx-auto bg-linear-to-b to-[#FFDFB5]/50  from-white md:rounded-[2.5rem] rounded-lg flex flex-col md:flex-row items-center justify-between shadow-sm border border-[#F3E8DF] ${isPopup ? "md:min-h-[60vh]" : "md:h-[80vh] overflow-hidden"}`}>
+      <div className={`relative overflow-hidden max-w-7xl  mx-auto bg-linear-to-b to-[#FFDFB5]/50  from-white md:rounded-[2.5rem] rounded-2xl flex flex-col md:flex-row items-center justify-between shadow-sm border border-[#F3E8DF] ${isPopup ? "md:min-h-[60vh]" : "md:h-[80vh] overflow-hidden"}`}>
 
         {/* Left Content */}
-        <div className="flex-1 p-8 md:p-16 z-10 w-full">
+        <div className="flex-1 px-4 md:px-16 py-10 md:py-16 z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -28,24 +28,26 @@ const AppPromotionSection: React.FC<AppPromotionSectionProps> = ({ id, isPopup =
             transition={{ duration: 0.6 }}
           >
             {/* Logo */}
-            <div className="mb-8">
-              <Image src="/logo.png" alt="Renu Plus Logo" width={60} height={60} className="object-contain" />
+            <div className="relative aspect-[1.06] md:h-auto md:w-[83px] w-14 mb-8">
+              <Image src="/logo.png" alt="Logo" fill className="object-contain" />
             </div>
 
             {/* Headline */}
-            <h2 className="text-4xl md:text-5xl lg:text-[40px] font-ppmori-semibold text-[#18181B] mb-6 leading-[1.1]">
+            <h2 className="text-[28px] md:text-5xl lg:text-[40px] font-ppmori-semibold text-[#18181B] mb-6 leading-[1.1]">
               Smarter savings start here.
             </h2>
 
             {/* Description */}
-            <p className="text-[#52525B] text-[16px] max-w-md mb-10 font-ppmori leading-relaxed">
+            <p className="text-[#52525B] text-[16px] md:mb-10 max-w-[387px] mb-8 font-ppmori leading-relaxed">
               Download the Renu+ app on iOS or Android. Join thousands of Canadians getting more from their everyday spending.
             </p>
 
             {/* CTA Button */}
-            <button className="bg-primary text-white px-8 py-2.5 cursor-pointer md:hidden rounded-full font-ppmori-semibold text-md hover:bg-[#A38000] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
-              Download Renu plus
-            </button>
+            <div className="flex justify-center md:justify-start w-full">
+              <button className="bg-primary text-white px-8 py-2.5 h-13 cursor-pointer md:hidden rounded-full font-ppmori-semibold text-[17px] hover:bg-[#A38000] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                Download Renu plus
+              </button>
+            </div>
           </motion.div>
         </div>
 

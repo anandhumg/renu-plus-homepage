@@ -34,7 +34,7 @@ export default function StoreSwiper({ stores }: StoreSwiperProps) {
     return (
         <div className="relative w-full">
             {/* Header / Arrows Row */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 px-4 lg:px-0 max-w-7xl mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 px-2 lg:px-0 max-w-7xl mx-auto">
                 <div>
                     <h2 className="text-[32px] md:text-[40px] font-ppmori-semibold text-foreground mb-2">
                         Top <span className="text-head">partner stores</span>

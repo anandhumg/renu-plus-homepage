@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 function AnimatedCounter({ to }: { to: number }) {
     const count = useMotionValue(0);
@@ -19,51 +19,82 @@ function AnimatedCounter({ to }: { to: number }) {
     return <motion.span ref={ref}>{rounded}</motion.span>;
 }
 import RenuCardImage from "../../../public/home/img-2.webp"
-import Coin1 from "../../../public/home/coin-1.svg"
-import Coin2 from "../../../public/home/coin-2.svg"
 import Logo2 from "../../../public/logo-2.svg"
 import StepOne from "../../../public/home/sec-step-1.svg"
 import StepTwo from "../../../public/home/sec-step-2.svg"
 import StepThree from "../../../public/home/sec-step-3.svg"
+import styles from "./Coin.module.css";
+
+interface CoinProps {
+    className: string;
+    delay: number;
+    spinDelay: number;
+    variant: "horizontal" | "vertical-slanted";
+}
+
+function Coin({ className, delay, spinDelay, variant }: CoinProps) {
+    const isHorizontal = variant === "horizontal";
+    const spinClass = isHorizontal ? styles.spinHorizontal : styles.spinVerticalSlanted;
+    const backFaceClass = isHorizontal ? styles.faceBackY : styles.faceBackX;
+
+    return (
+        <div className={`absolute z-10 pointer-events-none opacity-80 ${className} ${styles.scene}`}>
+            <div 
+                className={styles.floatingWrapper} 
+                style={{ '--float-delay': `${delay}s` } as React.CSSProperties}
+            >
+                <div 
+                    className={`${styles.spinningCoin} ${spinClass}`} 
+                    style={{ '--spin-delay': `${spinDelay}s` } as React.CSSProperties}
+                >
+                    {/* Front Face */}
+                    <div className={styles.face}>
+                        <Image 
+                            src="/home/coin-3.svg" 
+                            alt="Coin Front" 
+                            fill 
+                            className={styles.image} 
+                            priority 
+                        />
+                    </div>
+                    {/* Back Face */}
+                    <div className={`${styles.face} ${backFaceClass}`}>
+                        <Image 
+                            src="/home/coin-4.svg" 
+                            alt="Coin Back" 
+                            fill 
+                            className={styles.image} 
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 export default function SmartStanding() {
     const price = process.env.NEXT_PUBLIC_PACKAGE_PRICE || "49";
 
     const coins = [
-        { src: Coin1, className: "w-[60px] h-[60px] md:w-[80px] md:h-[80px] top-[3%] right-[5%] md:top-[10%] md:right-[25%]", duration: 15, delay: 0 },
-        { src: Coin2, className: "w-[50px] h-[50px] md:w-[70px] md:h-[70px] top-[20%] left-[5%] md:top-[25%] md:left-[25%]", duration: 20, delay: 2 },
-        { src: Coin1, className: "w-[45px] h-[45px] md:w-[60px] md:h-[60px] bottom-[10%] right-[5%] md:bottom-[20%] md:right-[20%]", duration: 18, delay: 1 },
-        { src: Coin2, className: "w-[50px] h-[50px] md:w-[90px] md:h-[90px] top-[75%] left-[5%] md:top-[60%] md:left-[15%]", duration: 22, delay: 3 },
+        { className: "w-[60px] h-[60px] md:w-[80px] md:h-[80px] top-[3%] right-[5%] md:top-[10%] md:right-[25%]", delay: 0, spinDelay: -1.2, variant: "horizontal" as const },
+        { className: "w-[50px] h-[50px] md:w-[70px] md:h-[70px] top-[20%] left-[5%] md:top-[25%] md:left-[25%]", delay: 2, spinDelay: -3.5, variant: "vertical-slanted" as const },
+        { className: "w-[45px] h-[45px] md:w-[60px] md:h-[60px] bottom-[10%] right-[5%] md:bottom-[20%] md:right-[20%]", delay: 1, spinDelay: -5.8, variant: "horizontal" as const },
+        { className: "w-[50px] h-[50px] md:w-[90px] md:h-[90px] top-[75%] left-[5%] md:top-[60%] md:left-[15%]", delay: 3, spinDelay: -2.1, variant: "vertical-slanted" as const },
     ];
 
     return (
         <section className="relative md:pt-40 pt-20 w-full bg-background overflow-hidden">
             {/* Ambient Spinning Coins */}
             {coins.map((coin, index) => (
-                <motion.div
+                <Coin
                     key={index}
-                    animate={{
-                        rotate: 360,
-                        y: [0, -15, 0],
-                    }}
-                    transition={{
-                        rotate: {
-                            duration: coin.duration,
-                            repeat: Infinity,
-                            ease: "linear",
-                        },
-                        y: {
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: coin.delay,
-                        }
-                    }}
-                    className={`absolute z-10 pointer-events-none opacity-80 ${coin.className}`}
-                >
-                    <Image src={coin.src} alt="Coin" fill className="object-contain" />
-                </motion.div>
+                    className={coin.className}
+                    delay={coin.delay}
+                    spinDelay={coin.spinDelay}
+                    variant={coin.variant}
+                />
             ))}
+
 
             <div className="md:px-20 px-4 w-full relative z-20">
                 <div className="text-center mb-12">

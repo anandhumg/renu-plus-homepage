@@ -35,15 +35,17 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
             <div className="flex md:flex-row flex-col gap-4">
-              <button onClick={() => window.location.href = "/"} className="bg-primary md:text-[18px] text-[18px] font-ppmori-semibold text-white md:px-6 px-5 md:py-3 py-3 
-               md:h-[48px] h-[48px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
+              <button onClick={() => window.location.href = "/"} className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white flex justify-center items-center
+                md:h-[48px] h-[48px] md:w-[206px] w-[197px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
                 Start Saving Today
               </button>
               <button onClick={() => window.location.href = "/"}
-                className="border border-black md:text-[17px] text-[18px] font-ppmori-semibold text-black
-               md:px-6 px-5 md:py-3 py-2  md:h-[48px] h-[48px]  rounded-full
+                className="border border-black md:text-[18px] text-[17px] font-ppmori-semibold text-black flex justify-center items-center
+                md:h-[48px] h-[48px] md:w-[206px] w-[197px]  rounded-full
                  hover:bg-primary/80 transition-colors cursor-pointer">
-                See partner stores
+                <span className="space-y-[-2px]">
+                  See partner stores
+                </span>
               </button>
             </div>
           </motion.div>

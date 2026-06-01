@@ -37,13 +37,12 @@ export default function PartnerLogos() {
               {doubledLogos.map((logo, index) => (
                 <div
                   key={`logo-${index}`}
-                  className="relative md:h-20 h-8 grayscale hover:grayscale-0 cursor-pointer hover:scale-110 flex items-center justify-center transition-all duration-300"
+                  className="relative md:w-[150px] w-[100px] md:h-[50px] h-[40px] grayscale hover:grayscale-0 cursor-pointer hover:scale-110 flex items-center justify-center transition-all duration-300"
                 >
                   <Image
                     src={logo.src}
                     alt={logo.alt}
-                    width={160}
-                    height={60}
+                    fill
                     className="object-contain max-h-14 w-auto"
                   />
                 </div>

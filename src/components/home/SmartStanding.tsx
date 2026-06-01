@@ -96,8 +96,11 @@ export default function SmartStanding() {
                 </div>
                 <div className="grid md:grid-cols-3 space-y-8 md:space-y-0 grid-cols-1 w-full mt-10 md:max-w-360 md:px-10 mx-auto">
                     <div className="flex gap-3 items-start">
-                        <div className="relative aspect-square md:w-[48px] w-[40px] mt-0.5">
-                            <Image src={StepOne} alt="Step One" fill className="object-contain" />
+                        <div>
+                            <div className="relative aspect-square md:w-[48px] w-[40px] mt-0.5">
+                                <Image src={StepOne} alt="Step One" fill className="object-contain" />
+                            </div>
+
                         </div>
                         <div>
                             <p className="md:text-[22px] text-[18px] font-ppmori-semibold text-head">Exclusive member pricing</p>
@@ -105,8 +108,10 @@ export default function SmartStanding() {
                         </div>
                     </div>
                     <div className="flex gap-3 items-start">
-                        <div className="relative aspect-square md:w-[48px] w-[40px] mt-0.5">
-                            <Image src={StepTwo} alt="Step Two" fill className="object-contain" />
+                        <div>
+                            <div className="relative aspect-square md:w-[48px] w-[40px] mt-0.5">
+                                <Image src={StepTwo} alt="Step Two" fill className="object-contain" />
+                            </div>
                         </div>
                         <div>
                             <p className="md:text-[22px] text-[18px] font-ppmori-semibold text-head">Access to trusted retailers</p>
@@ -114,8 +119,10 @@ export default function SmartStanding() {
                         </div>
                     </div>
                     <div className="flex gap-3 items-start">
-                        <div className="relative aspect-square md:w-[48px] w-[40px]">
-                            <Image src={StepThree} alt="Step Three" fill className="object-contain" />
+                        <div>
+                            <div className="relative aspect-square md:w-[48px] w-[40px]">
+                                <Image src={StepThree} alt="Step Three" fill className="object-contain" />
+                            </div>
                         </div>
                         <div>
                             <p className="md:text-[22px] text-[18px] font-ppmori-semibold text-head">Simple in-store redemption</p>

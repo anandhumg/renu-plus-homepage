@@ -20,10 +20,12 @@ export default function Steps() {
                     {/* Left: Text + Steps */}
                     <div>
                         <h2 className="md:text-[40px] text-[28px] font-ppmori-semibold text-foreground mb-3">Start Saving in Minutes</h2>
-                        <p className="md:text-[18px] text-[16px] font-ppmori text-[#4B5563] mb-10 max-w-md">
+                        <p className="md:text-[18px] text-[16px] font-ppmori text-[#4B5563] md:mb-10  max-w-md">
                             Get access to exclusive discounts with a simple membership – no complex setup, no waiting.
                         </p>
-
+                        <div className="relative my-[45px] md:w-[500px] w-full aspect-3/4 rounded-3xl md:hidden flex flex-col items-center justify-center">
+                            <Image src={Img5} alt="Hero Image" fill priority className="object-contain" />
+                        </div>
                         <div className="flex flex-col divide-y divide-gray-200">
                             {/* Step 1 */}
                             <div className="flex items-start gap-4 py-6">
@@ -81,7 +83,7 @@ export default function Steps() {
                     </div>
 
                     {/* Right: Image placeholder */}
-                    <div className="relative  md:w-[500px] w-full aspect-3/4 rounded-3xl flex flex-col items-center justify-center  gap-3">
+                    <div className="relative hidden  md:w-[500px] w-full aspect-3/4 rounded-3xl md:flex flex-col items-center justify-center  gap-3">
                         <Image src={Img5} alt="Hero Image" fill priority className="object-contain" />
                     </div>
 

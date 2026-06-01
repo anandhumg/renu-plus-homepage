@@ -90,7 +90,7 @@ export default function Navbar() {
                 </Link>
                 <button
                   onClick={handleGetApp}
-                  className="flex items-center justify-center space-x-2 border border-[#111827] px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-sm font-ppmori-semibold cursor-pointer"
+                  className="flex items-center justify-center space-x-2 px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-sm font-ppmori-semibold cursor-pointer"
                 >
                   <QrCode size={16} />
                   <span>Get the app</span>
@@ -139,12 +139,25 @@ export default function Navbar() {
                   )}
                 </div>
               ) : (
-                <Link
-                  href="/"
-                  className="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-all text-sm font-ppmori-semibold"
-                >
-                  Join now
-                </Link>
+                <>
+                  <Link
+                    href="/subscribe"
+                    className="flex items-center justify-center space-x-2 h-[42px] w-[120px] border border-[#111827] px-6 py-2 rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-sm font-ppmori-semibold cursor-pointer"
+                  >
+                    <span className="leading-none translate-y-[0.5px]">
+                      Login
+                    </span>
+                  </Link>
+
+                  <Link
+                    href="/subscribe"
+                    className="bg-primary text-white px-6 py-2 h-[42px] w-[120px] flex justify-center items-center rounded-full hover:bg-primary/90 transition-all text-sm font-ppmori-semibold"
+                  >
+                    <span className="leading-none translate-y-[0.5px]">
+                      Join now
+                    </span>
+                  </Link>
+                </>
               )}
 
               {/* Menu Toggle Button */}

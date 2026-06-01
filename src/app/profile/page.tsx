@@ -4,14 +4,14 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import { 
-    User as UserIcon, 
-    CreditCard, 
-    CheckCircle, 
-    XCircle, 
-    Camera, 
-    Mail, 
-    MapPin, 
+import {
+    User as UserIcon,
+    CreditCard,
+    CheckCircle,
+    XCircle,
+    Camera,
+    Mail,
+    MapPin,
     Phone,
     Calendar,
     Crown,
@@ -77,13 +77,13 @@ export default function ProfilePage() {
             </div>
         );
     }
-
+    return <div className='text-6xl text-center flex justify-center items-center text-foreground'>under construction</div>
     return (
         <div className="max-w-6xl mx-auto px-4 py-12">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Profile Card */}
                 <div className="lg:col-span-1 space-y-6">
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-gray-50 text-center"
@@ -91,7 +91,7 @@ export default function ProfilePage() {
                         <div className="relative w-32 h-32 mx-auto mb-6">
                             <div className="w-full h-full rounded-full bg-primary/10 flex items-center justify-center overflow-hidden border-4 border-white shadow-lg">
                                 {user?.profilePicture ? (
-                                    <img src={user.profilePicture} alt="Profile" className="w-full h-full object-cover" />
+                                    <img src={user?.profilePicture} alt="Profile" className="w-full h-full object-cover" />
                                 ) : (
                                     <UserIcon size={64} className="text-primary/40" />
                                 )}
@@ -103,7 +103,7 @@ export default function ProfilePage() {
                         </div>
                         <h2 className="text-2xl font-ppmori font-bold text-gray-900">{user?.firstName} {user?.lastName}</h2>
                         <p className="text-gray-500 mb-6">{user?.email}</p>
-                        
+
                         <div className="space-y-4 text-left border-t border-gray-50 pt-6">
                             <div className="flex items-center space-x-3 text-gray-600">
                                 <Phone size={18} className="text-primary" />
@@ -117,7 +117,7 @@ export default function ProfilePage() {
                     </motion.div>
 
                     {/* Subscription Status Widget */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.1 }}
@@ -127,7 +127,7 @@ export default function ProfilePage() {
                             <CreditCard size={20} className="text-primary" />
                             <span>Membership Status</span>
                         </h3>
-                        
+
                         {subSummary?.hasSubscription ? (
                             <div className="bg-green-50 rounded-2xl p-4 border border-green-100">
                                 <div className="flex items-center space-x-2 text-green-700 mb-1">
@@ -145,7 +145,7 @@ export default function ProfilePage() {
                                     </div>
                                     <p className="text-sm text-red-600">Upgrade to access discounts</p>
                                 </div>
-                                <Link 
+                                <Link
                                     href="/subscribe"
                                     className="w-full block text-center bg-primary text-white py-3 rounded-xl font-bold uppercase tracking-widest text-sm shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform"
                                 >
@@ -158,7 +158,7 @@ export default function ProfilePage() {
 
                 {/* Digital ID / Content Area */}
                 <div className="lg:col-span-2">
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="space-y-8"
@@ -170,7 +170,7 @@ export default function ProfilePage() {
                                 {/* Decorative elements */}
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
                                 <div className="absolute bottom-0 left-0 w-48 h-48 bg-yellow-500/10 rounded-full blur-3xl -ml-24 -mb-24"></div>
-                                
+
                                 <div className="flex justify-between items-start z-10">
                                     <div className="flex items-center space-x-3">
                                         <div className="bg-white p-2 rounded-xl">
@@ -203,10 +203,10 @@ export default function ProfilePage() {
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="bg-white p-4 rounded-3xl shadow-xl">
-                                        <QRCodeSVG 
-                                            value={subSummary?.digitalId || 'PENDING'} 
+                                        <QRCodeSVG
+                                            value={subSummary?.digitalId || 'PENDING'}
                                             size={80}
                                             fgColor="#1a1a1a"
                                         />
@@ -234,7 +234,7 @@ export default function ProfilePage() {
                                     )}
                                 </div>
                             </div>
-                            
+
                             <div className="bg-white rounded-[2rem] p-6 shadow-lg border border-gray-50">
                                 <h4 className="font-bold text-gray-900 mb-4">Quick Links</h4>
                                 <div className="grid grid-cols-1 gap-3">

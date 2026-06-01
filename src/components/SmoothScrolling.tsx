@@ -8,6 +8,10 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    if (pathname?.startsWith("/subscribe")) {
+      return;
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -19,18 +23,20 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
 
     lenisRef.current = lenis;
 
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
       lenis.destroy();
+      cancelAnimationFrame(rafId);
       lenisRef.current = null;
     };
-  }, []);
+  }, [pathname]);
 
   // Reset scroll and recalculate document height on every route change
   useEffect(() => {

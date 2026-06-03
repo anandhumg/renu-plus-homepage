@@ -11,16 +11,15 @@ export default function ExclusiveDiscounts() {
 
     return (
         <section className="md:min-h-[85vh] bg-white relative overflow-hidden flex flex-col justify-center">
-
+            <div className="absolute top-0 left-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
+                <Image src={Leaf1} alt="Leaf" fill className="object-contain" />
+            </div>
+            {/* Decorative leaf bottom-right */}
+            <div className="absolute bottom-0 right-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
+                <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-180" />
+            </div>
             <div className="relative z-10 md:px-20 px-4 w-full">
                 {/* Leaf decoration */}
-                <div className="absolute top-0 left-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
-                    <Image src={Leaf1} alt="Leaf" fill className="object-contain" />
-                </div>
-                {/* Decorative leaf bottom-right */}
-                <div className="absolute bottom-0 right-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
-                    <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-180" />
-                </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 gap-10 lg:items-center w-full h-full">
 
                     {/* Text side - animated */}

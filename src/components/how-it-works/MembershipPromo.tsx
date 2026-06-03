@@ -15,22 +15,22 @@ export default function MembershipPromo() {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 gap-12 items-center">
-                    
+
                     {/* Left Column: Phone Image with Virtual Membership Card */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.96, y: 40 }}
                         whileInView={{ opacity: 1, scale: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="relative w-full aspect-[4/3] md:aspect-[1.1] max-w-lg mx-auto flex items-center justify-center order-2 lg:order-1"
+                        className="relative w-full md:h-[80vh] md:w-auto aspect-4/3 md:aspect-[0.69] mx-auto flex items-center justify-center order-2 lg:order-1"
                     >
                         {/* We use /home/img-2.webp which is the hand holding the virtual card phone preview */}
-                        <Image 
-                            src="/home/img-2.webp" 
-                            alt="Renu Plus digital membership card on a mobile screen" 
-                            fill 
-                            className="object-contain" 
-                            priority 
+                        <Image
+                            src="/how-it-works/img-3.webp"
+                            alt="Renu Plus digital membership card on a mobile screen"
+                            fill
+                            className="object-contain"
+                            priority
                         />
                     </motion.div>
 
@@ -43,12 +43,9 @@ export default function MembershipPromo() {
                         className="flex flex-col items-start text-left space-y-6 lg:max-w-xl order-1 lg:order-2"
                     >
                         <div>
-                            <span className="text-[#bc9c22] font-ppmori-semibold text-sm tracking-[0.2em] uppercase mb-3 block">
-                                Membership benefits
-                            </span>
-                            <h2 className="text-foreground font-ppmori-semibold lg:text-[48px] md:text-[40px] text-[32px] leading-tight">
-                                Your membership <br />
-                                <span className="text-[#bc9c22]">starts now.</span>
+                            <h2 className="text-foreground font-ppmori-semibold lg:text-[48px] md:text-[40px] text-[32px] leading-[52px]">
+                                Your <span className="text-head">membership</span><br />
+                                Starts now.
                             </h2>
                         </div>
 

@@ -10,13 +10,13 @@ export default function HIWhero() {
         <section className="relative w-full min-h-[85vh] bg-[#FAF8F5] flex items-center justify-center pt-28 pb-16 overflow-hidden">
             {/* Decorative background leaf watermark */}
             <div className="absolute top-[-10%] left-[-15%] md:w-60 md:h-60 w-40 h-40 opacity-15 pointer-events-none select-none z-0">
-                <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-[30deg]" />
+                <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-30" />
             </div>
-            
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     {/* Left: Text Content */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -32,7 +32,7 @@ export default function HIWhero() {
                     </motion.div>
 
                     {/* Right: Image displaying the Sunset & Bearded Man with a Bicycle */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -41,13 +41,13 @@ export default function HIWhero() {
                         <Image
                             src={HIWbg}
                             alt="Bearded man leaning on a bicycle, overlooking a sunset"
-                              fill
-                              className="object-cover object-center"
-                              priority
-                          />
-                      </motion.div>
-                  </div>
-              </div>
-          </section>
-      );
-  }
+                            fill
+                            className="object-cover object-center"
+                            priority
+                        />
+                    </motion.div>
+                </div>
+            </div>
+        </section>
+    );
+}

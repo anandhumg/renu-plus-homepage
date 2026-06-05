@@ -219,7 +219,7 @@ export default function ScrollSteps() {
                             onViewportEnter={() => handleViewportEnter(idx)}
                             // 0.75 = fire only when the block is well past centre
                             viewport={{ amount: 0.75 }}
-                            className="min-h-[60vh] md:min-h-screen flex flex-col justify-center py-12 first:pt-0 last:pb-0"
+                            className="min-h-[60vh] md:min-h-[80vh] flex flex-col justify-center py-12 first:pt-0 last:pb-0"
                         >
 
                             {/* Mobile fallback */}

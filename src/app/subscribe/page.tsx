@@ -609,7 +609,7 @@ export default function SubscribePage() {
                   </div>
                 </div>
               ) : (
-                <div className="pl-12 flex items-center gap-2.5 text-gray-400 text-[14px] font-ppmori-semibold bg-[#F3F4F6] p-4 rounded-full max-w-sm">
+                <div className="pl-12 flex items-center gap-2.5 text-gray-400 text-[14px] font-ppmori-semibold bg-[#F3F4F6] p-4 rounded-full">
                   <Lock size={14} />
                   <span>Complete step 1 to continue</span>
                 </div>
@@ -662,7 +662,7 @@ export default function SubscribePage() {
                   )}
                 </motion.div>
               ) : (
-                <div className="pl-12 flex items-center gap-2.5 text-gray-400 text-[14px] font-ppmori-semibold bg-[#F3F4F6] p-4 rounded-full max-w-sm">
+                <div className="pl-12 flex items-center gap-2.5 text-gray-400 text-[14px] font-ppmori-semibold bg-[#F3F4F6] p-4 rounded-full">
                   <Lock size={14} />
                   <span>Complete steps 1 & 2 to continue</span>
                 </div>

@@ -39,7 +39,7 @@ const whyJoinData = [
 ];
 const HIWCards = () => {
     return (
-        <div className="relative py-40 bg-linear-to-b from-white to-[#FDFBF7]">
+        <div className="relative pb-40 bg-linear-to-b from-white to-[#FDFBF7]">
             {/* Decorator element for elliptical gradient */}
             <div className="text-center max-w-2xl mx-auto mb-16 place-items-center z-20">
                 <h3 className="text-foreground font-ppmori-semibold lg:text-[40px] text-[30px] mt-2">

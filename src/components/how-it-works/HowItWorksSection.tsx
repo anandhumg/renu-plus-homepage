@@ -100,7 +100,7 @@ export default function HowItWorks() {
         prev: {
             // Slides up slightly and dims when scrolled past
             y: "-11rem",
-            filter: "brightness(0.8)",
+            filter: "brightness(0.5)",
         },
         next: {
             // Hides below the container waiting to be scrolled into view
@@ -117,33 +117,14 @@ export default function HowItWorks() {
     };
 
     return (
-        <section className="py-24 px-6 md:px-12 lg:px-24">
+        <section className="py-24 px-6 md:px-12 lg:px-24 relative">
             <div className="max-w-[1248px] mx-auto">
-
-                {/* Header Section */}
-                <div className="mb-16 md:mb-24">
-                    <span className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
-                        How it works
-                    </span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4 tracking-tight">
-                        Get clarity in 4 easy steps
-                    </h2>
-                </div>
 
                 {/* Grid Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 relative">
-                    {/* Decorative leaf top-left */}
-                    <div className="absolute top-0 left-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
-                        <Image src={Leaf1} alt="Leaf" fill className="object-contain" />
-                    </div>
-                    {/* Decorative leaf bottom-right */}
-                    <div className="absolute bottom-0 right-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
-                        <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-180" />
-                    </div>
                     {/* Left Side: Sticky Image Track (Hidden on Mobile) */}
-
                     {/* The sticky wrapper */}
-                    <div className="hidden md:block sticky top-32 w-full aspect-[0.8] max-h-[600px] overflow-hidden">
+                    <div className="hidden md:block sticky top-25 w-full aspect-[0.8] overflow-hidden">
                         {stepsData.map((step, index) => {
                             // Determine the state of each image based on the active index
                             let state = "next";
@@ -157,16 +138,16 @@ export default function HowItWorks() {
                                     initial="next"
                                     animate={state}
                                     transition={customTransition}
-                                    className="absolute inset-0 w-full h-full bg-white rounded-2xl overflow-hidden"
+                                    className="absolute inset-0 w-full h-full overflow-hidden"
                                     style={{ zIndex: index }}
                                 >
                                     {/* Optional: Remove the background color div if your images are edge-to-edge */}
-                                    <div className="relative w-full h-[90%] flex items-center justify-center  ">
+                                    <div className="relative w-full h-[80%] flex items-center justify-center  ">
                                         <Image
                                             src={step.image}
                                             alt={step.title}
                                             fill
-                                            className="object-cover  rounded-2xl"
+                                            className="object-contain  rounded-2xl"
                                             // Dev fallback placeholder if images aren't added yet
                                             onError={(e) => {
                                                 e.currentTarget.style.display = 'none';

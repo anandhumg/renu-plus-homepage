@@ -1,53 +1,46 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import HIWbg from "../../../public/how-it-works/img-1.webp";
-import Leaf1 from "../../../public/common/leaf.svg";
 import { motion } from "framer-motion";
 
 export default function HIWhero() {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
     return (
-        <section className="relative w-full min-h-[85vh] bg-[#FAF8F5] flex items-center justify-center pt-28 pb-16 overflow-hidden">
-            {/* Decorative background leaf watermark */}
-            <div className="absolute top-[-10%] left-[-15%] md:w-60 md:h-60 w-40 h-40 opacity-15 pointer-events-none select-none z-0">
-                <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-30" />
-            </div>
+        <section className="relative w-full h-screen flex md:items-center items-end justify-start overflow-hidden bg-[#FAF8F5]">
+            {/* Background Image centered and fully cover the screen with a seamless loading transition */}
+            <Image
+                src={HIWbg}
+                alt="Bearded man leaning on a bicycle, overlooking a sunset"
+                fill
+                placeholder="blur"
+                onLoad={() => setImageLoaded(true)}
+                className={`object-cover object-center z-0 transition-all duration-1200 cubic-bezier(0.34, 1.56, 0.64, 1) ${imageLoaded
+                    ? "opacity-100 scale-100 filter blur-0"
+                    : "opacity-0 scale-[1.03] filter blur-xl"
+                    }`}
+                priority
+            />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                    {/* Left: Text Content */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="flex flex-col justify-center space-y-6 lg:max-w-xl text-left"
-                    >
-                        <h1 className="text-foreground font-ppmori-semibold lg:text-[64px] md:text-[50px] text-[36px] leading-[1.1]">
-                            How Renu <br />
-                            <span className="text-head">Works.</span>
-                        </h1>
-                        <p className="text-sub-foreground font-ppmori lg:text-[22px] md:text-[18px] text-[16px] leading-[1.5] text-[#4B5563]">
-                            A simple guide to unlocking savings, exclusive benefits, and more.
-                        </p>
-                    </motion.div>
-
-                    {/* Right: Image displaying the Sunset & Bearded Man with a Bicycle */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                        className="relative w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl shadow-black/5"
-                    >
-                        <Image
-                            src={HIWbg}
-                            alt="Bearded man leaning on a bicycle, overlooking a sunset"
-                            fill
-                            className="object-cover object-center"
-                            priority
-                        />
-                    </motion.div>
-                </div>
+            <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 z-20 text-left">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="flex flex-col space-y-6"
+                >
+                    <h1 className="font-ppmori-semibold text-foreground text-[40px] md:text-[44px] lg:text-[48px] leading-[1.1]">
+                        How Renu+ Works
+                    </h1>
+                    <p className="text-[#1F2937] font-ppmori lg:text-[18px] md:text-[18px] text-[16px] max-w-[419px]">
+                        One membership, hundreds of opportunities to save, explore, and enjoy more from everyday life.
+                    </p>
+                </motion.div>
             </div>
         </section>
     );
 }
+
+

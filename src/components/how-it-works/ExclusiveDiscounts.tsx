@@ -28,7 +28,7 @@ export default function ExclusiveDiscounts() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="text-foreground font-ppmori-semibold lg:text-[50px] md:text-[42px] text-[32px] leading-[1.2] mb-6"
+                            className="text-foreground font-ppmori-semibold lg:text-[50px] md:text-[42px] text-[2rem] leading-[1.2] mb-6"
                         >
                             Exclusive Discounts
                             <br />
@@ -39,7 +39,7 @@ export default function ExclusiveDiscounts() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                            className="text-sub-foreground font-ppmori lg:text-[18px] text-[16px] leading-[1.6] max-w-xl"
+                            className="text-sub-foreground font-ppmori lg:text-[18px] md:text-[18px] text-[1rem] leading-[1.6] max-w-xl"
                         >
                             Your membership discounts are applicable at numerous partnered retailers,
                             where they provide substantial savings exclusively for Renu Plus members.

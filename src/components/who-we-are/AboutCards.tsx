@@ -2,55 +2,48 @@
 import { motion } from "framer-motion";
 import Icon1 from "../../../public/how-it-works/icon-1.svg"
 import Icon2 from "../../../public/how-it-works/icon-2.svg"
-import Icon3 from "../../../public/how-it-works/icon-3.svg"
+import Icon3 from "../../../public/how-it-works/icon-4.svg"
 import Icon4 from "../../../public/how-it-works/icon-4.svg"
 import Image from "next/image";
 
 
 const whyJoinData = [
     {
-        title: "Live Better",
-        description: "Access services and experiences that elevate everyday life.",
+        title: "Wellness",
+        description: "Health, fitness, and lifestyle-focused member experiences.",
         icon: (
             Icon1
         ),
     },
     {
-        title: "Spend smarter",
-        description: "Unlock exclusive savings through trusted partners.",
+        title: "Home & living",
+        description: "Trusted services for renovation, rentals, and everyday needs.",
         icon: (
             Icon2
         )
     },
     {
-        title: "Feel supported",
-        description: "Enjoy access to carefully selected providers and businesses.",
+        title: "Rewards & Savings",
+        description: "Meaningful savings across curated partner brands.",
         icon: (
             Icon3
         )
-    },
-    {
-        title: "Get More Value",
-        description: "Make every membership year worthwhile through benefits you'll actually use.",
-        icon: (
-            Icon4
-        )
-    },
+    }
 ];
-const HIWCards = () => {
+const AboutCards = () => {
     return (
-        <div className="relative md:pb-40 pb-20 bg-linear-to-b from-white to-[#FDFBF7]">
+        <div className="relative md:py-40 py-20 bg-linear-to-b from-white to-primary-bg">
             {/* Decorator element for elliptical gradient */}
-            <div className="text-center max-w-2xl md:mx-auto mb-16 mx-10 place-items-center z-20">
+            <div className="text-center max-w-2xl md:mx-auto mb-16 md:mb-25 mx-10 place-items-center z-20">
                 <h3 className="text-foreground font-ppmori-semibold lg:text-[40px] text-[2rem] mt-2">
-                    What can you access
+                    Designed around <br/>smarter living
                 </h3>
-                <p className="text-[#4B5563] font-ppmori lg:text-[16px] font-extralight text-[16px] mt-4 max-w-md mx-auto">
-                    After you purchased Renu+ membership, start exploring exclusive offers, partner services, and member-only benefits available through Renu+.
+                <p className="text-[#4B5563] font-ppmori lg:text-[16px] font-light text-[16px] mt-4 max-w-[371px] mx-auto">
+                    Renu+ connects members with trusted services, exclusive savings, and lifestyle benefits that simplify everyday living.
                 </p>
             </div>
 
-            <div className="flex md:flex-row flex-col md:space-x-[125px] space-y-8 justify-center items-center mx-auto max-w-7xl">
+            <div className="flex md:flex-row flex-col md:space-x-[187px] space-y-8 justify-center items-center mx-auto max-w-7xl">
                 {whyJoinData.map((item, idx) => (
                     <motion.div
                         key={idx}
@@ -76,4 +69,4 @@ const HIWCards = () => {
     );
 };
 
-export default HIWCards;
+export default AboutCards;

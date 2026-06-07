@@ -117,7 +117,7 @@ export default function HowItWorks() {
     };
 
     return (
-        <section className="py-24 px-6 md:px-12 lg:px-24 relative">
+        <section className="md:py-24 py-10 px-4 md:px-12 lg:px-24 relative">
             <div className="max-w-[1248px] mx-auto">
 
                 {/* Grid Layout */}
@@ -160,7 +160,7 @@ export default function HowItWorks() {
                     </div>
 
                     {/* Right Side: Scrolling Text Track */}
-                    <div className="flex flex-col pb-24">
+                    <div className="flex flex-col md:pb-24">
                         {stepsData.map((step, index) => (
                             <motion.div
                                 key={`text-${step.id}`}
@@ -185,20 +185,20 @@ export default function HowItWorks() {
                                     />
                                 </div>
 
-                                <span className="text-sm font-semibold text-gray-500 mb-3 block">
+                                <span className="text-[1rem] font-ppmori text-[#4B5563] mb-3 block">
                                     {step.label}
                                 </span>
-                                <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+                                <h3 className="text-[1.25rem] md:text-[2.25rem] font-ppmori-semibold text-foreground mb-4 tracking-tight">
                                     {step.title}
                                 </h3>
-                                <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-md">
+                                <p className="text-[1rem] text-[#4B5563] mb-8 leading-relaxed max-w-md">
                                     {step.description}
                                 </p>
 
-                                <div>
+                                <div className="flex md:justify-start justify-center md:w-fit w-full">
                                     <Link
                                         href={step.buttonLink}
-                                        className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-gray-800 hover:scale-105 active:scale-95 transition-all duration-200"
+                                        className="inline-flex text-[1rem] leading-none items-center justify-center w-full px-6 py-4 rounded-full bg-primary text-white font-medium hover:bg-gray-800 hover:scale-105 active:scale-95 transition-all duration-200 font-ppmori"
                                     >
                                         {step.buttonText}
                                     </Link>

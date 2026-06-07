@@ -23,14 +23,13 @@ export default function MembershipPromo() {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 gap-12 items-center">
-
                     {/* Left Column: Phone Image with Virtual Membership Card */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.96, y: 40 }}
                         whileInView={{ opacity: 1, scale: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="relative w-full md:h-[85vh] md:w-auto aspect-4/3 md:aspect-[0.69] mx-auto flex items-center justify-center order-2 lg:order-1"
+                        className="relative w-full md:h-[85vh] md:w-auto aspect-[0.69] mx-auto hidden md:flex items-center justify-center"
                     >
                         {/* We use /home/img-2.webp which is the hand holding the virtual card phone preview */}
                         <Image
@@ -48,13 +47,24 @@ export default function MembershipPromo() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="flex flex-col items-start text-left lg:max-w-xl order-1 lg:order-2"
+                        className="flex flex-col items-start text-left lg:max-w-xl"
                     >
                         <div>
-                            <h2 className="text-foreground font-ppmori-semibold lg:text-[48px] md:text-[40px] text-[32px] leading-[52px]">
+                            <h2 className="text-foreground font-ppmori-semibold lg:text-[48px] md:text-[40px] text-[2rem] leading-[52px]">
                                 Your <span className="text-head">membership</span><br />
                                 Starts now.
                             </h2>
+                        </div>
+                        <div
+                            className="relative w-full aspect-[0.69] md:hidden "
+                        >
+                            <Image
+                                src="/how-it-works/img-3.webp"
+                                alt="Renu Plus digital membership card on a mobile screen"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
                         </div>
                         <div className="space-y-5 font-ppmori text-[16px] mt-11">
                             {benefits.map((benefit) => (
@@ -67,13 +77,13 @@ export default function MembershipPromo() {
                             ))}
                         </div>
                         {/* Price Tag Box */}
-                        <div className="flex items-baseline mt-14">
-                            <span className="font-ppmori-semibold text-[60px]">${process.env.NEXT_PUBLIC_PACKAGE_PRICE}</span><span className="font-ppmori text-[32px]">/year</span>
+                        <div className="flex justify-center md:justify-start items-baseline md:mt-14 mt-8 md:text-left text-center w-full">
+                            <span className="font-ppmori-semibold md:text-[60px] text-[40px]">${process.env.NEXT_PUBLIC_PACKAGE_PRICE}</span><span className="font-ppmori text-[32px]">/year</span>
                         </div>
-                        <div className="mt-10">
+                        <div className="md:mt-10 mt-8 w-full">
                             <Link
                                 href="/sign-up-login"
-                                className="inline-flex items-center w-[410px] leading-0 justify-center bg-primary hover:bg-[#A3851D] text-white font-ppmori-semibold text-[18px] rounded-full px-8 py-3.5 h-12 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer"
+                                className="inline-flex items-center md:w-[410px] w-full leading-0 justify-center bg-primary hover:bg-[#A3851D] text-white font-ppmori-semibold text-[18px] rounded-full px-8 py-3.5 h-12 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer"
                             >
                                 Join Renu Plus
                             </Link>

@@ -1,7 +1,7 @@
-import WhoWeAreHero from "@/components/who-we-are/WhoWeAreHero";
-import MissionSection from "@/components/who-we-are/MissionSection";
+import AboutCards from "@/components/who-we-are/AboutCards";
 import InvestmentDetail from "@/components/who-we-are/InvestmentDetail";
-import HaveQuestions from "@/components/home/HaveQuestions";
+import MissionSection from "@/components/who-we-are/MissionSection";
+import WhoWeAreHero from "@/components/who-we-are/WhoWeAreHero";
 
 export const metadata = {
   title: "Who We Are - Renu Plus",
@@ -12,6 +12,7 @@ export default function WhoWeArePage() {
   return (
     <main>
       <WhoWeAreHero />
+      <AboutCards />
       <MissionSection />
       <InvestmentDetail />
     </main>

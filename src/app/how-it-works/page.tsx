@@ -14,11 +14,11 @@ export default function HowItWorks() {
     return (
         <main className="min-h-screen bg-white">
             <HIWhero />
-            {/* <HowItWorksSection />
+            <HowItWorksSection />
             <HIWCards />
             <ExclusiveDiscounts />
             <MembershipPromo />
-            <HaveQuestions /> */}
+            <HaveQuestions />
         </main>
     );
 }

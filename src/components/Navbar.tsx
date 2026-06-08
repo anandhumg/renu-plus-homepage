@@ -158,26 +158,15 @@ export default function Navbar() {
                     </Link>
                   </>
                 )}
-
+                </div>
                 {/* Menu Toggle Button */}
                 <button
                   onClick={() => setIsOpen(true)}
-                  className="border border-gray-300 p-2 rounded-full text-foreground hover:border-primary hover:text-primary transition-colors focus:outline-none cursor-pointer bg-white/50 backdrop-blur-sm md:block hidden"
+                  className="border border-gray-300 p-2 rounded-full text-foreground hover:border-primary hover:text-primary transition-colors focus:outline-none cursor-pointer bg-white/50 backdrop-blur-sm"
                   aria-label="Open menu"
                 >
                   <Menu size={20} strokeWidth={2.5} />
                 </button>
-                <button
-                  onClick={() => setIsOpen(true)}
-                  className="md:hidden block"
-                  aria-label="Open menu"
-                >
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 4.00171H19.0003M0.998047 10.0015H18.9928M7.5 16.0012H18.9928" stroke="#6B7589" stroke-width="1.96867" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-
-                </button>
-              </div>
             </div>
           </div>
         </div>

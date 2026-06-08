@@ -3,35 +3,32 @@
 import { useLoading } from "@/contexts/LoadingContext";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Leaf1 from "../../../public/common/leaf.svg";
+
 
 export default function ExclusiveDiscounts() {
     const { isLoaded } = useLoading();
 
     return (
-        <section className="md:min-h-[85vh] md:bg-primary-bg bg-white relative overflow-hidden flex flex-col justify-center md:pt-24 pt-34 pb-12">
-            {/* Decorator element for elliptical gradient */}
-            <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] bg-white rounded-full blur-[140px] z-0 pointer-events-none"></div>
-            <div className="bg-white/80 blur-2xl w-1/2 h-50 absolute left-[50%] top-[-10%] z-0 pointer-events-none"></div>
-
+        <section className="md:min-h-[85vh] bg-white relative overflow-hidden flex flex-col justify-center">
+            <div className="absolute top-0 left-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
+                <Image src={Leaf1} alt="Leaf" fill className="object-contain" />
+            </div>
+            {/* Decorative leaf bottom-right */}
+            <div className="absolute bottom-0 right-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
+                <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-180" />
+            </div>
             <div className="relative z-10 md:px-20 px-4 w-full">
+                {/* Leaf decoration */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 gap-10 lg:items-center w-full h-full">
-                    {/* Image side - animated */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="w-full h-[300px] md:h-[500px] relative order-2 lg:order-1"
-                    >
-                        <Image src="/how-it-works/img-1.png" alt="Exclusive Discounts" fill className="object-contain" priority />
-                    </motion.div>
 
                     {/* Text side - animated */}
-                    <div className="order-1 lg:order-2 lg:pl-6">
+                    <div className="order-2 lg:order-1 lg:pl-6">
                         <motion.h1
                             initial={{ opacity: 0, y: 30 }}
                             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="text-foreground font-ppmori-semibold lg:text-[50px] md:text-[42px] text-[32px] leading-[1.2] mb-6"
+                            className="text-foreground font-ppmori-semibold lg:text-[50px] md:text-[42px] text-[2rem] leading-[1.2] mb-6"
                         >
                             Exclusive Discounts
                             <br />
@@ -42,7 +39,7 @@ export default function ExclusiveDiscounts() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                            className="text-sub-foreground font-ppmori lg:text-[18px] text-[16px] leading-[1.6] max-w-xl"
+                            className="text-sub-foreground font-ppmori lg:text-[18px] md:text-[18px] text-[1rem] leading-[1.6] max-w-xl"
                         >
                             Your membership discounts are applicable at numerous partnered retailers,
                             where they provide substantial savings exclusively for Renu Plus members.
@@ -52,6 +49,17 @@ export default function ExclusiveDiscounts() {
                             the way.
                         </motion.p>
                     </div>
+                    {/* Image side - animated */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className="w-full h-[300px] md:h-[500px] relative order-1 lg:order-2"
+                    >
+                        <Image src="/how-it-works/img-1.png" alt="Exclusive Discounts" fill className="object-contain" priority />
+                    </motion.div>
+
+
                 </div>
             </div>
         </section>

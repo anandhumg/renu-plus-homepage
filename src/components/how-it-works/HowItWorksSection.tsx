@@ -1,98 +1,211 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Leaf1 from "../../../public/common/leaf.svg";
+import Leaf1 from "../../../public/common/leaf.svg"
 
-export default function HowItWorksSection() {
-    const starIcon = (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#bc9c22" stroke="#bc9c22" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-star-icon lucide-star mt-1.5"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
-    );
 
-    const steps = [
-        "Create account through <a href='/sign-up-login' style='color: #bc9c22; font-weight: 600;'>Sign Up Now</a> link",
-        "Upload your picture and the information required on the Create Profile Page.",
-        "Provide your preferred payment method information.",
-        "For an annual fee of $159, you will receive your Renu Plus membership.",
-        "Your membership will be available as a virtual card through your profile.",
-        "Go shopping and SAVE!"
-    ];
+type Step = {
+    id: string;
+    label: string;
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+    image: string;
+    bg: string;
+};
+
+const stepsData: Step[] = [
+    {
+        id: "01",
+        label: "Step 01",
+        title: "Join Renu+",
+        description: "Become a member in minutes through our website or mobile app.",
+        buttonText: "Join now",
+        buttonLink: "/sign-up-login",
+        image: "/how-it-works/step-1.png",
+        bg: "#FFFFFF",
+    },
+    {
+        id: "02",
+        label: "Step 02",
+        title: "Access Your Digital Membership",
+        description: "Your membership card is instantly available in the Renu+ app. Carry your membership wherever you go and access exclusive benefits anytime.",
+        buttonText: "Join now",
+        buttonLink: "/sign-up-login",
+        image: "/how-it-works/step-2.png",
+        bg: "#FFFFFF",
+    },
+    {
+        id: "03",
+        label: "Step 03",
+        title: "Discover Exclusive Benefits",
+        description: "Explore trusted partners across multiple lifestyle categories. From wellness and dining to home services and travel, find offers designed around your everyday needs.",
+        buttonText: "Join now",
+        buttonLink: "/how-it-works",
+        image: "/how-it-works/step-3.png",
+        bg: "#FFFFFF",
+    },
+    {
+        id: "04",
+        label: "Step 04",
+        title: "Enjoy Savings & Rewards",
+        description: "Use your membership with participating partners and start enjoying real value. Save on purchases, access exclusive experiences, and make every membership year worthwhile.",
+        buttonText: "Join now",
+        buttonLink: "/how-it-works",
+        image: "/how-it-works/step-4.png",
+        bg: "#FFFFFF",
+    },
+];
+
+export default function HowItWorks() {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    // Use IntersectionObserver to track which text block is actively in the center of the screen
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = Number(entry.target.getAttribute("data-index"));
+                        setActiveIndex(index);
+                    }
+                });
+            },
+            {
+                // This creates a horizontal tripwire in the middle of the screen
+                rootMargin: "-40% 0px -50% 0px",
+                threshold: 0,
+            }
+        );
+
+        const validRefs = stepRefs.current.filter(Boolean);
+        validRefs.forEach((ref) => observer.observe(ref as HTMLDivElement));
+
+        return () => {
+            validRefs.forEach((ref) => observer.unobserve(ref as HTMLDivElement));
+        };
+    }, []);
+
+    // The Framer Motion variants that replicate the original CSS keyframes perfectly
+    const imageVariants = {
+        active: {
+            y: "0%",
+            filter: "brightness(1)",
+        },
+        prev: {
+            // Slides up slightly and dims when scrolled past
+            y: "-11rem",
+            filter: "brightness(0.5)",
+        },
+        next: {
+            // Hides below the container waiting to be scrolled into view
+            y: "100%",
+            filter: "brightness(1)",
+        },
+    };
+
+    // The exact easing curve from the original reference for that weighted, premium feel
+    const customTransition = {
+        duration: 0.8,
+        delay: 0.1,
+        ease: [0.4, 0, 0.2, 1] as [number, number, number, number], // cubic-bezier(0.4, 0, 0.2, 1)
+    };
 
     return (
-        <section className="lg:py-24 py-12 bg-white relative overflow-hidden">
-            {/* Decorative leaf top-left */}
-            <div className="absolute top-0 left-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
-                <Image src={Leaf1} alt="Leaf" fill className="object-contain" />
-            </div>
-            {/* Decorative leaf bottom-right */}
-            <div className="absolute bottom-0 right-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
-                <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-180" />
-            </div>
+        <section className="md:py-24 py-10 px-4 md:px-12 lg:px-24 relative">
+            <div className="max-w-[1248px] mx-auto">
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 md:mt-0 mt-20">
-                <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-20 gap-10 items-center">
+                {/* Grid Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 relative">
+                    {/* Left Side: Sticky Image Track (Hidden on Mobile) */}
+                    {/* The sticky wrapper */}
+                    <div className="hidden md:block sticky top-25 w-full aspect-[0.8] overflow-hidden">
+                        {stepsData.map((step, index) => {
+                            // Determine the state of each image based on the active index
+                            let state = "next";
+                            if (index === activeIndex) state = "active";
+                            else if (index < activeIndex) state = "prev";
 
-                    {/* Steps list side */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="order-2 lg:order-1"
-                    >
-                        <h2 className="text-head font-ppmori-semibold lg:text-[40px] text-[28px] mb-10">
-                            How it works
-                        </h2>
-                        {/* Image side */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95, x: 50 }}
-                            whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                            viewport={{ once: true, amount: 0.2 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="order-1 lg:order-2 md:hidden block relative mx-auto w-[90%] h-[300px] mb-10"
-                        >
-                            <Image
-                                src="/how-it-works/img-2.png"
-                                alt="How it works illustration"
-                                fill
-                                className="object-contain"
-                            />
-                        </motion.div>
-                        <div className="text-sub-foreground font-ppmori lg:text-[18px] text-[16px] leading-[1.6] max-w-xl space-y-6">
-                            {steps.map((step, index) => (
+                            return (
                                 <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 15 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-                                    className="flex md:gap-5 gap-3"
+                                    key={`img-${step.id}`}
+                                    variants={imageVariants}
+                                    initial="next"
+                                    animate={state}
+                                    transition={customTransition}
+                                    className="absolute inset-0 w-full h-full overflow-hidden"
+                                    style={{ zIndex: index }}
                                 >
-                                    <div className="shrink-0">
-                                        {starIcon}
+                                    {/* Optional: Remove the background color div if your images are edge-to-edge */}
+                                    <div className="relative w-full h-[80%] flex items-center justify-center  ">
+                                        <Image
+                                            src={step.image}
+                                            alt={step.title}
+                                            fill
+                                            className="object-contain  rounded-2xl"
+                                            // Dev fallback placeholder if images aren't added yet
+                                            onError={(e) => {
+                                                e.currentTarget.style.display = 'none';
+                                            }}
+                                        />
                                     </div>
-                                    <div dangerouslySetInnerHTML={{ __html: step }} />
                                 </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
+                            );
+                        })}
+                    </div>
 
-                    {/* Image side */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95, x: 50 }}
-                        whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="order-1 lg:order-2 md:block hidden relative w-full h-[400px] md:h-[500px]"
-                    >
-                        <Image
-                            src="/how-it-works/img-2.png"
-                            alt="How it works illustration"
-                            fill
-                            className="object-contain"
-                        />
-                    </motion.div>
+                    {/* Right Side: Scrolling Text Track */}
+                    <div className="flex flex-col md:pb-24">
+                        {stepsData.map((step, index) => (
+                            <motion.div
+                                key={`text-${step.id}`}
+                                data-index={index}
+                                ref={(el) => {
+                                    stepRefs.current[index] = el;
+                                }}
+                                // Space the text blocks out so they scroll naturally
+                                className="flex flex-col justify-center min-h-[80vh] md:min-h-0 md:h-[80vh] mb-12 md:mb-0 py-8"
+                                animate={{
+                                    opacity: activeIndex === index ? 1 : 0.3,
+                                }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
+                            >
+                                {/* Mobile Image Fallback (Only shows on small screens) */}
+                                <div className="md:hidden w-full aspect-square rounded-2xl overflow-hidden mb-8 relative">
+                                    <Image
+                                        src={step.image}
+                                        alt={step.title}
+                                        fill
+                                        className="object-cover  rounded-2xl"
+                                    />
+                                </div>
+
+                                <span className="text-[1rem] font-ppmori text-[#4B5563] mb-3 block">
+                                    {step.label}
+                                </span>
+                                <h3 className="text-[1.25rem] md:text-[2.25rem] font-ppmori-semibold text-foreground mb-4 tracking-tight">
+                                    {step.title}
+                                </h3>
+                                <p className="text-[1rem] text-[#4B5563] mb-8 leading-relaxed max-w-md">
+                                    {step.description}
+                                </p>
+
+                                <div className="flex md:justify-start justify-center md:w-fit w-full">
+                                    <Link
+                                        href={step.buttonLink}
+                                        className="inline-flex text-[1rem] leading-none items-center justify-center w-full px-6 py-4 rounded-full bg-primary text-white font-medium hover:bg-gray-800 hover:scale-105 active:scale-95 transition-all duration-200 font-ppmori"
+                                    >
+                                        {step.buttonText}
+                                    </Link>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
 
                 </div>
             </div>

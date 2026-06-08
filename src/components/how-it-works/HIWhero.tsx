@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import HIWbg from "../../../public/about-us/img-2.png";
+import HIWbg from "../../../public/how-it-works/img-1.webp";
 import { motion } from "framer-motion";
 
-export default function MissionSection() {
+export default function HIWhero() {
     const [imageLoaded, setImageLoaded] = useState(false);
 
     return (
-        <section className="relative w-full md:h-[135vh]  flex justify-center overflow-hidden bg-[#FAF8F5]">
+        <section className="relative w-full h-screen  flex md:items-center items-end justify-start overflow-hidden bg-[#FAF8F5]">
             {/* Background Image centered and fully cover the screen with a seamless loading transition */}
             <Image
                 src={HIWbg}
@@ -24,18 +24,18 @@ export default function MissionSection() {
                 priority
             />
 
-            <div className="relative max-w-7xl mx-auto w-full mt-[120px] z-20 text-center">
+            <div className="relative max-w-7xl mx-auto w-full md:pb-0 pb-5 px-4 sm:px-6 lg:px-8 z-20 text-left">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="flex flex-col space-y-6 items-center"
+                    className="flex flex-col space-y-6"
                 >
                     <h1 className="font-ppmori-semibold text-foreground text-[2rem] md:text-[44px] lg:text-[48px] leading-[1.1]">
-                        Helping people get<br/> more from everyday life
+                        How Renu+ Works
                     </h1>
-                    <p className="text-sub-foreground font-ppmori font-light md:text-[16px] text-[1rem] max-w-[391px]">
-                       We believe memberships should do more than offer discounts. Renu+ connects people with trusted experiences, curated services, and real lifestyle value designed around modern living.
+                    <p className="text-[#1F2937] font-ppmori lg:text-[18px] md:text-[18px] text-[1rem] max-w-[419px]">
+                        One membership, hundreds of opportunities to save, explore, and enjoy more from everyday life.
                     </p>
                 </motion.div>
             </div>

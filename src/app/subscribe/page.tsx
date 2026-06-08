@@ -348,147 +348,193 @@ export default function SubscribePage() {
             {/* STEP 1: CREATE ACCOUNT */}
             <div className="relative">
               <div className="flex items-center gap-2 mb-6">
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-sm ${isAuthenticated ? 'bg-[#4D7C0F] text-white' : 'bg-head text-white'
-                  }`}>
-                  {isAuthenticated ? <Check size={16} strokeWidth={3} /> : <span className="text-sm leading-none translate-y-[0.5px]">
-                    1
-                  </span>}
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-sm transition-colors duration-300 ${
+                  isAuthenticated ? 'bg-[#4D7C0F] text-white' : 'bg-head text-white'
+                }`}>
+                  <AnimatePresence mode="wait" initial={false}>
+                    {isAuthenticated ? (
+                      <motion.div
+                        key="check1"
+                        initial={{ scale: 0, rotate: -45 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        exit={{ scale: 0, rotate: -45 }}
+                        transition={{ duration: 0.2 }}
+                        className="flex items-center justify-center"
+                      >
+                        <Check size={14} strokeWidth={3} />
+                      </motion.div>
+                    ) : (
+                      <motion.span
+                        key="num1"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-sm leading-none translate-y-[0.5px]"
+                      >
+                        1
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </div>
-                <h3 className="text-[16px] font-ppmori text-foreground">
-                  {isAuthenticated ? 'Account created' : 'Create your account'}
+                <h3 className="text-[16px] font-ppmori text-foreground overflow-hidden">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={isAuthenticated ? 'created' : 'create'}
+                      initial={{ opacity: 0, y: -4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 4 }}
+                      transition={{ duration: 0.2 }}
+                      className="block"
+                    >
+                      {isAuthenticated ? 'Account created' : 'Create your account'}
+                    </motion.span>
+                  </AnimatePresence>
                 </h3>
               </div>
 
-              <AnimatePresence mode="wait">
-                {!isAuthenticated ? (
+              <AnimatePresence mode="wait" initial={false}>
+                {!isAuthenticated && !otpSent && (
                   <motion.div
-                    key="step1-active"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
+                    key="step1-email"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ overflow: 'hidden' }}
                     className="md:pl-12 space-y-6"
                   >
-                    {!otpSent ? (
-                      <form onSubmit={handleRequestOtp} className="space-y-4">
-                        <div className="space-y-8">
-                          <label className="text-[12px] font-ppmori-semibold text-foreground md:ml-3.5">Email</label>
-                          <div className="relative mt-2">
-                            <Mail className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
-                            <input
-                              type="email"
-                              placeholder="Email"
-                              value={email}
-                              onChange={(e) => setEmail(e.target.value)}
-                              className="w-full pl-12 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
-                              required
-                            />
-                          </div>
+                    <form onSubmit={handleRequestOtp} className="space-y-4">
+                      <div className="space-y-8">
+                        <label className="text-[12px] font-ppmori-semibold text-foreground md:ml-3.5">Email</label>
+                        <div className="relative mt-2">
+                          <Mail className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
+                          <input
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full pl-12 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[16px] font-ppmori"
+                            required
+                          />
                         </div>
+                      </div>
 
-                        <button
-                          type="submit"
-                          disabled={step1Loading}
-                          className="w-full bg-primary text-white py-4 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
-                        >
-                          {step1Loading ? <Loader2 size={18} className="animate-spin" /> : 'Continue'}
-                        </button>
-                      </form>
-                    ) : (
-                      <form onSubmit={handleVerifyOtp} className="space-y-4 md:text-start text-center">
-                        <div className="space-y-8">
-                          <label className="md:text-[16px] text-[14px] font-ppmori text-sub-foreground ml-3.5">Enter the 6-digit code that was sent to {email}</label>
-                          <div className="relative mt-2">
-                            <Lock className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
-                            <input
-                              type="text"
-                              placeholder="Enter 6-digit code"
-                              value={otp}
-                              onChange={(e) => setOtp(e.target.value)}
-                              className="w-full md:pl-12 pl-4 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold text-center tracking-[0.25em] font-bold"
-                              maxLength={6}
-                              required
-                            />
-                          </div>
-                        </div>
+                      <button
+                        type="submit"
+                        disabled={step1Loading}
+                        className="w-full bg-primary text-white py-4 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+                      >
+                        {step1Loading ? <Loader2 size={18} className="animate-spin" /> : 'Continue'}
+                      </button>
+                    </form>
 
-                        <button
-                          type="submit"
-                          disabled={step1Loading}
-                          className="w-full bg-primary text-white py-4 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
-                        >
-                          {step1Loading ? <Loader2 size={18} className="animate-spin" /> : 'Verify Code'}
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setOtpSent(false)}
-                          className="w-full text-xs text-gray-500 hover:text-primary font-semibold transition-colors uppercase tracking-wider text-center"
-                        >
-                          Use a different email
-                        </button>
-                      </form>
-                    )}
+                    <div className="relative flex py-2 items-center">
+                      <div className="grow border-t border-gray-200"></div>
+                      <span className="shrink mx-4 text-gray-400 text-xs font-semibold uppercase">Or</span>
+                      <div className="grow border-t border-gray-200"></div>
+                    </div>
 
-                    {!otpSent && (
-                      <>
-                        <div className="relative flex py-2 items-center">
-                          <div className="grow border-t border-gray-200"></div>
-                          <span className="shrink mx-4 text-gray-400 text-xs font-semibold uppercase">Or</span>
-                          <div className="grow border-t border-gray-200"></div>
-                        </div>
-
-                        <div className="md:flex justify-center gap-4 mx-auto hidden">
-                          <div className="flex justify-center">
-                            <GoogleLogin
-                              onSuccess={handleGoogleSuccess}
-                              onError={() => toast.error('Google login failed')}
-                              type="standard"
-                              shape="circle"
-                              theme="outline"
-                              size="large"
-                              text="signin_with"
-                            />
-                          </div>
-                          <button
-                            type="button"
-                            onClick={handleAppleLogin}
-                            className="flex items-center justify-center md:space-x-4 space-x-1 py-2 md:px-4 px-1 border border-gray-200 bg-white rounded-full hover:bg-gray-50 transition-colors cursor-pointer min-h-[40px]"
-                          >
-                            <svg className="md:w-5 w-4 md:h-5 h-4" viewBox="0 0 384 512">
-                              <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor" />
-                            </svg>
-                            <span className="text-sub-foreground text-sm">Sign in with Apple</span>
-                          </button>
-                        </div>
-                        <div className="flex gap-10 mx-auto md:hidden justify-center">
-                          <div className="">
-                            <GoogleLogin
-                              onSuccess={handleGoogleSuccess}
-                              onError={() => toast.error('Google login failed')}
-                              type="icon"
-                              shape="circle"
-                              theme="filled_blue"
-                              size="large"
-                            />
-                          </div>
-                          <button
-                            type="button"
-                            onClick={handleAppleLogin}
-                            className="flex items-center justify-center  py-2 md:px-4 px-1 border border-gray-200 bg-white rounded-full hover:bg-gray-50 transition-colors cursor-pointer min-h-[40px] w-[40px]"
-                          >
-                            <svg className="md:w-5 w-6 md:h-5 h-6" viewBox="0 0 384 512">
-                              <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor" />
-                            </svg>
-
-                          </button>
-                        </div>
-                      </>
-                    )}
+                    <div className="md:flex justify-center gap-4 mx-auto hidden">
+                      <div className="flex justify-center">
+                        <GoogleLogin
+                          onSuccess={handleGoogleSuccess}
+                          onError={() => toast.error('Google login failed')}
+                          type="standard"
+                          shape="circle"
+                          theme="outline"
+                          size="large"
+                          text="signin_with"
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleAppleLogin}
+                        className="flex items-center justify-center md:space-x-4 space-x-1 py-2 md:px-4 px-1 border border-gray-200 bg-white rounded-full hover:bg-gray-50 transition-colors cursor-pointer min-h-[40px]"
+                      >
+                        <svg className="md:w-5 w-4 md:h-5 h-4" viewBox="0 0 384 512">
+                          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor" />
+                        </svg>
+                        <span className="text-sub-foreground text-sm">Sign in with Apple</span>
+                      </button>
+                    </div>
+                    <div className="flex gap-10 mx-auto md:hidden justify-center">
+                      <div className="">
+                        <GoogleLogin
+                          onSuccess={handleGoogleSuccess}
+                          onError={() => toast.error('Google login failed')}
+                          type="icon"
+                          shape="circle"
+                          theme="filled_blue"
+                          size="large"
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleAppleLogin}
+                        className="flex items-center justify-center py-2 md:px-4 px-1 border border-gray-200 bg-white rounded-full hover:bg-gray-50 transition-colors cursor-pointer min-h-[40px] w-[40px]"
+                      >
+                        <svg className="md:w-5 w-6 md:h-5 h-6" viewBox="0 0 384 512">
+                          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor" />
+                        </svg>
+                      </button>
+                    </div>
                   </motion.div>
-                ) : (
+                )}
+
+                {!isAuthenticated && otpSent && (
+                  <motion.div
+                    key="step1-otp"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ overflow: 'hidden' }}
+                    className="md:pl-12 space-y-6"
+                  >
+                    <form onSubmit={handleVerifyOtp} className="space-y-4 md:text-start text-center">
+                      <div className="space-y-8">
+                        <label className="md:text-[16px] text-[14px] font-ppmori text-sub-foreground ml-3.5">Enter the 6-digit code that was sent to {email}</label>
+                        <div className="relative mt-2">
+                          <Lock className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
+                          <input
+                            type="text"
+                            placeholder="Enter 6-digit code"
+                            value={otp}
+                            onChange={(e) => setOtp(e.target.value)}
+                            className="w-full md:pl-12 pl-4 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[18px] font-ppmori-semibold text-center tracking-[0.25em]"
+                            maxLength={6}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={step1Loading}
+                        className="w-full bg-primary text-white py-3.5 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+                      >
+                        {step1Loading ? <Loader2 size={18} className="animate-spin" /> : 'Verify Code'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setOtpSent(false)}
+                        className="w-full text-xs text-gray-500 hover:text-primary font-semibold transition-colors uppercase tracking-wider text-center cursor-pointer"
+                      >
+                        Use a different email
+                      </button>
+                    </form>
+                  </motion.div>
+                )}
+
+                {isAuthenticated && (
                   <motion.div
                     key="step1-completed"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ overflow: 'hidden' }}
                     className="md:pl-12"
                   >
                     <div className="relative mt-2">
@@ -512,112 +558,166 @@ export default function SubscribePage() {
             </div>
 
             {/* STEP 2: PERSONAL DETAILS */}
-            <div className={`relative ${(activeStep < 2 && !isEditingName) ? 'opacity-40' : ''}`}>
+            <div className={`relative transition-all duration-500 ease-in-out ${(activeStep < 2 && !isEditingName) ? 'opacity-40 pointer-events-none' : 'opacity-100'}`}>
               <div className="flex items-center gap-2 mb-6">
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-sm ${isAuthenticated && user?.firstName ? 'bg-[#4D7C0F] text-white' : 'bg-head text-white'
-                  }`}>
-                  {isAuthenticated && user?.firstName ? <Check size={14} strokeWidth={3} /> : <div className="w-6 h-6 rounded-full bg-head text-white flex items-center justify-center">
-                    <span className="text-sm leading-none translate-y-[0.5px]">
-                      2
-                    </span>
-                  </div>}
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-sm transition-colors duration-300 ${
+                  isAuthenticated && user?.firstName ? 'bg-[#4D7C0F] text-white' : 'bg-head text-white'
+                }`}>
+                  <AnimatePresence mode="wait" initial={false}>
+                    {isAuthenticated && user?.firstName ? (
+                      <motion.div
+                        key="check2"
+                        initial={{ scale: 0, rotate: -45 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        exit={{ scale: 0, rotate: -45 }}
+                        transition={{ duration: 0.2 }}
+                        className="flex items-center justify-center"
+                      >
+                        <Check size={14} strokeWidth={3} />
+                      </motion.div>
+                    ) : (
+                      <motion.span
+                        key="num2"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-sm leading-none translate-y-[0.5px]"
+                      >
+                        2
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </div>
-                <h3 className="text-[16px] font-ppmori text-foreground">
-                  {isAuthenticated && user?.firstName ? 'Personal information saved' : 'Personal information'}
+                <h3 className="text-[16px] font-ppmori text-foreground overflow-hidden">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={isAuthenticated && user?.firstName ? 'saved' : 'info'}
+                      initial={{ opacity: 0, y: -4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 4 }}
+                      transition={{ duration: 0.2 }}
+                      className="block"
+                    >
+                      {isAuthenticated && user?.firstName ? 'Personal information saved' : 'Personal information'}
+                    </motion.span>
+                  </AnimatePresence>
                 </h3>
               </div>
 
-              {activeStep === 2 || isEditingName ? (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="md:pl-12"
-                >
-                  <form onSubmit={handleUpdateName} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-8">
-                        <label className="text-[12px] font-ppmori-semibold text-foreground ml-3.5">First Name</label>
-                        <div className="relative mt-2">
-                          <User className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
-                          <input
-                            type="text"
-                            placeholder="First Name"
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
-                            required
-                          />
+              <AnimatePresence mode="wait" initial={false}>
+                {activeStep === 2 || isEditingName ? (
+                  <motion.div
+                    key="step2-active"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ overflow: 'hidden' }}
+                    className="md:pl-12"
+                  >
+                    <form onSubmit={handleUpdateName} className="space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="space-y-8">
+                          <label className="text-[12px] font-ppmori-semibold text-foreground ml-3.5">First Name</label>
+                          <div className="relative mt-2">
+                            <User className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
+                            <input
+                              type="text"
+                              placeholder="First Name"
+                              value={firstName}
+                              onChange={(e) => setFirstName(e.target.value)}
+                              className="w-full pl-12 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-8">
+                          <label className="text-[12px] font-ppmori-semibold text-foreground ml-3.5">Last Name</label>
+                          <div className="relative mt-2">
+                            <User className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
+                            <input
+                              type="text"
+                              placeholder="Last Name"
+                              value={lastName}
+                              onChange={(e) => setLastName(e.target.value)}
+                              className="w-full pl-12 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
+                            />
+                          </div>
                         </div>
                       </div>
 
-                      <div className="space-y-8">
-                        <label className="text-[12px] font-ppmori-semibold text-foreground ml-3.5">Last Name</label>
-                        <div className="relative mt-2">
-                          <User className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
-                          <input
-                            type="text"
-                            placeholder="Last Name"
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                      {isEditingName && (
+                      <div className="flex gap-4">
+                        {isEditingName && (
+                          <button
+                            type="button"
+                            onClick={() => setIsEditingName(false)}
+                            className="w-1/3 bg-[#F3F4F6] text-[#374151] hover:bg-gray-200 py-4 rounded-full font-ppmori-semibold text-[16px] transition-all cursor-pointer"
+                          >
+                            Cancel
+                          </button>
+                        )}
                         <button
-                          type="button"
-                          onClick={() => setIsEditingName(false)}
-                          className="w-1/3 bg-[#F3F4F6] text-[#374151] hover:bg-gray-200 py-4 rounded-full font-ppmori-semibold text-[16px] transition-all cursor-pointer"
+                          type="submit"
+                          disabled={step2Loading}
+                          className={`${isEditingName ? 'grow' : 'w-full'} bg-primary text-white py-4 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer`}
                         >
-                          Cancel
+                          {step2Loading ? <Loader2 size={18} className="animate-spin" /> : (isEditingName ? 'Save & Continue' : 'Continue to Payment')}
                         </button>
-                      )}
-                      <button
-                        type="submit"
-                        disabled={step2Loading}
-                        className={`${isEditingName ? 'grow' : 'w-full'} bg-primary text-white py-4 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer`}
+                      </div>
+                    </form>
+                  </motion.div>
+                ) : isAuthenticated && user?.firstName ? (
+                  <motion.div
+                    key="step2-completed"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ overflow: 'hidden' }}
+                    className="md:pl-12"
+                  >
+                    <div className="relative mt-2">
+                      <User className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
+                      <div
+                        className="w-full pl-12 pr-16 py-4 bg-[#F3F4F6] border-none rounded-full text-foreground text-[15px] font-ppmori-semibold truncate"
                       >
-                        {step2Loading ? <Loader2 size={18} className="animate-spin" /> : (isEditingName ? 'Save & Continue' : 'Continue to Payment')}
+                        {user?.firstName} {user?.lastName || ''}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setFirstName(user?.firstName || '');
+                          setLastName(user?.lastName || '');
+                          setIsEditingName(true);
+                        }}
+                        className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors cursor-pointer flex items-center justify-center"
+                        title="Edit name"
+                      >
+                        <Pencil size={18} />
                       </button>
                     </div>
-                  </form>
-                </motion.div>
-              ) : isAuthenticated && user?.firstName ? (
-                <div className="md:pl-12">
-                  <div className="relative mt-2">
-                    <User className="absolute left-6 top-1/2 -translate-y-1/2 -mt-0.5 text-gray-400" size={18} />
-                    <div
-                      className="w-full pl-12 pr-16 py-4 bg-[#F3F4F6] border-none rounded-full text-foreground text-[15px] font-ppmori-semibold truncate"
-                    >
-                      {user?.firstName} {user?.lastName || ''}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setFirstName(user?.firstName || '');
-                        setLastName(user?.lastName || '');
-                        setIsEditingName(true);
-                      }}
-                      className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors cursor-pointer flex items-center justify-center"
-                      title="Edit name"
-                    >
-                      <Pencil size={18} />
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="pl-12 flex items-center gap-2.5 text-gray-400 text-[14px] font-ppmori-semibold bg-[#F3F4F6] p-4 rounded-full">
-                  <Lock size={14} />
-                  <span>Complete step 1 to continue</span>
-                </div>
-              )}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="step2-locked"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ overflow: 'hidden' }}
+                    className="pl-12 flex items-center gap-2.5 text-gray-400 text-[14px] font-ppmori-semibold bg-[#F3F4F6] p-4 rounded-full"
+                  >
+                    <Lock size={14} />
+                    <span>Complete step 1 to continue</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* STEP 3: PAYMENT */}
-            <div className={`relative ${activeStep < 3 ? 'opacity-40' : ''}`}>
+            <div className={`relative transition-all duration-500 ease-in-out ${activeStep < 3 ? 'opacity-40 pointer-events-none' : 'opacity-100'}`}>
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-6 h-6 rounded-full bg-head text-white flex items-center justify-center">
                   <span className="text-sm leading-none translate-y-[0.5px]">
@@ -627,46 +727,59 @@ export default function SubscribePage() {
                 <h3 className="text-[16px] font-ppmori text-foreground">Payment</h3>
               </div>
 
-              {activeStep === 3 ? (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="md:pl-12"
-                >
-                  {intentLoading || !clientSecret || !paymentIntentId || !selectedPlan ? (
-                    <div className="flex flex-col items-center justify-center py-10 space-y-3">
-                      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary" />
-                      <p className="text-sm text-gray-400 font-semibold">Preparing secure checkout...</p>
-                    </div>
-                  ) : (
-                    <Elements
-                      stripe={stripePromise}
-                      options={{
-                        clientSecret,
-                        appearance: {
-                          theme: 'stripe',
-                          variables: {
-                            borderRadius: '24px',
-                            fontFamily: 'PP Mori, PPMori, sans-serif',
+              <AnimatePresence mode="wait" initial={false}>
+                {activeStep === 3 ? (
+                  <motion.div
+                    key="step3-active"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ overflow: 'hidden' }}
+                    className="md:pl-12"
+                  >
+                    {intentLoading || !clientSecret || !paymentIntentId || !selectedPlan ? (
+                      <div className="flex flex-col items-center justify-center py-10 space-y-3">
+                        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary" />
+                        <p className="text-sm text-gray-400 font-semibold">Preparing secure checkout...</p>
+                      </div>
+                    ) : (
+                      <Elements
+                        stripe={stripePromise}
+                        options={{
+                          clientSecret,
+                          appearance: {
+                            theme: 'stripe',
+                            variables: {
+                              borderRadius: '24px',
+                              fontFamily: 'PP Mori, PPMori, sans-serif',
+                            },
                           },
-                        },
-
-                      }}
-                    >
-                      <CheckoutForm
-                        plan={selectedPlan}
-                        paymentIntentId={paymentIntentId}
-                        onSuccess={() => router.push('/')}
-                      />
-                    </Elements>
-                  )}
-                </motion.div>
-              ) : (
-                <div className="pl-12 flex items-center gap-2.5 text-gray-400 text-[14px] font-ppmori-semibold bg-[#F3F4F6] p-4 rounded-full">
-                  <Lock size={14} />
-                  <span>Complete steps 1 & 2 to continue</span>
-                </div>
-              )}
+                        }}
+                      >
+                        <CheckoutForm
+                          plan={selectedPlan}
+                          paymentIntentId={paymentIntentId}
+                          onSuccess={() => router.push('/')}
+                        />
+                      </Elements>
+                    )}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="step3-locked"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ overflow: 'hidden' }}
+                    className="pl-12 flex items-center gap-2.5 text-gray-400 text-[14px] font-ppmori-semibold bg-[#F3F4F6] p-4 rounded-full"
+                  >
+                    <Lock size={14} />
+                    <span>Complete steps 1 & 2 to continue</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>

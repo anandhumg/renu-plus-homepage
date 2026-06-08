@@ -4,7 +4,7 @@ import { useLoading } from "@/contexts/LoadingContext";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Leaf1 from "../../../public/common/leaf.svg";
-
+import Img from "../../../public/how-it-works/img-2.webp"
 
 export default function ExclusiveDiscounts() {
     const { isLoaded } = useLoading();
@@ -23,7 +23,7 @@ export default function ExclusiveDiscounts() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 gap-10 lg:items-center w-full h-full">
 
                     {/* Text side - animated */}
-                    <div className="order-2 lg:order-1 lg:pl-6">
+                    <div className=" lg:pl-6">
                         <motion.h1
                             initial={{ opacity: 0, y: 30 }}
                             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -34,6 +34,14 @@ export default function ExclusiveDiscounts() {
                             <br />
                             <span className="text-head">at Various Retailers</span>
                         </motion.h1>
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                            transition={{ duration: 1, ease: "easeOut" }}
+                            className="w-auto h-[500px] relative md:hidden mb-6"
+                        >
+                            <Image src={Img} alt="Exclusive Discounts" fill className="object-contain" priority />
+                        </motion.div>
 
                         <motion.p
                             initial={{ opacity: 0, y: 30 }}
@@ -54,9 +62,9 @@ export default function ExclusiveDiscounts() {
                         initial={{ opacity: 0, y: 40 }}
                         animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                         transition={{ duration: 1, ease: "easeOut" }}
-                        className="w-full h-[300px] md:h-[500px] relative order-1 lg:order-2"
+                        className="w-full h-[300px] md:h-[600px] relative md:block hidden"
                     >
-                        <Image src="/how-it-works/img-1.png" alt="Exclusive Discounts" fill className="object-contain" priority />
+                        <Image src={Img} alt="Exclusive Discounts" fill className="object-contain" priority />
                     </motion.div>
 
 

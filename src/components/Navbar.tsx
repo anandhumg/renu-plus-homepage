@@ -224,7 +224,7 @@ export default function Navbar() {
                   <Link
                     href="/#partner"
                     className="text-3xl font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block"
-                  // onClick={() => setIsOpen(false)}
+                    onClick={() => setIsOpen(false)}
                   >
                     Become a partner
                   </Link>
@@ -238,6 +238,64 @@ export default function Navbar() {
                   </button>
                 </motion.div>
               </div>
+            </div>
+
+            {/* Bottom Actions for Mobile */}
+            <div className="p-10 border-t border-gray-100 lg:hidden flex flex-col space-y-4 bg-white">
+              {!isAuthenticated ? (
+                <div className="flex gap-4">
+                  <Link
+                    href="/subscribe"
+                    onClick={() => setIsOpen(false)}
+                    className="flex-1 flex items-center justify-center h-[50px] border border-[#111827] rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-[16px] font-ppmori-semibold cursor-pointer"
+                  >
+                    <span>Login</span>
+                  </Link>
+                  <Link
+                    href="/subscribe"
+                    onClick={() => setIsOpen(false)}
+                    className="flex-1 bg-primary text-white h-[50px] flex justify-center items-center rounded-full hover:bg-primary/90 transition-all text-[16px] font-ppmori-semibold"
+                  >
+                    <span>Join now</span>
+                  </Link>
+                </div>
+              ) : (
+                <div className="flex flex-col space-y-3">
+                  <div className="flex items-center space-x-3 px-2 py-1">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+                      {user?.profilePicture ? (
+                        <img src={user.profilePicture} alt="Profile" className="w-full h-full object-cover" />
+                      ) : (
+                        <User size={20} className="text-primary" />
+                      )}
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[15px] font-ppmori-semibold text-gray-800">{user?.firstName} {user?.lastName || ''}</span>
+                      <span className="text-xs text-gray-400 truncate max-w-[200px]">{user?.email}</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-4 pt-2">
+                    <Link
+                      href="/profile"
+                      onClick={() => setIsOpen(false)}
+                      className="flex-1 flex items-center justify-center h-[46px] border border-gray-200 rounded-full hover:bg-gray-50 transition-colors text-gray-700 text-sm font-ppmori-semibold cursor-pointer"
+                    >
+                      <User size={16} className="mr-2" />
+                      <span>Profile</span>
+                    </Link>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setIsOpen(false);
+                      }}
+                      className="flex-1 bg-red-50 text-red-600 h-[46px] flex justify-center items-center rounded-full hover:bg-red-100 transition-all text-sm font-ppmori-semibold cursor-pointer"
+                    >
+                      <LogOut size={16} className="mr-2" />
+                      <span>Logout</span>
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         )}

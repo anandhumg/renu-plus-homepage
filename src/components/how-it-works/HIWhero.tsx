@@ -24,7 +24,7 @@ export default function HIWhero() {
                     }`}
                 priority
             />
-            <div className="absolute md:hidden inset-0 bg-linear-to-t from-white via-[#FAF8F5]/20 to-transparent h-full z-10"></div>
+            <div className="absolute md:hidden inset-0 bg-linear-to-t from-white via-[#FAF8F5]/20 via-50% to-transparent h-full z-10"></div>
             <Image
                 src={HIWbgMob}
                 alt="Bearded man leaning on a bicycle, overlooking a sunset"

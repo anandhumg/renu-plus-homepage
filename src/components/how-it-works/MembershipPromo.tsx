@@ -50,7 +50,7 @@ export default function MembershipPromo() {
                         className="flex flex-col items-start text-left lg:max-w-xl"
                     >
                         <div>
-                            <h2 className="text-foreground font-ppmori-semibold lg:text-[48px] md:text-[40px] text-[2rem] leading-[52px]">
+                            <h2 className="text-foreground font-ppmori-semibold lg:text-[48px] md:text-[40px] text-[2rem] md:leading-[52px] md:mb-0 mb-4">
                                 Your <span className="text-head">membership</span><br />
                                 Starts now.
                             </h2>

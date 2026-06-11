@@ -18,7 +18,7 @@ export default function ExclusiveDiscounts() {
             <div className="absolute bottom-0 right-0 md:w-40 w-30 md:h-40 h-30 opacity-100 pointer-events-none select-none">
                 <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-180" />
             </div>
-            <div className="relative z-10 md:px-20 px-4 w-full">
+            <div className="relative z-10 md:px-20 px-4 w-full md:mt-0 my-20">
                 {/* Leaf decoration */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 gap-10 lg:items-center w-full h-full">
 

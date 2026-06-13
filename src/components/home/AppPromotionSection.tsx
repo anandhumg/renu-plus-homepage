@@ -17,7 +17,7 @@ const AppPromotionSection: React.FC<AppPromotionSectionProps> = ({ id, isPopup =
       id={id}
       className={`relative w-full mx-auto px-4 sm:px-6 lg:px-8 ${isPopup ? "py-0" : "py-16 md:py-24 bg-white"}`}
     >
-      <div className={`relative overflow-hidden max-w-7xl  mx-auto bg-linear-to-b to-[#FFDFB5]/50  from-white md:rounded-[2.5rem] rounded-2xl flex flex-col md:flex-row items-center justify-between shadow-sm border border-[#F3E8DF] ${isPopup ? "md:min-h-[60vh]" : "md:h-[80vh] overflow-hidden"}`}>
+      <div className={`relative overflow-hidden max-w-7xl  mx-auto bg-linear-to-b to-[#FFDFB5]  from-white md:rounded-[2.5rem] rounded-2xl flex flex-col md:flex-row items-center justify-between shadow-sm border border-[#F3E8DF] ${isPopup ? "md:min-h-[60vh]" : "md:h-[80vh] overflow-hidden"}`}>
 
         {/* Left Content */}
         <div className="flex-1 px-4 md:px-16 py-10 md:py-16 z-10 w-full">
@@ -90,7 +90,7 @@ const AppPromotionSection: React.FC<AppPromotionSectionProps> = ({ id, isPopup =
         {isPopup && onClose && (
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 p-2 rounded-full bg-black/5 hover:bg-black/10 transition-colors z-50"
+            className="absolute top-6 right-6 p-2 rounded-full cursor-pointer bg-black/5 hover:bg-black/10 transition-colors z-50"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
           </button>

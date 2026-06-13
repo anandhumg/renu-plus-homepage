@@ -10,6 +10,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import * as authService from '@/services/auth.service';
 import * as subscriptionService from '@/services/subscription.service';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -207,7 +208,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ type: 'spring', duration: 0.5, bounce: 0.15 }}
-            className="relative w-full md:w-[684px] bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden z-10 p-16"
+            className="relative w-full md:w-[684px] bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden z-10 md:p-16 p-6"
           >
             {/* Close button */}
             <button
@@ -229,7 +230,11 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
               </h1>
               <p className="text-sub-foreground font-ppmori text-[16px] mt-3 leading-relaxed">
-                {step === 'email' ? <><span className="text-black">Don't have an account? </span><span className="text-primary">Create an account</span></> : `Enter the 6-digit code sent to ${email}`}
+                {step === 'email' ? <>
+                  <span className="text-sub-foreground">Don't have an account? </span>
+                  <Link href={"/subscribe"} className="text-primary">Create an account</Link>
+                </>
+                  : <span>Enter the 6-digit code sent to {email}</span>}
               </p>
             </div>
 
@@ -269,18 +274,18 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                   </form>
 
                   {/* Divider */}
-                  <div className="relative flex py-5 items-center">
-                    <div className="grow border-t border-gray-100"></div>
-                    <span className="shrink mx-4 text-gray-400 text-xs font-semibold tracking-wider">Or</span>
-                    <div className="grow border-t border-gray-100"></div>
+                  <div className="relative flex py-8 items-center">
+                    <div className="grow border-t border-[#D1D5DB]"></div>
+                    <span className="shrink mx-4 text-[#D1D5DB] text-[14px] font-ppmori-semibold leading-0">Or</span>
+                    <div className="grow border-t border-[#D1D5DB]"></div>
                   </div>
 
                    {/* Social Logins */}
-                  <div className="space-y-3 flex gap-4 items-center">
-                    <div className="relative w-full h-full md:h-[48px] cursor-pointer transition-transform duration-300 ">
+                  <div className="space-y-3 flex gap-4 items-center h-[44px] md:h-[48px]">
+                    <div className="group mt-2.5 relative w-full h-full cursor-pointer transition-transform duration-300">
                       <button
                         type="button"
-                        className="flex w-full h-full items-center justify-center space-x-3 duration-300 border border-gray-200 bg-white hover:bg-gray-100 rounded-full  transition-colors cursor-pointer"
+                        className="flex w-full h-full items-center justify-center space-x-3 border border-gray-200 bg-white group-hover:bg-gray-100 rounded-full transition-colors duration-300 cursor-pointer"
                       >
                         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -288,9 +293,9 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                           <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
                           <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
                         </svg>
-                        <span className="text-gray-700 text-sm font-ppmori-semibold">Google</span>
+                        <span className="text-gray-700 text-sm font-ppmori-semibold mt-1">Google</span>
                       </button>
-                      <div className="absolute inset-0 opacity-0 cursor-pointer overflow-hidden [&_iframe]:!w-full [&_iframe]:!h-full">
+                      <div className="absolute inset-0 opacity-0 cursor-pointer overflow-hidden [&_iframe]:w-full! [&_iframe]:h-full!">
                         <GoogleLogin
                           onSuccess={handleGoogleSuccess}
                           onError={() => toast.error('Google login failed')}
@@ -304,12 +309,12 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                     <button
                       type="button"
                       onClick={handleAppleLogin}
-                      className="w-full flex items-center justify-center space-x-3 h-[44px] border border-gray-200 bg-white rounded-full hover:bg-gray-50 transition-colors cursor-pointer"
+                      className="w-full flex items-center justify-center space-x-3 h-full rounded-full border border-gray-200 bg-white hover:bg-gray-100 transition-colors cursor-pointer leading-0"
                     >
-                      <svg className="w-4 h-4" viewBox="0 0 384 512">
+                      <svg className="w-5 h-5" viewBox="0 0 384 512">
                         <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor" />
                       </svg>
-                      <span className="text-gray-700 text-sm font-ppmori-semibold">Sign in with Apple</span>
+                      <span className="text-gray-700 text-sm font-ppmori-semibold mt-1">Apple</span>
                     </button>
                   </div>
                 </motion.div>
@@ -323,7 +328,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                   className="space-y-6"
                 >
                   <form onSubmit={(e) => { e.preventDefault(); handleVerifyOtp(otpValues.join('')); }} className="space-y-5 text-center">
-                    <div className="flex justify-between gap-2 max-w-xs mx-auto my-2">
+                    <div className="flex justify-between gap-2 max-w-md mx-auto my-8">
                       {otpValues.map((val, idx) => (
                         <input
                           key={idx}
@@ -338,7 +343,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                           onChange={(e) => handleOtpChange(e.target.value, idx)}
                           onKeyDown={(e) => handleOtpKeyDown(e, idx)}
                           onPaste={handleOtpPaste}
-                          className="w-11 h-11 text-center text-lg font-ppmori-semibold bg-[#F3F4F6] border-2 border-transparent rounded-xl focus:border-primary focus:bg-white focus:ring-0 outline-none transition-all text-gray-900"
+                          className="md:w-16 w-11 md:h-16 h-15 text-center text-lg font-ppmori-semibold bg-[#F3F4F6] border-2 border-transparent rounded-xl focus:border-primary focus:bg-white focus:ring-0 outline-none transition-all text-gray-900"
                         />
                       ))}
                     </div>

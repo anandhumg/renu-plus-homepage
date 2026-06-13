@@ -3,7 +3,7 @@
 import { useLoading } from "@/contexts/LoadingContext";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import IMG1 from "../../../public/about-us/img-1.png"
+import IMG1 from "../../../public/about-us/img-1.webp"
 export default function WhoWeAreHero() {
   const { isLoaded } = useLoading();
   return (

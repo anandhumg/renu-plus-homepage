@@ -9,8 +9,8 @@ interface AuthContextType {
     user: User | null;
     loading: boolean;
     isAuthenticated: boolean;
-    login: (email: string, otp: string) => Promise<void>;
-    socialLogin: (provider: 'google' | 'apple', token: string, fullName?: any) => Promise<void>;
+    login: (email: string, otp: string) => Promise<User>;
+    socialLogin: (provider: 'google' | 'apple', token: string, fullName?: any) => Promise<User | undefined>;
     logout: () => void;
     updateUser: (user: User) => void;
 }
@@ -66,6 +66,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             localStorage.setItem('refreshToken', refreshToken);
             localStorage.setItem('user', JSON.stringify(user));
             setUser(user);
+            return user;
         } else {
             throw new Error(response.message || 'Login failed');
         }
@@ -84,6 +85,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             localStorage.setItem('refreshToken', data.refreshToken);
             localStorage.setItem('user', JSON.stringify(data.user));
             setUser(data.user);
+            return data.user;
         }
     };
 

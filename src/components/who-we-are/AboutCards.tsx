@@ -24,7 +24,7 @@ const whyJoinData = [
     },
     {
         title: "Rewards & Savings",
-        description: "Meaningful savings across curated partner brands.",
+        description: "Meaningful savings<br/> across curated partner brands.",
         icon: (
             Icon3
         )
@@ -59,9 +59,7 @@ const AboutCards = () => {
                         <h4 className="font-ppmori-semibold text-[#7C5D48] lg:text-[22px] text-[18px] my-4">
                             {item.title}
                         </h4>
-                        <p className="text-[#4B5563] font-ppmori text-[16px] leading-[1.6]">
-                            {item.description}
-                        </p>
+                        <div className="text-[#4B5563] font-ppmori text-[16px] leading-[1.6]" dangerouslySetInnerHTML={{ __html: item.description }} />
                     </motion.div>
                 ))}
             </div>

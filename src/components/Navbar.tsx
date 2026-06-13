@@ -8,6 +8,7 @@ import { User, LogOut, ChevronDown, Menu, X, QrCode } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useLoading } from "@/contexts/LoadingContext";
 import { usePathname } from "next/navigation";
+import LoginModal from "./LoginModal";
 
 export default function Navbar() {
   const { isLoaded } = useLoading();
@@ -16,6 +17,7 @@ export default function Navbar() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -139,14 +141,14 @@ export default function Navbar() {
                   </div>
                 ) : (
                   <>
-                    <Link
-                      href="/subscribe"
-                      className="flex items-center justify-center space-x-2 h-[42px] w-[120px] border border-[#111827] px-6 py-2 rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-sm font-ppmori-semibold cursor-pointer"
+                    <button
+                      onClick={() => setIsLoginOpen(true)}
+                      className="flex items-center justify-center space-x-2 h-[42px] w-[120px] border border-[#111827] px-6 py-2 rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-sm font-ppmori-semibold cursor-pointer bg-transparent"
                     >
                       <span className="leading-none translate-y-[0.5px]">
                         Login
                       </span>
-                    </Link>
+                    </button>
 
                     <Link
                       href="/subscribe"
@@ -244,13 +246,15 @@ export default function Navbar() {
             <div className="p-10 border-t border-gray-100 lg:hidden flex flex-col space-y-4 bg-white">
               {!isAuthenticated ? (
                 <div className="flex gap-4">
-                  <Link
-                    href="/subscribe"
-                    onClick={() => setIsOpen(false)}
-                    className="flex-1 flex items-center justify-center h-[50px] border border-[#111827] rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-[16px] font-ppmori-semibold cursor-pointer"
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      setIsLoginOpen(true);
+                    }}
+                    className="flex-1 flex items-center justify-center h-[50px] border border-[#111827] rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-[16px] font-ppmori-semibold cursor-pointer bg-transparent"
                   >
                     <span>Login</span>
-                  </Link>
+                  </button>
                   <Link
                     href="/subscribe"
                     onClick={() => setIsOpen(false)}
@@ -300,6 +304,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </>
   );
 }

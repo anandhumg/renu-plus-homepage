@@ -9,9 +9,11 @@ import {
     Payment
 } from '../types';
 
-export const getCurrentSubscription = async (): Promise<Subscription | null> => {
+export const getCurrentSubscription = async (authToken?: string): Promise<Subscription | null> => {
     try {
-        const response = await api.get<{ success: boolean; data: Subscription }>('/subscriptions/current');
+        const response = await api.get<{ success: boolean; data: Subscription }>('/subscriptions/current', {
+            headers: authToken ? { Authorization: `Bearer ${authToken}` } : {}
+        });
         return response.data.data;
     } catch (error: any) {
         if (error.response?.status === 404) {

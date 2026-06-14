@@ -8,7 +8,7 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    if (pathname?.startsWith("/subscribe")) {
+    if (pathname?.startsWith("/subscribe") || pathname?.startsWith("/profile")) {
       return;
     }
 

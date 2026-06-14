@@ -119,7 +119,7 @@ export default function Navbar() {
                     {isProfileOpen && (
                       <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2">
                         <Link
-                          href="/"
+                          href="/profile"
                           className="flex items-center space-x-2 px-4 py-3 text-sm font-ppmori text-gray-600 hover:bg-gray-50 transition-colors"
                         // onClick={() => setIsProfileOpen(false)}
                         >

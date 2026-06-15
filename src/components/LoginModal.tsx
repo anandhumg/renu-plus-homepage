@@ -232,7 +232,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
               <p className="text-sub-foreground font-ppmori text-[16px] mt-3 leading-relaxed">
                 {step === 'email' ? <>
                   <span className="text-sub-foreground">Don't have an account? </span>
-                  <Link href={"/subscribe"} className="text-primary">Create an account</Link>
+                  <Link href={"/subscribe"} className="text-primary whitespace-nowrap">Create an account</Link>
                 </>
                   : <span>Enter the 6-digit code sent to {email}</span>}
               </p>
@@ -280,27 +280,27 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                     <div className="grow border-t border-[#D1D5DB]"></div>
                   </div>
 
-                   {/* Social Logins */}
+                  {/* Social Logins */}
                   <div className="space-y-3 flex gap-4 items-center h-[44px] md:h-[48px]">
                     <div className="group mt-2.5 relative w-full h-full cursor-pointer transition-transform duration-300">
                       <button
                         type="button"
-                        className="flex w-full h-full items-center justify-center space-x-3 border border-gray-200 bg-white group-hover:bg-gray-100 rounded-full transition-colors duration-300 cursor-pointer"
+                        className="flex w-full h-full items-center justify-center space-x-3 border border-gray-200 bg-white group-hover:bg-gray-100 rounded-full transition-colors duration-300 cursor-pointer pointer-events-none"
                       >
                         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
-                          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" />
+                          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" />
                         </svg>
                         <span className="text-gray-700 text-sm font-ppmori-semibold mt-1">Google</span>
                       </button>
-                      <div className="absolute inset-0 opacity-0 cursor-pointer overflow-hidden [&_iframe]:w-full! [&_iframe]:h-full!">
+                      <div className="absolute inset-0 opacity-[0.01] z-10 cursor-pointer overflow-hidden [&_iframe]:w-full! [&_iframe]:h-full! [&_div]:w-full! [&_div]:h-full! [&_iframe]:min-h-full [&_iframe]:min-w-full [&_div]:min-h-full [&_div]:min-w-full">
                         <GoogleLogin
                           onSuccess={handleGoogleSuccess}
                           onError={() => toast.error('Google login failed')}
                           theme="outline"
-                          shape="circle"
+                          shape="pill"
                           width="100%"
                           size="large"
                         />
@@ -372,7 +372,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             </AnimatePresence>
 
             {/* Footer lock */}
-            <div className="mt-8 text-[10px] text-gray-400 text-center flex items-center justify-center gap-1.5">
+            <div className="mt-8 text-[10px] text-gray-400 text-center md:flex hidden items-center justify-center gap-1.5">
               <Lock size={10} /> Secure passwordless login. Your information is always encrypted.
             </div>
           </motion.div>

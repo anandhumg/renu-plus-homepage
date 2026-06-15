@@ -584,7 +584,7 @@ export default function SubscribePage() {
                         <div className="group relative flex-1 h-full w-full cursor-pointer">
                           <button
                             type="button"
-                            className="w-full h-full flex items-center justify-center space-x-2 border border-gray-200 bg-white group-hover:bg-gray-100 rounded-full transition-colors duration-300 cursor-pointer"
+                            className="w-full h-full flex items-center justify-center space-x-2 border border-gray-200 bg-white group-hover:bg-gray-100 rounded-full transition-colors duration-300 cursor-pointer pointer-events-none"
                           >
                             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -594,12 +594,12 @@ export default function SubscribePage() {
                             </svg>
                             <span className="text-gray-700 text-sm font-ppmori-semibold mt-1">Google</span>
                           </button>
-                          <div className="absolute inset-0 opacity-0 cursor-pointer overflow-hidden [&_iframe]:w-full! [&_iframe]:h-full!">
+                          <div className="absolute inset-0 opacity-[0.01] z-10 cursor-pointer overflow-hidden [&_iframe]:w-full! [&_iframe]:h-full! [&_div]:w-full! [&_div]:h-full! [&_iframe]:min-h-full [&_iframe]:min-w-full [&_div]:min-h-full [&_div]:min-w-full">
                             <GoogleLogin
                               onSuccess={handleGoogleSuccess}
                               onError={() => toast.error('Google login failed')}
                               theme="outline"
-                              shape="circle"
+                              shape="pill"
                               width="100%"
                               size="large"
                             />

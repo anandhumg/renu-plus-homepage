@@ -36,14 +36,14 @@ const AboutCards = () => {
             {/* Decorator element for elliptical gradient */}
             <div className="text-center max-w-2xl md:mx-auto mb-16 md:mb-25 mx-10 place-items-center z-20">
                 <h3 className="text-foreground font-ppmori-semibold lg:text-[40px] text-[2rem] mt-2">
-                    Designed around <br/>smarter living
+                    Designed around <br />smarter living
                 </h3>
                 <p className="text-[#4B5563] font-ppmori lg:text-[16px] font-light text-[16px] mt-4 max-w-[371px] mx-auto">
                     Renu+ connects members with trusted services, exclusive savings, and lifestyle benefits that simplify everyday living.
                 </p>
             </div>
 
-            <div className="flex md:flex-row flex-col md:space-x-[187px] space-y-8 justify-center items-center mx-auto max-w-7xl">
+            <div className="flex md:flex-row flex-col md:space-x-[187px] space-y-8 md:space-y-0 justify-center items-center mx-auto max-w-7xl">
                 {whyJoinData.map((item, idx) => (
                     <motion.div
                         key={idx}
@@ -51,7 +51,7 @@ const AboutCards = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-                        className={`place-items-center text-center hover:shadow-[0_15px_30px_rgba(0,0,0,0.02)] transition-all duration-300 max-w-[208px]`}
+                        className={`place-items-center text-center transition-all duration-300 max-w-[208px]`}
                     >
                         <div className="relative aspect-square w-[114px] h-auto">
                             <Image src={item.icon} alt={item.title} className="object-contain" />

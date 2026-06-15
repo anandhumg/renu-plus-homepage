@@ -50,7 +50,7 @@ const HIWCards = () => {
                 </p>
             </div>
 
-            <div className="flex md:flex-row flex-col md:space-x-[125px] space-y-8 md:space-y-0 justify-center mx-auto max-w-7xl">
+            <div className="flex md:flex-row flex-col md:space-x-[125px] space-y-8 md:space-y-0 justify-center md:items-start items-center mx-auto max-w-7xl">
                 {whyJoinData.map((item, idx) => (
                     <motion.div
                         key={idx}

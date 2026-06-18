@@ -1,44 +1,32 @@
 // src/app/profile/page.tsx
 "use client";
 
-import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { useRouter } from 'next/navigation';
-import {
-    User as UserIcon,
-    CreditCard,
-    CheckCircle,
-    XCircle,
-    Camera,
-    Mail,
-    MapPin,
-    Phone,
-    Calendar,
-    Crown,
-    ExternalLink,
-    LogOut,
-    HelpCircle,
-    ChevronRight,
-    ChevronDown,
-    Shield,
-    QrCode,
-    Sparkles,
-    Umbrella,
-    Smartphone,
-    FileText,
-    Check,
-    Store,
-    X,
-    ArrowRight
-} from 'lucide-react';
-import { toast } from 'react-hot-toast';
 import * as profileService from '@/services/profile.service';
 import * as subscriptionService from '@/services/subscription.service';
-import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import { QRCodeSVG } from 'qrcode.react';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+    ArrowRight,
+    Camera,
+    ChevronRight,
+    CreditCard,
+    Crown,
+    Edit,
+    ExternalLink,
+    FileText,
+    HelpCircle,
+    LogOut,
+    Phone,
+    Sparkles,
+    Umbrella,
+    User as UserIcon
+} from 'lucide-react';
 import Image from 'next/image';
-
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import LogoBadge from "./profile/renu-plus-badge.svg";
 export default function ProfilePage() {
     const { user, isAuthenticated, loading: authLoading, logout, updateUser } = useAuth();
     const router = useRouter();
@@ -261,13 +249,14 @@ export default function ProfilePage() {
             transition={{ duration: 0.2 }}
             className="space-y-6"
         >
-            <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl font-ppmori-semibold text-gray-900">Profile</h2>
+            <div className="md:flex md:justify-between justify-end items-center mb-6 hidden">
+                <h2 className="text-3xl font-ppmori-semibold text-black md:block ">Profile</h2>
                 {!isEditing && (
                     <button
                         onClick={() => setIsEditing(true)}
-                        className="text-[#7C5D48] hover:text-[#5d4434] text-sm font-ppmori-semibold underline cursor-pointer"
+                        className="text-[#7C5D48] hover:text-[#5d4434] text-sm flex gap-2 font-ppmori-semibold underline cursor-pointer"
                     >
+                        <Edit size={18} />
                         Edit Info
                     </button>
                 )}
@@ -354,18 +343,20 @@ export default function ProfilePage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="space-y-6 max-w-xl"
+            className="space-y-6 md:max-w-xl w-full"
         >
-            <h2 className="text-3xl font-ppmori-semibold text-gray-900">Your Renu+ Subscription</h2>
+            <h2 className="md:block hidden text-3xl font-ppmori-semibold text-gray-900">Your Renu+ Subscription</h2>
 
             {hasActiveSubscription ? (
                 <div className={`space-y-6 ${isMobile ? 'w-full' : 'w-[735px]'}`}>
                     {/* Main Card */}
-                    <div className="rounded-2xl overflow-hidden border border-[#DACCBA] shadow-sm relative ">
+                    <div className="rounded-2xl overflow-hidden border border-[#DACCBA] shadow-sm relative w-full">
                         {/* Card Header (Logo + Badge) */}
-                        <div className="flex justify-between h-[188px] p-6 border-b border-gray-100">
-                            <div className="h-full flex items-center">
-                                <div className="relative w-31 h-31 rounded-full border-2 border-white/50 bg-[#F7F1ED] overflow-hidden shadow-lg shrink-0 flex items-center justify-center">
+                        <div className="flex  md:justify-between justify-center md:h-[188px] h-[280px] md:p-10 p-6 border-b border-gray-100 relative w-full">
+                            <Image src={"/profile/sub-card.png"} alt="" fill className="object-cover absolute w-full h-full" />
+                            <div className="absolute top-0 left-0 w-full h-full bg-linear-to-b from-[#FAEACD] via-[#FAEACD] to-transparent md:opacity-100 opacity-40"></div>
+                            <div className="h-full flex items-center md:flex-row flex-col ">
+                                <div className="relative md:w-31 md:h-31 w-40 h-40 rounded-full border-2 border-white/50 bg-[#F7F1ED] overflow-hidden shadow-lg shrink-0 flex items-center justify-center">
                                     {selectedImageBase64 || user?.profilePicture ? (
                                         <img src={selectedImageBase64 || user?.profilePicture} alt="Profile" className="w-full h-full object-cover" />
                                     ) : (
@@ -379,15 +370,36 @@ export default function ProfilePage() {
                                         <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} />
                                     </label>
                                 </div>
+
+                                <div className='z-10 ml-6 md:block hidden'>
+                                    <div className=''>
+                                        <Image src="/profile/renu-plus-badge.svg" width={62} height={49} alt="" />
+                                    </div>
+                                    <div className="text-black font-[Lora] text-[14px] font-medium mt-2 tracking-[1.56px] stroke-white">
+                                        RENU <span className="text-primary">PLUS</span> MEMBER
+                                    </div>
+                                </div>
+                                <div className="bg-white mt-5 md:hidden z-10 px-5 py-2.5 rounded-full shadow-sm flex items-center gap-2 border border-gray-100 max-w-fit select-none">
+                                    <div>
+                                        <Image src="/profile/renu-plus-badge.svg" width={20} height={20} alt="" />
+                                    </div>
+                                    <div className="text-black font-[Lora] text-[14px] font-medium tracking-[1.56px]">
+                                        RENU <span className="text-primary">PLUS</span> MEMBER
+                                    </div>
+                                </div>
+                                <div className={`px-3 py-1.5 h-fit md:hidden absolute top-4 right-4 leading-none rounded-full text-[16px] font-ppmori-semibold text-white z-10 ${isCloseToExpiration() ? 'bg-[#FF6B35]' : 'bg-[#10B981]'
+                                    }`}>
+                                    {isCloseToExpiration() ? 'Expiring soon' : 'Active'}
+                                </div>
                             </div>
-                            <div className={`px-3 py-1.5 h-fit leading-none rounded-full text-[16px] font-ppmori-semibold text-white ${isCloseToExpiration() ? 'bg-[#FF6B35]' : 'bg-[#10B981]'
+                            <div className={`px-3 py-1.5 h-fit md:block hidden leading-none rounded-full text-[14px] font-ppmori-semibold text-white z-10 ${isCloseToExpiration() ? 'bg-[#FF6B35]' : 'bg-[#10B981]'
                                 }`}>
                                 {isCloseToExpiration() ? 'Expiring soon' : 'Active'}
                             </div>
                         </div>
 
                         {/* Card Details (Beige to white gradient background) */}
-                        <div className="px-8 bg-linear-to-t from-[#FCF7F2] to-white via-white text-[16px] flex flex-col">
+                        <div className="md:px-8 px-4 bg-linear-to-t from-[#FCF7F2] to-white via-white text-[16px] flex flex-col">
                             <div className="flex justify-between border-b border-[#E5E7EB] py-5">
                                 <span className="font-ppmori text-sub-foreground">Name:</span>
                                 <span className="font-ppmori-semibold text-foreground">
@@ -422,7 +434,7 @@ export default function ProfilePage() {
                     </div>
                     {/* Know your Perks */}
 
-                    <div className="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm animate-in slide-in-from-top-1 duration-200">
+                    <div className="md:p-8 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm animate-in slide-in-from-top-1 duration-200">
                         <div className="space-y-1">
                             <h3 className="text-2xl font-ppmori-semibold text-foreground border-b border-[#E7DBCB] pb-6">Membership perks</h3>
                             <p className="text-[16px] text-sub-foreground mt-6">
@@ -436,12 +448,12 @@ export default function ProfilePage() {
                                     key={idx}
                                     className="flex items-start gap-4"
                                 >
-                                    <div className="w-8 h-8 bg-[#F3E8D0] text-head font-bold rounded-full flex items-center justify-center flex-shrink-0">
+                                    <div className="w-8 h-8 bg-[#F3E8D0] text-head font-bold rounded-full flex items-center justify-center shrink-0">
                                         {getPerkIcon(perk.iconName)}
                                     </div>
                                     <div className="space-y-3 flex-1">
-                                        <h4 className="font-ppmori-semibold text-[16px] text-foreground leading-none">{perk.title}</h4>
-                                        <p className="text-sm font-ppmori text-sub-foreground leading-none">{perk.description}</p>
+                                        <div className="font-ppmori-semibold md:text-[16px] text-[17px] text-foreground leading-none">{perk.title}</div>
+                                        <p className="text-sm font-ppmori text-sub-foreground">{perk.description}</p>
                                     </div>
                                 </div>
                             ))}
@@ -476,42 +488,50 @@ export default function ProfilePage() {
                                     subscription.payments.map((pm: any, pIdx: number) => (
                                         <div
                                             key={pIdx}
-                                            className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-100 pb-3 last:border-0 last:pb-0 gap-2"
+                                            className="flex flex-col md:flex-row md:items-center justify-between border-b border-gray-100 pb-3 last:border-0 last:pb-0 gap-4"
                                         >
-                                            <div className='space-y-1'>
+                                            {/* Left */}
+                                            <div className="space-y-1">
                                                 <p className="font-ppmori-semibold text-[16px] text-foreground">
                                                     Annual Subscription Payment
                                                 </p>
-                                                <p className="text-[12px] text-sub-foreground">
+
+                                                <p className="text-[12px] text-sub-foreground break-all md:break-normal">
                                                     ID: {pm.id || 'N/A'}
                                                 </p>
+
                                                 <p className="text-[12px] text-sub-foreground">
                                                     {pm.createdat ? formatDate(pm.createdat) : '—'}
                                                 </p>
                                             </div>
-                                            <div className="flex items-center gap-3 justify-between sm:justify-end">
-                                                <div className="text-right space-y-1">
-                                                    <span className="bg-green-50 text-green-700 px-3 pt-1 leading-none w-fit h-fit rounded-full text-[10px] font-ppmori uppercase border border-green-100">
+
+                                            {/* Right */}
+                                            <div className="flex flex-col md:flex-row md:items-center gap-3 w-full md:w-auto">
+                                                <div className="space-y-1 md:text-right">
+                                                    <span className="inline-flex bg-green-50 text-green-700 px-3 py-1 rounded-full text-[10px] font-ppmori uppercase border border-green-100">
                                                         {pm.status || 'COMPLETED'}
                                                     </span>
+
                                                     <p className="font-ppmori-semibold text-foreground mt-1">
                                                         ${pm.amount} {pm.currency || 'CAD'}
                                                     </p>
+
                                                     <p className="text-[12px] text-sub-foreground">
                                                         Includes ${pm.taxAmount || '0.00'} tax ({pm.province || 'ON'})
                                                     </p>
-                                                    {pm.receiptUrl && (
-                                                        <a
-                                                            href={pm.receiptUrl}
-                                                            target="_blank"
-                                                            rel="noreferrer"
-                                                            className="text-[#7C5D48] hover:text-[#5d4434] p-1 rounded hover:bg-gray-100 transition-colors"
-                                                            title="View Receipt PDF"
-                                                        >
-                                                            <ExternalLink size={12} />
-                                                        </a>
-                                                    )}
                                                 </div>
+
+                                                {pm.receiptUrl && (
+                                                    <a
+                                                        href={pm.receiptUrl}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className="self-start md:self-center text-[#7C5D48] hover:text-[#5d4434] p-1 rounded hover:bg-gray-100 transition-colors"
+                                                        title="View Receipt PDF"
+                                                    >
+                                                        <ExternalLink size={12} />
+                                                    </a>
+                                                )}
                                             </div>
                                         </div>
                                     ))
@@ -526,7 +546,7 @@ export default function ProfilePage() {
 
 
                     {/* Get the Renu+ App Button Card */}
-                    <div className="mt-2 p-8 bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6 animate-in slide-in-from-top-1 duration-200">
+                    <div className="mt-2 md:p-8 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6 animate-in slide-in-from-top-1 duration-200">
                         <div className="flex-1 text-left">
                             <h4 className="font-ppmori-semibold text-2xl text-foreground">Get More From Your Membership</h4>
                             <p className="text-[16px] text-sub-foreground max-w-[480px] mt-5">
@@ -539,7 +559,8 @@ export default function ProfilePage() {
                                 Get the Renu+ app
                             </Link>
                         </div>
-                        <div className="relative w-20 h-20 shrink-0 flex items-center justify-center bg-yellow-50 rounded-2xl p-1">
+                        <div className='relative h-[108px] w-[96px] md:block hidden'>
+                            <Image src={"/profile/gift.svg"} alt="App" fill className="object-contain" />
                         </div>
                     </div>
                 </div>
@@ -583,7 +604,7 @@ export default function ProfilePage() {
                         <div className="pt-2">
                             <Link
                                 href="/subscribe"
-                                className="inline-block bg-[#B68F00] hover:bg-[#9c7b00] text-white font-bold px-8 py-3.5 rounded-full text-sm uppercase tracking-widest transition-colors shadow-md shadow-[#B68F00]/10 hover:scale-[1.01] transition-transform cursor-pointer"
+                                className="inline-block bg-primary hover:bg-[#9c7b00] text-white font-bold px-8 py-3.5 rounded-full text-sm uppercase tracking-widest transition-colors shadow-md shadow-[#B68F00]/10 hover:scale-[1.01] transition-transform cursor-pointer"
                             >
                                 Subscribe Now
                             </Link>
@@ -614,52 +635,10 @@ export default function ProfilePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-1">
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Email Support</p>
-                    <p className="text-sm font-bold text-[#7C5D48]">support@renuplus.ca</p>
-                    <p className="text-[10px] text-gray-400 mt-1">Average response time: &lt; 24 Hours</p>
-                </div>
-                <div className="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-1">
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Billing Help</p>
-                    <p className="text-sm font-bold text-[#7C5D48]">billing@renuplus.ca</p>
-                    <p className="text-[10px] text-gray-400 mt-1">Direct support for receipt or card updates</p>
+                    <p className="text-sm font-bold text-[#7C5D48]">support@renuplus.co</p>
                 </div>
             </div>
 
-            {/* Submit Feedback form */}
-            <form onSubmit={handleSubmitFeedback} className="bg-white rounded-[2rem] p-6 md:p-8 border border-gray-100 shadow-sm space-y-5 max-w-xl">
-                <h3 className="font-bold text-lg text-gray-900 border-b border-gray-100 pb-3">Send Support Request</h3>
-
-                <div className="space-y-1">
-                    <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">Subject</label>
-                    <input
-                        type="text"
-                        value={feedbackSubject}
-                        onChange={(e) => setFeedbackSubject(e.target.value)}
-                        className="w-full px-4 py-3 bg-[#F9F6F4] border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm"
-                        placeholder="e.g. Question about my QR Code"
-                        required
-                    />
-                </div>
-
-                <div className="space-y-1">
-                    <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">Message</label>
-                    <textarea
-                        rows={5}
-                        value={feedbackMessage}
-                        onChange={(e) => setFeedbackMessage(e.target.value)}
-                        className="w-full px-4 py-3 bg-[#F9F6F4] border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm resize-none"
-                        placeholder="Explain your request or issue in detail..."
-                        required
-                    ></textarea>
-                </div>
-
-                <button
-                    type="submit"
-                    disabled={isSubmittingFeedback}
-                    className="bg-[#7C5D48] hover:bg-[#5d4434] text-white px-6 py-3 rounded-xl text-sm font-ppmori-semibold transition-colors disabled:opacity-75 flex items-center justify-center gap-2 cursor-pointer"
-                >
-                    {isSubmittingFeedback ? 'Sending...' : 'Submit Support Request'}
-                </button>
-            </form>
         </motion.div>
     );
 
@@ -677,7 +656,7 @@ export default function ProfilePage() {
     return (
         <div className="min-h-screen bg-white pt-32 pb-16 font-ppmori">
             {/* Top Golden-Brown Banner */}
-            <div className="relative w-full border-b border-black/10 py-10 md:py-14 px-4 sm:px-6 lg:px-8">
+            <div className="relative w-full border-b border-black/10 py-8 md:py-14 px-4 sm:px-6 lg:px-8">
                 <Image src="/profile/img-1.webp" alt="Profile Banner" fill className="absolute top-0 left-0 w-full h-full object-cover" />
                 <div className="absolute top-0 left-0 w-full h-full bg-linear-to-b from-[#A87B49]/95 to-[#A87B49]/95"></div>
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -708,19 +687,24 @@ export default function ProfilePage() {
                     </div>
 
                     {/* RP Member Status Badge */}
-                    <div className="shrink-0">
-                        <div className="bg-white px-5 py-2.5 rounded-full shadow-sm flex items-center gap-2 border border-gray-100 max-w-fit select-none">
-                            <span className="font-bold tracking-widest text-[#030712] text-xs">RP</span>
-                            <span className="font-bold tracking-widest text-primary text-xs uppercase">
-                                {hasActiveSubscription ? 'RENU PLUS MEMBER' : 'MEMBER'}
-                            </span>
-                        </div>
-                    </div>
+                    {
+                        hasActiveSubscription && (
+                            <div className="shrink-0 z-10 md:block hidden">
+                                <div className="bg-white px-5 py-2.5 rounded-full shadow-sm flex items-center gap-2 border border-gray-100 max-w-fit select-none">
+                                    <div>
+                                        <Image src="/profile/renu-plus-badge.svg" width={26} height={21} alt="" />
+                                    </div>
+                                    <div className="text-black font-[Lora] text-[14px] font-medium tracking-[1.56px]">
+                                        RENU <span className="text-primary">PLUS</span> MEMBER
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                 </div>
             </div>
 
             {/* Core Body Section */}
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div className="max-w-6xl mx-auto px-4 lg:px-8 py-10">
                 {/* Desktop layout: tradicional side-by-side tabs */}
                 <div className="hidden md:grid grid-cols-12 gap-8">
                     {/* Left Sidebar Tab Navigation */}
@@ -786,7 +770,7 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Mobile Responsive Layout */}
-                <div className="block md:hidden">
+                <div className="block md:hidden ">
                     <AnimatePresence mode="wait">
                         {!isMobileDetailOpen ? (
                             <motion.div
@@ -881,20 +865,32 @@ export default function ProfilePage() {
                         ) : (
                             <motion.div
                                 key="mobile-details"
-                                initial={{ opacity: 0, x: 15 }}
+                                initial={{ opacity: 0, y: 15 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -15 }}
                                 transition={{ duration: 0.2 }}
                                 className="space-y-6"
                             >
                                 {/* Elegant Back Button */}
-                                <button
-                                    onClick={() => setIsMobileDetailOpen(false)}
-                                    className="flex items-center gap-2 text-[#7C5D48] hover:text-[#5d4434] font-ppmori-semibold text-sm cursor-pointer mb-6 group active:opacity-75"
-                                >
-                                    <ArrowRight size={16} className="rotate-180 transition-transform group-hover:-translate-x-1" />
-                                    <span>Back to account list</span>
-                                </button>
+                                <div className='flex justify-between items-center px-4'>
+                                    <button
+                                        onClick={() => setIsMobileDetailOpen(false)}
+                                        className="-ml-4 flex items-center justify-start gap-1 text-[#7C5D48] hover:text-[#5d4434] font-ppmori-semibold text-sm cursor-pointer group active:opacity-75"
+                                    >
+                                        <ChevronRight size={25} className="rotate-180 transition-transform group-hover:-translate-x-1" />
+                                        <span className="text-[18px] mt-1">{activeTab === 'profile' ? 'Profile' : activeTab === 'renu' ? 'Renu+' : 'Help'}</span>
+                                    </button>
+                                    {
+                                        activeTab === 'profile' && (
+                                            <button
+                                                onClick={() => setIsEditing(true)}
+                                                className="text-[#7C5D48] hover:text-[#5d4434] text-sm font-ppmori-semibold underline cursor-pointer"
+                                            >
+                                                <Edit size={20} />
+                                            </button>
+                                        )
+                                    }
+                                </div>
 
                                 {/* Active Tab Content */}
                                 {activeTab === 'profile' && renderProfileTab()}

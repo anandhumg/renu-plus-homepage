@@ -58,7 +58,7 @@ const HIWCards = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-                        className={`place-items-center text-center transition-all duration-300 max-w-[208px]`}
+                        className={`flex flex-col items-center text-center transition-all duration-300 max-w-[208px]`}
                     >
                         <div className="relative aspect-square w-[114px] h-auto">
                             <Image src={item.icon} alt={item.title} className="object-contain" />

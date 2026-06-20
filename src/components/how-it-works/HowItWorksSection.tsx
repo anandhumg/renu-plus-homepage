@@ -124,7 +124,7 @@ export default function HowItWorks() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 relative">
                     {/* Left Side: Sticky Image Track (Hidden on Mobile) */}
                     {/* The sticky wrapper */}
-                    <div className="hidden md:block sticky top-25 w-full aspect-[0.8] overflow-hidden">
+                    <div className="hidden md:block sticky top-25 w-full aspect-[0.8] overflow-hidden rounded-2xl border border-[#DACCBA]/40 bg-[#FDFBF7]">
                         {stepsData.map((step, index) => {
                             // Determine the state of each image based on the active index
                             let state = "next";
@@ -141,13 +141,12 @@ export default function HowItWorks() {
                                     className="absolute inset-0 w-full h-full overflow-hidden"
                                     style={{ zIndex: index }}
                                 >
-                                    {/* Optional: Remove the background color div if your images are edge-to-edge */}
-                                    <div className="relative w-full h-[80%] flex items-center justify-center  ">
+                                    <div className="relative w-full h-full">
                                         <Image
                                             src={step.image}
                                             alt={step.title}
                                             fill
-                                            className="object-contain  rounded-2xl"
+                                            className="object-cover"
                                             // Dev fallback placeholder if images aren't added yet
                                             onError={(e) => {
                                                 e.currentTarget.style.display = 'none';

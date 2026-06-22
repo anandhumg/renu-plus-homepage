@@ -1,0 +1,64 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import PSbg from "../../../public/partner-stores/partner-stores-hero.webp";
+import PSbgMob from "../../../public/partner-stores/partner-stores-hero-mob.webp"
+import { motion } from "framer-motion";
+
+export default function PartnerStoresHero() {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    return (
+        <section className="relative w-full md:h-screen h-[90vh] flex md:items-center items-end justify-start overflow-hidden md:bg-[#FAF8F5]">
+            {/* Background Image centered and fully cover the screen with a seamless loading transition */}
+            <Image
+                src={PSbg}
+                alt="Bearded man leaning on a bicycle, overlooking a sunset"
+                fill
+                placeholder="blur"
+                onLoad={() => setImageLoaded(true)}
+                className={`object-cover object-center md:block hidden z-0 transition-all duration-1200 cubic-bezier(0.34, 1.56, 0.64, 1) ${imageLoaded
+                    ? "opacity-100 scale-100 filter blur-0"
+                    : "opacity-0 scale-[1.03] filter blur-xl"
+                    }`}
+                priority
+            />
+            <div className="absolute md:hidden inset-0 bg-linear-to-t from-white via-transparent to-transparent h-full z-10"></div>
+            <Image
+                src={PSbgMob}
+                alt="Bearded man leaning on a bicycle, overlooking a sunset"
+                fill
+                placeholder="blur"
+                onLoad={() => setImageLoaded(true)}
+                className={`object-cover object-center  md:hidden block z-0 transition-all duration-1200 cubic-bezier(0.34, 1.56, 0.64, 1) ${imageLoaded
+                    ? "opacity-100 scale-100 filter blur-0"
+                    : "opacity-0 scale-[1.03] filter blur-xl"
+                    }`}
+                priority
+            />
+
+            <div className="relative max-w-7xl mx-auto w-full md:pb-0 pb-5 px-4 sm:px-6 lg:px-8 z-20 text-left">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="flex flex-col space-y-6"
+                >
+                    <h1 className="font-ppmori-semibold text-foreground text-[2rem] md:text-[44px] lg:text-[48px] leading-[1.1]">
+                        Partner stores &<br />
+                        Exclusive benefits
+                    </h1>
+                    <p className="md:block hidden text-[#1F2937] font-ppmori lg:text-[18px] md:text-[18px] text-[1rem] max-w-[419px]">
+                        Discover trusted retailers and service providers<br />offering exclusive benefits to Renu+ members.
+                    </p>
+                    <p className="md:hidden block text-[#1F2937] font-ppmori lg:text-[18px] md:text-[18px] text-[1rem] max-w-[419px]">
+                        Discover trusted retailers and service providers offering exclusive benefits to Renu+ members.
+                    </p>
+                </motion.div>
+            </div>
+        </section>
+    );
+}
+
+

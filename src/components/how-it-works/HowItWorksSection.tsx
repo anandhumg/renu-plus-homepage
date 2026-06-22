@@ -124,7 +124,7 @@ export default function HowItWorks() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 relative">
                     {/* Left Side: Sticky Image Track (Hidden on Mobile) */}
                     {/* The sticky wrapper */}
-                    <div className="hidden md:block sticky top-25 w-full aspect-[0.8] overflow-hidden rounded-2xl border border-[#DACCBA]/40 bg-[#FDFBF7]">
+                    <div className="hidden md:block sticky top-25 w-full aspect-[0.8] lg:max-h-[600px] overflow-hidden rounded-2xl border border-[#DACCBA]/40 bg-[#FDFBF7]">
                         {stepsData.map((step, index) => {
                             // Determine the state of each image based on the active index
                             let state = "next";

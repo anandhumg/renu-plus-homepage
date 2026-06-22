@@ -42,6 +42,7 @@ export default function Navbar() {
     { name: "Who We Are", href: "/about-us" },
     { name: "How It Works", href: "/how-it-works" },
     { name: "Discount Offers", href: "/discount-offers" },
+    { name: "Partner Stores", href: "/partner-stores" }
   ];
 
   const sidebarVariants: Variants = {
@@ -160,15 +161,15 @@ export default function Navbar() {
                     </Link>
                   </>
                 )}
-                </div>
-                {/* Menu Toggle Button */}
-                <button
-                  onClick={() => setIsOpen(true)}
-                  className="border border-gray-300 p-2 rounded-full text-foreground hover:border-primary hover:text-primary transition-colors focus:outline-none cursor-pointer bg-white/50 backdrop-blur-sm"
-                  aria-label="Open menu"
-                >
-                  <Menu size={20} strokeWidth={2.5} />
-                </button>
+              </div>
+              {/* Menu Toggle Button */}
+              <button
+                onClick={() => setIsOpen(true)}
+                className="border border-gray-300 p-2 rounded-full text-foreground hover:border-primary hover:text-primary transition-colors focus:outline-none cursor-pointer bg-white/50 backdrop-blur-sm"
+                aria-label="Open menu"
+              >
+                <Menu size={20} strokeWidth={2.5} />
+              </button>
             </div>
           </div>
         </div>
@@ -196,9 +197,9 @@ export default function Navbar() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 h-full w-full sm:w-100 bg-white shadow-2xl z-120 flex flex-col"
+            className="fixed top-0 right-0 h-full w-full sm:w-80 bg-white shadow-2xl z-120 flex flex-col"
           >
-            <div className="p-6 flex justify-end">
+            <div className="p-4 flex justify-end">
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-2 border border-gray-200 rounded-full text-gray-500 hover:text-primary hover:border-primary transition-colors cursor-pointer"
@@ -207,12 +208,12 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="px-10 pb-10 flex flex-col space-y-8 grow overflow-y-auto overflow-x-hidden mt-4">
+            <div className="px-10 pb-10 flex flex-col space-y-3 grow overflow-y-auto overflow-x-hidden mt-4">
               {navLinks.map((link) => (
                 <motion.div key={link.name} variants={linkVariants}>
                   <Link
                     href={link.href}
-                    className="text-3xl font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block"
+                    className="md:text-[28px] text-[24px] font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
@@ -221,11 +222,11 @@ export default function Navbar() {
               ))}
 
               {/* Mobile Only Actions in Sidebar */}
-              <div className="lg:hidden flex flex-col space-y-8 pt-8 border-t border-gray-100">
+              <div className="lg:hidden flex flex-col space-y-3">
                 <motion.div variants={linkVariants}>
                   <Link
                     href="/#partner"
-                    className="text-3xl font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block"
+                    className="md:text-[28px] text-[24px] font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block"
                     onClick={() => setIsOpen(false)}
                   >
                     Become a partner
@@ -234,7 +235,7 @@ export default function Navbar() {
                 <motion.div variants={linkVariants}>
                   <button
                     onClick={handleGetApp}
-                    className="text-left text-3xl font-ppmori-semibold text-gray-900 hover:text-primary transition-colors cursor-pointer w-full"
+                    className="text-left md:text-[28px] text-[24px] font-ppmori-semibold text-gray-900 hover:text-primary transition-colors cursor-pointer w-full"
                   >
                     Get the app
                   </button>

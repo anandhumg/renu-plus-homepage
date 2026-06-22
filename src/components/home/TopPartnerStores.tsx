@@ -6,7 +6,6 @@ export default async function TopPartnerStores() {
 
     try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
-        debugger
         const res = await fetch(`${apiUrl}/stores`, {
             cache: 'no-store' // Fetch fresh data without caching
         });

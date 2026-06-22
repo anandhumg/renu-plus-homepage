@@ -11,8 +11,8 @@ export default function HeroSection() {
       {/* Decorator element for elliptical gradient */}
       <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] bg-white rounded-full blur-[140px] z-0 pointer-events-none "></div>
       <div className="bg-white/80 blur-2xl w-1/2 h-50 absolute left-[50%] top-[-10%]"></div>
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-[60%_40%] lg:space-x-10 pt-20 w-full flex-1">
-        <div className="lg:px-20 md:px-20 px-4 md:mt-30 md:mb-0 mb-10 mt-10 ">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-[60%_40%] lg:space-x-10 items-center w-full flex-1">
+        <div className="lg:px-20 md:px-20 px-4 lg:mt-0 md:mt-20 mt-30 lg:mb-0 md:mb-10 lg:text-start md:text-center  text-start">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -34,7 +34,7 @@ export default function HeroSection() {
             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <div className="flex md:flex-row flex-col gap-4">
+            <div className="flex md:flex-row flex-col lg:justify-start justify-center gap-4">
               <button onClick={() => window.location.href = "/"} className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white flex justify-center items-center
                 md:h-[48px] h-[48px] md:w-[206px] w-[197px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
                 Start Saving Today
@@ -54,7 +54,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 100 }}
           animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
           transition={{ duration: 1, delay: 1, ease: "easeOut" }}
-          className="md:w-160 w-full aspect-[1.125] h-[80vh] mx-auto relative md:block hidden self-end mt-auto "
+          className="lg:w-160 w-full aspect-[1.125] lg:h-[80vh] md:h-[600px] mx-auto relative md:block hidden self-end mt-auto "
         >
           <Image src="/home/img-2.webp" alt="Hero Image" fill priority className="object-contain object-bottom" />
         </motion.div>

@@ -16,8 +16,8 @@ export default function InvestmentDetail() {
         <Image src={Leaf1} alt="Leaf" fill className="object-contain rotate-180" />
       </div>
 
-      <div className="mx-auto px-4 md:px-20  relative z-10">
-        <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-20 gap-10 items-center max-w-7xl mx-auto">
+      <div className="mx-auto px-4 lg:px-30  relative z-10">
+        <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-10 gap-10 items-center max-w-7xl mx-auto">
           {/* Text content side - animated */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}

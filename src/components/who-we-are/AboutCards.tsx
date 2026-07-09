@@ -1,10 +1,9 @@
 "use client"
 import { motion } from "framer-motion";
-import Icon1 from "../../../public/how-it-works/icon-1.svg"
-import Icon2 from "../../../public/how-it-works/icon-2.svg"
-import Icon3 from "../../../public/how-it-works/icon-4.svg"
-import Icon4 from "../../../public/how-it-works/icon-4.svg"
 import Image from "next/image";
+import Icon1 from "../../../public/how-it-works/icon-1.svg";
+import Icon2 from "../../../public/how-it-works/icon-2.svg";
+import Icon3 from "../../../public/how-it-works/icon-4.svg";
 
 
 const whyJoinData = [

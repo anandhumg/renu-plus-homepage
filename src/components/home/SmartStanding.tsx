@@ -65,7 +65,7 @@ export default function SmartStanding() {
                 </motion.div>
             ))}
 
-            <div className="md:px-20 px-4 w-full relative z-20">
+            <div className="lg:px-20 px-4 w-full relative z-20">
                 <div className="text-center mb-12">
                     <p className="md:text-[50px] text-[28px] font-ppmori-semibold text-foreground md:leading-13 leading-10">Your gateway to </p>
                     <p className="md:text-[50px] text-[28px] font-ppmori-semibold text-head">Smarter Spending.</p>
@@ -94,7 +94,7 @@ export default function SmartStanding() {
                         </svg>
                     </div>
                 </div>
-                <div className="grid md:grid-cols-3 space-y-8 md:space-y-0 grid-cols-1 w-full mt-10 md:max-w-360 md:px-10 mx-auto">
+                <div className="flex flex-wrap justify-center lg:justify-between lg:max-w-7xl gap-10  w-full mt-10 md:px-10 mx-auto">
                     <div className="flex gap-3 items-start">
                         <div>
                             <div className="relative aspect-square md:w-[48px] w-[40px] mt-0.5">
@@ -104,7 +104,7 @@ export default function SmartStanding() {
                         </div>
                         <div>
                             <p className="md:text-[22px] text-[18px] font-ppmori-semibold text-head">Exclusive member pricing</p>
-                            <p className="text-[16px] font-ppmori text-[#4B5563]">Special discounts not available to regular customers</p>
+                            <p className="text-[16px] font-ppmori text-[#4B5563]">Special discounts not available to <span className="block">regular customers</span></p>
                         </div>
                     </div>
                     <div className="flex gap-3 items-start">
@@ -115,7 +115,7 @@ export default function SmartStanding() {
                         </div>
                         <div>
                             <p className="md:text-[22px] text-[18px] font-ppmori-semibold text-head">Access to trusted retailers</p>
-                            <p className="text-[16px] font-ppmori text-[#4B5563]">Save across furniture, appliances, and home improvement</p>
+                            <p className="text-[16px] font-ppmori text-[#4B5563]">Save across furniture, appliances,<span className='block'>and home improvement</span></p>
                         </div>
                     </div>
                     <div className="flex gap-3 items-start">
@@ -126,17 +126,17 @@ export default function SmartStanding() {
                         </div>
                         <div>
                             <p className="md:text-[22px] text-[18px] font-ppmori-semibold text-head">Simple in-store redemption</p>
-                            <p className="text-[16px] font-ppmori text-[#4B5563]">No codes, no coupons, just show your ID</p>
+                            <p className="text-[16px] font-ppmori text-[#4B5563]">No codes, no coupons,<span className="block"> just show your ID</span></p>
                         </div>
                     </div>
                 </div>
-                <div className="my-10 flex justify-center">
-                    <button className="bg-primary text-[18px] font-ppmori-semibold text-white px-8 py-3 h-12  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
+                <div className="my-20 flex justify-center">
+                    <button className="bg-primary text-[18px] font-ppmori-semibold text-white px-12 py-3 h-12  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
                         Get Membership
                     </button>
                 </div>
             </div>
-            <div className=" relative flex justify-center md:h-[115vh] w-full mt-20">
+            <div className=" relative flex justify-center lg:h-[115vh] md:h-[700px] w-full mt-20">
                 <motion.div
                     initial={{ opacity: 0, y: 150 }}
                     whileInView={{ opacity: 1, y: 0 }}

@@ -3,6 +3,7 @@
 import { useLoading } from "@/contexts/LoadingContext";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import IMG1 from "../../../public/about-us/img-1.webp"
 export default function WhoWeAreHero() {
   const { isLoaded } = useLoading();
@@ -11,8 +12,8 @@ export default function WhoWeAreHero() {
       {/* Decorator element for elliptical gradient */}
       <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] bg-white rounded-full blur-[140px] z-0 pointer-events-none "></div>
       <div className="bg-white/80 blur-2xl w-1/2 h-50 absolute left-[50%] top-[-10%]"></div>
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-[50%_50%] lg:space-x-5 pt-20 w-full flex-1">
-        <div className="lg:px-20 md:px-20 px-4 md:mt-30 md:mb-0 mb-10 mt-10 ">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-[45%_55%] lg:px-20 md:px-20 px-4  pt-20 w-full">
+        <div className="md:mt-30 md:mb-0 mb-10 mt-10 ">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -28,7 +29,7 @@ export default function WhoWeAreHero() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-body md:text-[18px] text-[18px] font-ppmori text-sub-foreground max-w-md md:mb-6 mb-8"
           >
-           Renu+ helps individuals and families unlock meaningful savings, trusted services, and lifestyle benefits through one smart membership ecosystem.
+            Renu+ helps individuals and families unlock meaningful savings, trusted services, and lifestyle benefits through one smart membership ecosystem.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -36,10 +37,10 @@ export default function WhoWeAreHero() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
             <div className="flex md:flex-row flex-col gap-4">
-              <button onClick={() => window.location.href = "/"} className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white flex justify-center items-center
+              <Link href="/subscribe" className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white flex justify-center items-center
                 md:h-[48px] h-[48px] md:w-fit px-6 rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
                 Join Renu+ now
-              </button>
+              </Link>
             </div>
           </motion.div>
         </div>

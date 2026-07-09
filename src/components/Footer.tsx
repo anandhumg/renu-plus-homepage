@@ -80,11 +80,11 @@ export default function Footer() {
           <div className="lg:pl-8">
             <h3 className="text-[16px] mb-4 font-ppmori-semibold text-foreground  inline-block">Renu Plus</h3>
             <ul className="space-y-3 font-ppmori text-sm ml-1">
-              <li><Link href="#" className="text-foreground hover:text-primary transition-colors">Who We Are</Link></li>
-              <li><Link href="#" className="text-foreground hover:text-primary transition-colors">How It Works</Link></li>
+              <li><Link href="/about-us" className="text-foreground hover:text-primary transition-colors">Who We Are</Link></li>
+              <li><Link href="/how-it-works" className="text-foreground hover:text-primary transition-colors">How It Works</Link></li>
               <li><Link href="#" className="text-foreground hover:text-primary transition-colors">Sign Up/Login</Link></li>
-              <li><Link href="#" className="text-foreground hover:text-primary transition-colors">Discount Offers</Link></li>
-              <li><Link href="#" className="text-foreground hover:text-primary transition-colors">Become a Partner</Link></li>
+              <li><Link href="/partner-stores" className="text-foreground hover:text-primary transition-colors">Discount Offers</Link></li>
+              <li><Link href="/become-a-partner" className="text-foreground hover:text-primary transition-colors">Become a Partner</Link></li>
             </ul>
           </div>
 
@@ -92,6 +92,7 @@ export default function Footer() {
             <h3 className="text-[16px] mb-4 font-ppmori-semibold text-foreground inline-block">Useful Links</h3>
             <ul className="space-y-3 font-ppmori text-sm ml-1">
               <li><Link href="#" className="text-foreground hover:text-primary transition-colors">My Account</Link></li>
+              <li><Link href="/contact-us" className="text-foreground hover:text-primary transition-colors">Contact Us</Link></li>
               <li><Link href="#" className="text-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
               <li><Link href="#" className="text-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
             </ul>

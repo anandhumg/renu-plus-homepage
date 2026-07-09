@@ -41,8 +41,8 @@ export default function Navbar() {
     { name: "Home", href: "/" },
     { name: "Who We Are", href: "/about-us" },
     { name: "How It Works", href: "/how-it-works" },
-    { name: "Discount Offers", href: "/discount-offers" },
-    { name: "Partner Stores", href: "/partner-stores" }
+    { name: "Partner Stores", href: "/partner-stores" },
+    { name: "Contact Us", href: "/contact-us" },
   ];
 
   const sidebarVariants: Variants = {
@@ -86,7 +86,7 @@ export default function Navbar() {
               {/* Desktop Only Actions */}
               <div className="hidden lg:flex items-center space-x-4">
                 <Link
-                  href="/#partner"
+                  href="/become-a-partner"
                   className="text-[#18181B] hover:text-primary text-sm font-ppmori-semibold transition-colors"
                 >
                   Become a partner
@@ -122,7 +122,7 @@ export default function Navbar() {
                         <Link
                           href="/profile"
                           className="flex items-center space-x-2 px-4 py-3 text-sm font-ppmori text-gray-600 hover:bg-gray-50 transition-colors"
-                        // onClick={() => setIsProfileOpen(false)}
+                          onClick={() => setIsProfileOpen(false)}
                         >
                           <User size={16} />
                           <span>My Profile</span>
@@ -130,7 +130,7 @@ export default function Navbar() {
                         <button
                           onClick={() => {
                             logout();
-                            // setIsProfileOpen(false);
+                            setIsProfileOpen(false);
                           }}
                           className="w-full flex items-center space-x-2 px-4 py-3 text-sm font-ppmori text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
                         >
@@ -225,7 +225,7 @@ export default function Navbar() {
               <div className="lg:hidden flex flex-col space-y-3">
                 <motion.div variants={linkVariants}>
                   <Link
-                    href="/#partner"
+                    href="/become-a-partner"
                     className="md:text-[28px] text-[24px] font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block"
                     onClick={() => setIsOpen(false)}
                   >

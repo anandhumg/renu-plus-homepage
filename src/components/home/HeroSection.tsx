@@ -3,6 +3,7 @@
 import { useLoading } from "@/contexts/LoadingContext";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSection() {
   const { isLoaded } = useLoading();
@@ -35,18 +36,18 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
             <div className="flex md:flex-row flex-col lg:justify-start justify-center gap-4">
-              <button onClick={() => window.location.href = "/"} className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white flex justify-center items-center
+              <Link href="/subscribe" className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white flex justify-center items-center
                 md:h-[48px] h-[48px] md:w-[206px] w-[197px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
                 Start Saving Today
-              </button>
-              <button onClick={() => window.location.href = "/"}
+              </Link>
+              <Link href="/partner-stores"
                 className="border border-black md:text-[18px] text-[17px] font-ppmori-semibold text-black flex justify-center items-center
                 md:h-[48px] h-[48px] md:w-[206px] w-[197px]  rounded-full
                  hover:bg-primary/80 transition-colors cursor-pointer">
                 <span className="space-y-[-2px]">
                   See partner stores
                 </span>
-              </button>
+              </Link>
             </div>
           </motion.div>
         </div>

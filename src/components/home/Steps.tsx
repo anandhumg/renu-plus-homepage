@@ -15,7 +15,7 @@ export default function Steps() {
             </div>
 
             <div className="max-w-7xl mx-auto md:px-20 px-4">
-                <div className="grid md:grid-cols-2 gap-10  items-center">
+                <div className="grid lg:grid-cols-2 gap-10  items-center">
 
                     {/* Left: Text + Steps */}
                     <div>
@@ -23,8 +23,8 @@ export default function Steps() {
                         <p className="md:text-[18px] text-[16px] font-ppmori text-[#4B5563] md:mb-10  max-w-md">
                             Get access to exclusive discounts with a simple membership – no complex setup, no waiting.
                         </p>
-                        <div className="relative my-[45px] md:w-[500px] w-full aspect-3/4 rounded-3xl md:hidden flex flex-col items-center justify-center">
-                            <Image src={Img5} alt="Hero Image" fill priority className="object-contain" />
+                        <div className="relative my-[45px] w-full aspect-3/4 md:aspect-square rounded-3xl overflow-hidden lg:hidden flex flex-col items-center justify-center">
+                            <Image src={Img5} alt="Hero Image" fill priority className="object-contain md:object-cover md:object-top" />
                         </div>
                         <div className="flex flex-col divide-y divide-gray-200">
                             {/* Step 1 */}
@@ -83,7 +83,7 @@ export default function Steps() {
                     </div>
 
                     {/* Right: Image placeholder */}
-                    <div className="relative hidden  md:w-[500px] w-full aspect-3/4 rounded-3xl md:flex flex-col items-center justify-center  gap-3">
+                    <div className="relative hidden  lg:w-[500px] w-full aspect-3/4 rounded-3xl lg:flex flex-col items-center justify-center  gap-3">
                         <Image src={Img5} alt="Hero Image" fill priority className="object-contain" />
                     </div>
 

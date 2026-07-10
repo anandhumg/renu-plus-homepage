@@ -25,9 +25,6 @@ export default function BecomeAPartnerHero() {
                 priority
             />
 
-            {/* Gradient overlay for readability on desktop */}
-            <div className="absolute inset-0 bg-linear-to-r from-[#FAF8F5] via-[#FAF8F5]/85 to-transparent md:block hidden z-10 w-1/2"></div>
-
             <div className="relative max-w-7xl mx-auto w-full md:py-0 py-20 px-4 sm:px-6 lg:px-8 z-20 text-left">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -36,8 +33,12 @@ export default function BecomeAPartnerHero() {
                     className="flex flex-col space-y-6 max-w-xl"
                 >
                     <div className="flex flex-col space-y-2">
-                        <h1 className="font-ppmori-semibold text-foreground text-[2.25rem] md:text-[44px] lg:text-[48px] leading-[1.15]">
+                        <h1 className="font-ppmori-semibold text-foreground lg:block hidden text-[2.25rem] md:text-[44px] lg:text-[48px] leading-[1.15]">
                             Join our network of<br />
+                            trusted retailers
+                        </h1>
+                        <h1 className="font-ppmori-semibold text-foreground lg:hidden block text-[2.25rem] md:text-[44px] lg:text-[48px] leading-[1.15]">
+                            Join our network of
                             trusted retailers
                         </h1>
                     </div>

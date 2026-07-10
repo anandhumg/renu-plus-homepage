@@ -494,7 +494,7 @@ export default function BusinessForm() {
                                 onDragOver={handleDragOver}
                                 onDrop={handleDrop}
                                 onClick={() => fileInputRef.current?.click()}
-                                className="w-full border-2 border-dashed border-gray-200 hover:border-primary/60 transition-colors bg-[#FAF8F5]/30 rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer text-center"
+                                className="w-full border-2 border-dashed border-[#D1D5DB] hover:border-primary/60 transition-colors bg-[#F9F6F4] rounded-lg p-8 flex flex-col items-center justify-center cursor-pointer text-center"
                             >
                                 <input
                                     type="file"
@@ -529,7 +529,7 @@ export default function BusinessForm() {
                                     </div>
                                 ) : (
                                     <div className="flex flex-col items-center space-y-2">
-                                        <div className="bg-primary/5 p-4 rounded-full text-primary">
+                                        <div className="bg-primary/5 p-4 rounded-full text-head">
                                             <UploadCloud size={28} />
                                         </div>
                                         <p className="text-gray-700 font-ppmori-semibold text-[15px]">
@@ -550,7 +550,7 @@ export default function BusinessForm() {
                         <button
                             type="submit"
                             disabled={submitting}
-                            className="bg-primary hover:bg-primary/95 text-white font-ppmori-semibold text-[18px] rounded-full px-16 py-3.5 h-[50px] inline-flex items-center justify-center cursor-pointer shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="bg-primary hover:bg-primary/95 text-white font-ppmori-semibold text-[18px] rounded-full px-25 py-3.5 leading-none h-[50px] inline-flex items-center justify-center cursor-pointer shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {submitting ? (
                                 <>

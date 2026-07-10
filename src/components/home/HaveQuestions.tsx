@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Leaf1 from "../../../public/common/leaf.svg"
+import Link from "next/link";
 
 export default function HaveQuestions() {
     return (
@@ -15,9 +16,9 @@ export default function HaveQuestions() {
                 Contact us today to learn more about our membership benefits and how you can start saving immediately.
             </div>
             <div className="flex justify-center mt-10">
-                <button className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white px-6 py-3 h-12 w-[188px] md:w-[144px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
+                <Link href="/contact-us" className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white inline-flex items-center justify-center leading-none  h-12 w-[188px] md:w-[148px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
                     Talk to us
-                </button>
+                </Link>
             </div>
         </section>
     );

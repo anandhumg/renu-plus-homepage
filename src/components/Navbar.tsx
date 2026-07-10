@@ -42,6 +42,7 @@ export default function Navbar() {
     { name: "Who We Are", href: "/about-us" },
     { name: "How It Works", href: "/how-it-works" },
     { name: "Partner Stores", href: "/partner-stores" },
+    { name: "Become a partner", href: "/become-a-partner" },
     { name: "Contact Us", href: "/contact-us" },
   ];
 
@@ -197,110 +198,89 @@ export default function Navbar() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 h-full w-full sm:w-80 bg-white shadow-2xl z-120 flex flex-col"
+            className="fixed top-0 right-0 h-full w-full md:w-[450px] bg-[#FAF8F5] rounded-l-3xl shadow-2xl z-120 flex flex-col"
           >
-            <div className="p-4 flex justify-end">
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 border border-gray-200 rounded-full text-gray-500 hover:text-primary hover:border-primary transition-colors cursor-pointer"
-              >
-                <X size={20} strokeWidth={2.5} />
-              </button>
-            </div>
+            {/* Header row */}
+            <div className="flex items-center md:justify-between justify-end p-6 sm:p-8">
+              <h2 className="text-gray-900 font-ppmori-semibold text-[20px] md:block hidden">Menu</h2>
 
-            <div className="px-10 pb-10 flex flex-col space-y-3 grow overflow-y-auto overflow-x-hidden mt-4">
-              {navLinks.map((link) => (
-                <motion.div key={link.name} variants={linkVariants}>
-                  <Link
-                    href={link.href}
-                    className="md:text-[28px] text-[24px] font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-
-              {/* Mobile Only Actions in Sidebar */}
-              <div className="lg:hidden flex flex-col space-y-3">
-                <motion.div variants={linkVariants}>
-                  <Link
-                    href="/become-a-partner"
-                    className="md:text-[28px] text-[24px] font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Become a partner
-                  </Link>
-                </motion.div>
-                <motion.div variants={linkVariants}>
-                  <button
-                    onClick={handleGetApp}
-                    className="text-left md:text-[28px] text-[24px] font-ppmori-semibold text-gray-900 hover:text-primary transition-colors cursor-pointer w-full"
-                  >
-                    Get the app
-                  </button>
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Bottom Actions for Mobile */}
-            <div className="p-10 border-t border-gray-100 lg:hidden flex flex-col space-y-4 bg-white">
-              {!isAuthenticated ? (
-                <div className="flex gap-4">
-                  <button
-                    onClick={() => {
-                      setIsOpen(false);
-                      setIsLoginOpen(true);
-                    }}
-                    className="flex-1 flex items-center justify-center h-[50px] border border-[#111827] rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-[16px] font-ppmori-semibold cursor-pointer bg-transparent"
-                  >
-                    <span>Login</span>
-                  </button>
-                  <Link
-                    href="/subscribe"
-                    onClick={() => setIsOpen(false)}
-                    className="flex-1 bg-primary text-white h-[50px] flex justify-center items-center rounded-full hover:bg-primary/90 transition-all text-[16px] font-ppmori-semibold"
-                  >
-                    <span>Join now</span>
-                  </Link>
-                </div>
-              ) : (
-                <div className="flex flex-col space-y-3">
-                  <div className="flex items-center space-x-3 px-2 py-1">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                {!isAuthenticated ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsLoginOpen(true);
+                      }}
+                      className="border border-gray-900 rounded-full h-[40px] px-8 text-sm font-ppmori-semibold text-gray-900 flex items-center justify-center hover:bg-gray-100/50 transition-colors cursor-pointer bg-transparent"
+                    >
+                      Login
+                    </button>
+                    <Link
+                      href="/subscribe"
+                      onClick={() => setIsOpen(false)}
+                      className="bg-primary text-white rounded-full h-[40px] px-6 flex items-center justify-center hover:bg-primary/90 transition-all text-sm font-ppmori-semibold cursor-pointer"
+                    >
+                      Join now
+                    </Link>
+                  </>
+                ) : (
+                  <div className="flex items-center space-x-3">
+                    <Link
+                      href="/profile"
+                      onClick={() => setIsOpen(false)}
+                      className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden border border-gray-200"
+                    >
                       {user?.profilePicture ? (
                         <img src={user.profilePicture} alt="Profile" className="w-full h-full object-cover" />
                       ) : (
                         <User size={20} className="text-primary" />
                       )}
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[15px] font-ppmori-semibold text-gray-800">{user?.firstName} {user?.lastName || ''}</span>
-                      <span className="text-xs text-gray-400 truncate max-w-[200px]">{user?.email}</span>
-                    </div>
-                  </div>
-                  <div className="flex gap-4 pt-2">
-                    <Link
-                      href="/profile"
-                      onClick={() => setIsOpen(false)}
-                      className="flex-1 flex items-center justify-center h-[46px] border border-gray-200 rounded-full hover:bg-gray-50 transition-colors text-gray-700 text-sm font-ppmori-semibold cursor-pointer"
-                    >
-                      <User size={16} className="mr-2" />
-                      <span>Profile</span>
                     </Link>
                     <button
                       onClick={() => {
                         logout();
                         setIsOpen(false);
                       }}
-                      className="flex-1 bg-red-50 text-red-600 h-[46px] flex justify-center items-center rounded-full hover:bg-red-100 transition-all text-sm font-ppmori-semibold cursor-pointer"
+                      className="border border-red-600 rounded-full h-[40px] px-8 text-sm font-ppmori-semibold text-red-600 flex items-center justify-center hover:bg-gray-100/50 transition-colors cursor-pointer bg-transparent"
+
                     >
-                      <LogOut size={16} className="mr-2" />
-                      <span>Logout</span>
+                      Logout
                     </button>
                   </div>
+                )}
+
+
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 border border-gray-200 rounded-full text-gray-500 hover:text-primary hover:border-primary transition-colors cursor-pointer"
+                >
+                  <X size={20} strokeWidth={2.5} />
+                </button>
+              </div>
+            </div>
+
+            {/* Links and Content */}
+            <div className="px-8 sm:px-12 py-10 flex flex-col space-y-6 grow overflow-y-auto overflow-x-hidden">
+              <div className="flex flex-col space-y-1">
+                <span className="text-gray-400 font-ppmori text-[14px] uppercase tracking-wider block mb-4">
+                  Explore
+                </span>
+
+                <div className="flex flex-col space-y-4">
+                  {navLinks.map((link) => (
+                    <motion.div key={link.name} variants={linkVariants}>
+                      <Link
+                        href={link.href}
+                        className="text-[24px] md:text-[24px] font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block leading-none"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {link.name}
+                      </Link>
+                    </motion.div>
+                  ))}
                 </div>
-              )}
+              </div>
             </div>
           </motion.div>
         )}

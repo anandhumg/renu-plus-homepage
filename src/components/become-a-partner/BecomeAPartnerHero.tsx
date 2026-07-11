@@ -48,12 +48,12 @@ export default function BecomeAPartnerHero() {
                     </p>
 
                     <div className="pt-2">
-                        <Link
-                            href="mailto:partner@renuplus.shop?subject=Become%20a%20Partner%20Inquiry"
+                        <a
+                            href="#business-form"
                             className="inline-flex items-center leading-none justify-center bg-primary hover:bg-primary/90 text-white font-ppmori-semibold text-[18px] rounded-full px-8 py-4 shadow-sm transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                         >
                             Become a Partner
-                        </Link>
+                        </a>
                     </div>
                 </motion.div>
             </div>

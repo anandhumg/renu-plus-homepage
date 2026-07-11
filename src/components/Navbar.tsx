@@ -9,6 +9,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useLoading } from "@/contexts/LoadingContext";
 import { usePathname } from "next/navigation";
 import LoginModal from "./LoginModal";
+import LogoutConfirmModal from "./LogoutConfirmModal";
 
 export default function Navbar() {
   const { isLoaded } = useLoading();
@@ -18,6 +19,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -34,6 +36,13 @@ export default function Navbar() {
     } else {
       window.dispatchEvent(new CustomEvent("trigger-app-promo"));
     }
+    setIsOpen(false);
+  };
+
+  const handleConfirmLogout = () => {
+    logout();
+    setIsLogoutConfirmOpen(false);
+    setIsProfileOpen(false);
     setIsOpen(false);
   };
 
@@ -130,8 +139,7 @@ export default function Navbar() {
                         </Link>
                         <button
                           onClick={() => {
-                            logout();
-                            setIsProfileOpen(false);
+                            setIsLogoutConfirmOpen(true);
                           }}
                           className="w-full flex items-center space-x-2 px-4 py-3 text-sm font-ppmori text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
                         >
@@ -198,7 +206,7 @@ export default function Navbar() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 h-full w-full md:w-[450px] bg-[#FAF8F5] rounded-l-3xl shadow-2xl z-120 flex flex-col"
+            className="fixed top-0 right-0 h-full w-full md:w-[450px] bg-[#FAF8F5] md:rounded-l-3xl shadow-2xl z-120 flex flex-col"
           >
             {/* Header row */}
             <div className="flex items-center md:justify-between justify-end p-6 sm:p-8">
@@ -239,11 +247,9 @@ export default function Navbar() {
                     </Link>
                     <button
                       onClick={() => {
-                        logout();
-                        setIsOpen(false);
+                        setIsLogoutConfirmOpen(true);
                       }}
                       className="border border-red-600 rounded-full h-[40px] px-8 text-sm font-ppmori-semibold text-red-600 flex items-center justify-center hover:bg-gray-100/50 transition-colors cursor-pointer bg-transparent"
-
                     >
                       Logout
                     </button>
@@ -267,12 +273,12 @@ export default function Navbar() {
                   Explore
                 </span>
 
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col md:space-y-4 space-y-6">
                   {navLinks.map((link) => (
                     <motion.div key={link.name} variants={linkVariants}>
                       <Link
                         href={link.href}
-                        className="text-[24px] md:text-[24px] font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block leading-none"
+                        className="text-[26px] md:text-[24px] font-ppmori-semibold text-gray-900 hover:text-primary transition-colors block leading-none"
                         onClick={() => setIsOpen(false)}
                       >
                         {link.name}
@@ -286,6 +292,11 @@ export default function Navbar() {
         )}
       </AnimatePresence>
       <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
+      <LogoutConfirmModal
+        isOpen={isLogoutConfirmOpen}
+        onClose={() => setIsLogoutConfirmOpen(false)}
+        onConfirm={handleConfirmLogout}
+      />
     </>
   );
 }

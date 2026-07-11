@@ -27,6 +27,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import LogoBadge from "./profile/renu-plus-badge.svg";
+import LogoutConfirmModal from '@/components/LogoutConfirmModal';
 export default function ProfilePage() {
     const { user, isAuthenticated, loading: authLoading, logout, updateUser } = useAuth();
     const router = useRouter();
@@ -34,6 +35,7 @@ export default function ProfilePage() {
     // Tab state
     const [activeTab, setActiveTab] = useState<'profile' | 'renu' | 'help'>('profile');
     const [isMobileDetailOpen, setIsMobileDetailOpen] = useState(false);
+    const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
 
     // Subscription & page state
     const [subscription, setSubscription] = useState<any>(null);
@@ -174,7 +176,12 @@ export default function ProfilePage() {
 
     // Handle sign out
     const handleSignOut = () => {
+        setIsLogoutConfirmOpen(true);
+    };
+
+    const handleConfirmSignOut = () => {
         logout();
+        setIsLogoutConfirmOpen(false);
         toast.success('Signed out successfully.');
         router.push('/');
     };
@@ -902,6 +909,11 @@ export default function ProfilePage() {
                 </div>
             </div>
 
+            <LogoutConfirmModal
+                isOpen={isLogoutConfirmOpen}
+                onClose={() => setIsLogoutConfirmOpen(false)}
+                onConfirm={handleConfirmSignOut}
+            />
         </div>
     );
 }

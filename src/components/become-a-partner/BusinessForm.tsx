@@ -222,10 +222,10 @@ export default function BusinessForm() {
     };
 
     return (
-        <section className="bg-white py-20 px-4 md:px-8 border-t border-gray-100">
+        <section id="business-form" className="bg-white py-20 px-4 md:px-8 border-t border-gray-100 lg:scroll-mt-20 scroll-mt-5">
             <div className="max-w-4xl mx-auto">
                 {/* Title Section */}
-                <div className="text-center mb-30">
+                <div className="text-center lg:mb-30 mb-10">
                     <h2 className="text-foreground font-ppmori-semibold text-[2rem] md:text-[40px] mb-4">
                         Tell us about your business
                     </h2>

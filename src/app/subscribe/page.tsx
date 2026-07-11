@@ -20,6 +20,7 @@ import { Check, ShieldCheck, CreditCard, Loader2, Mail, User, Lock, ArrowLeft, P
 import { GoogleLogin } from '@react-oauth/google';
 import Image from 'next/image';
 import Link from 'next/link';
+import LogoutConfirmModal from '@/components/LogoutConfirmModal';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
@@ -154,6 +155,7 @@ export default function SubscribePage() {
   const { user, isAuthenticated, loading: authLoading, login, socialLogin, logout, updateUser } = useAuth();
   const [isEditingName, setIsEditingName] = useState(false);
   const router = useRouter();
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
 
   // Unified page steps:
   // Step 1: Create Account (Email ➔ OTP ➔ Name)
@@ -169,6 +171,13 @@ export default function SubscribePage() {
   useEffect(() => {
     setPrevStepNumber(currentStepNumber);
   }, [currentStepNumber]);
+
+  const handleConfirmLogout = () => {
+    setOtpValues(['', '', '', '', '', '']);
+    setOtpSent(false);
+    logout();
+    setIsLogoutConfirmOpen(false);
+  };
 
   // Step 1 States
   const [email, setEmail] = useState('');
@@ -768,9 +777,7 @@ export default function SubscribePage() {
                         <button
                           type="button"
                           onClick={() => {
-                            setOtpValues(['', '', '', '', '', '']);
-                            setOtpSent(false);
-                            logout();
+                            setIsLogoutConfirmOpen(true);
                           }}
                           className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-ppmori-semibold text-gray-500 hover:text-red-500 transition-colors uppercase tracking-wider cursor-pointer"
                         >
@@ -958,6 +965,11 @@ export default function SubscribePage() {
           </div>
         </div>
       </div>
+      <LogoutConfirmModal
+        isOpen={isLogoutConfirmOpen}
+        onClose={() => setIsLogoutConfirmOpen(false)}
+        onConfirm={handleConfirmLogout}
+      />
     </div>
   );
 }

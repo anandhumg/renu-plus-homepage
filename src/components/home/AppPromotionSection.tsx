@@ -39,7 +39,7 @@ const AppPromotionSection: React.FC<AppPromotionSectionProps> = ({ id, isPopup =
 
             {/* Description */}
             <p className="text-[#52525B] text-[16px] md:mb-10 max-w-[387px] mb-8 font-ppmori leading-relaxed">
-              Download the Renu+ app on iOS or Android. Join thousands of Canadians getting more from their everyday spending.
+              Download the Renu+ app on iOS or Android. Join thousands of members getting more from their everyday spending.
             </p>
 
             {/* CTA Button */}

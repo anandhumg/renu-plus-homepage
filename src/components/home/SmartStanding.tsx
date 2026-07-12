@@ -94,7 +94,7 @@ export default function SmartStanding() {
                         </svg>
                     </div>
                 </div>
-                <div className="flex flex-wrap justify-center lg:justify-between lg:max-w-7xl gap-10  w-full mt-10 md:px-10 mx-auto">
+                <div className="flex flex-wrap justify-start lg:justify-between lg:max-w-7xl gap-10  w-full mt-10 md:px-10 mx-auto">
                     <div className="flex gap-3 items-start">
                         <div>
                             <div className="relative aspect-square md:w-[48px] w-[40px] mt-0.5">
@@ -104,7 +104,7 @@ export default function SmartStanding() {
                         </div>
                         <div>
                             <p className="md:text-[22px] text-[18px] font-ppmori-semibold text-head">Exclusive member pricing</p>
-                            <p className="text-[16px] font-ppmori text-[#4B5563]">Special discounts not available to <span className="block">regular customers</span></p>
+                            <p className="text-[16px] font-ppmori text-[#4B5563]">Our special discounts are not<br />available to non member<br />customers</p>
                         </div>
                     </div>
                     <div className="flex gap-3 items-start">
@@ -126,13 +126,13 @@ export default function SmartStanding() {
                         </div>
                         <div>
                             <p className="md:text-[22px] text-[18px] font-ppmori-semibold text-head">Simple in-store redemption</p>
-                            <p className="text-[16px] font-ppmori text-[#4B5563]">No codes, no coupons,<span className="block"> just show your ID</span></p>
+                            <p className="text-[16px] font-ppmori text-[#4B5563]">No codes, no coupons,<br />just show your ID</p>
                         </div>
                     </div>
                 </div>
                 <div className="my-20 flex justify-center">
                     <button className="bg-primary text-[18px] font-ppmori-semibold text-white px-12 py-3 h-12  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
-                        Get Membership
+                        Unlock Your Membership
                     </button>
                 </div>
             </div>

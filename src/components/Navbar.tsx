@@ -7,12 +7,13 @@ import { useAuth } from "@/contexts/AuthContext";
 import { User, LogOut, ChevronDown, Menu, X, QrCode } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useLoading } from "@/contexts/LoadingContext";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import LoginModal from "./LoginModal";
 import LogoutConfirmModal from "./LogoutConfirmModal";
 
 export default function Navbar() {
   const { isLoaded } = useLoading();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -41,6 +42,7 @@ export default function Navbar() {
 
   const handleConfirmLogout = () => {
     logout();
+    router.push("/");
     setIsLogoutConfirmOpen(false);
     setIsProfileOpen(false);
     setIsOpen(false);
@@ -114,6 +116,7 @@ export default function Navbar() {
                   <div className="relative">
                     <button
                       onClick={() => setIsProfileOpen(!isProfileOpen)}
+                      onBlur={() => setTimeout(() => setIsProfileOpen(false), 200)}
                       className="flex items-center space-x-2 bg-gray-50 border border-gray-100 px-4 py-2 rounded-full hover:bg-gray-100 transition-all cursor-pointer"
                     >
                       <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">

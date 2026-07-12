@@ -4,6 +4,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, AuthResponse } from '../types';
 import * as authService from '../services/auth.service';
+import api from '../lib/api';
 
 interface AuthContextType {
     user: User | null;
@@ -13,6 +14,7 @@ interface AuthContextType {
     socialLogin: (provider: 'google' | 'apple', token: string, fullName?: any) => Promise<User | undefined>;
     logout: () => void;
     updateUser: (user: User) => void;
+    refreshProfile: () => Promise<User | undefined>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,15 +23,35 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
+    const refreshProfile = async (): Promise<User | undefined> => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) return undefined;
+
+            const response = await api.get<{ success: boolean, data: User }>('/users/profile');
+            if (response.data?.success && response.data?.data) {
+                const freshUser = response.data.data;
+                localStorage.setItem('user', JSON.stringify(freshUser));
+                setUser(freshUser);
+                return freshUser;
+            }
+        } catch (error) {
+            console.error('Failed to refresh user profile from server:', error);
+        }
+        return undefined;
+    };
+
     useEffect(() => {
         // Initialize session
         const initAuth = async () => {
             try {
                 const storedUser = localStorage.getItem('user');
                 const token = localStorage.getItem('token');
-                
+
                 if (storedUser && token) {
                     setUser(JSON.parse(storedUser));
+                    // Asynchronously update profile details from backend
+                    await refreshProfile();
                 }
             } catch (e) {
                 console.error('Failed to restore auth session', e);
@@ -100,14 +122,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ 
-            user, 
-            loading, 
-            isAuthenticated: !!user, 
-            login, 
-            socialLogin, 
+        <AuthContext.Provider value={{
+            user,
+            loading,
+            isAuthenticated: !!user,
+            login,
+            socialLogin,
             logout,
-            updateUser
+            updateUser,
+            refreshProfile
         }}>
             {children}
         </AuthContext.Provider>

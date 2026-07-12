@@ -10,7 +10,7 @@ export default function HaveQuestions() {
                 <Image src={Leaf1} alt="Leaf" fill className="object-contain" />
             </div>
             <div className="text-foreground font-ppmori-semibold lg:text-[40px] text-[28px] text-center">
-                Got questions?
+                Questions?
             </div>
             <div className="mt-2 max-w-md text-sub-foreground font-ppmori lg:text-[16px] text-[16px] text-center mx-auto">
                 Contact us today to learn more about our membership benefits and how you can start saving immediately.

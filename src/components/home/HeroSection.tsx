@@ -26,9 +26,17 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-body md:text-[18px] text-[18px] font-ppmori text-sub-foreground md:mb-6 mb-8"
+            className="text-body lg:block hidden text-[18px] font-ppmori text-sub-foreground md:mb-6 mb-8"
           >
-            Enjoy Unbeatable Savings on Home Reno Projects, Dining, Travel, Home & Personal Essentials and more
+            Enjoy Unbeatable Savings on Reno Projects, Dining, Travel,<br />Home & Personal Essentials and more
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-body lg:hidden text-[18px] font-ppmori text-sub-foreground md:mb-6 mb-8"
+          >
+            Enjoy Unbeatable Savings on Reno Projects, Dining, Travel, Home & Personal Essentials and more
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -36,18 +44,18 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
             <div className="flex md:flex-row flex-col lg:justify-start justify-center gap-4">
-              <Link href="/subscribe" className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white flex justify-center items-center
+              <a href="/subscribe" className="bg-primary md:text-[18px] text-[17px] leading-none font-ppmori-semibold text-white flex justify-center items-center
                 md:h-[48px] h-[48px] md:w-[206px] w-[197px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
                 Start Saving Today
-              </Link>
-              <Link href="/partner-stores"
-                className="border border-black md:text-[18px] text-[17px] font-ppmori-semibold text-black flex justify-center items-center
+              </a>
+              <a href="/partner-stores"
+                className="border border-black md:text-[18px] text-[17px] leading-none font-ppmori-semibold text-black flex justify-center items-center
                 md:h-[48px] h-[48px] md:w-[206px] w-[197px]  rounded-full
-                 hover:bg-primary/80 transition-colors cursor-pointer">
+                 hover:bg-primary/5 hover:translate-y-[-2px] hover:shadow-md transition-all cursor-pointer">
                 <span className="space-y-[-2px]">
                   See partner stores
                 </span>
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>

@@ -29,7 +29,7 @@ import { toast } from 'react-hot-toast';
 import LogoBadge from "./profile/renu-plus-badge.svg";
 import LogoutConfirmModal from '@/components/LogoutConfirmModal';
 export default function ProfilePage() {
-    const { user, isAuthenticated, loading: authLoading, logout, updateUser } = useAuth();
+    const { user, isAuthenticated, loading: authLoading, logout, updateUser, refreshProfile } = useAuth();
     const router = useRouter();
 
     // Tab state
@@ -86,6 +86,13 @@ export default function ProfilePage() {
             }
         };
         fetchSubscriptionData();
+    }, [isAuthenticated]);
+
+    // Fetch fresh profile data on mount
+    useEffect(() => {
+        if (isAuthenticated) {
+            refreshProfile();
+        }
     }, [isAuthenticated]);
 
     // Set form initial state on user load
@@ -180,10 +187,10 @@ export default function ProfilePage() {
     };
 
     const handleConfirmSignOut = () => {
+        router.push('/');
         logout();
         setIsLogoutConfirmOpen(false);
         toast.success('Signed out successfully.');
-        router.push('/');
     };
 
     // Default perks fallback if API doesn't return any

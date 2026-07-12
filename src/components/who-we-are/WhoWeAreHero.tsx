@@ -38,7 +38,7 @@ export default function WhoWeAreHero() {
           >
             <div className="flex md:flex-row flex-col gap-4">
               <Link href="/subscribe" className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white flex justify-center items-center
-                md:h-[48px] h-[48px] md:w-fit px-6 rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
+                md:h-[48px] h-[48px] md:w-fit px-6 rounded-full leading-none hover:bg-primary/80 transition-colors cursor-pointer">
                 Join Renu+ now
               </Link>
             </div>

@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import BigSavings from "@/components/home/BigSavings";
 import HaveQuestions from "@/components/home/HaveQuestions";
 import HeroSection from "@/components/home/HeroSection";

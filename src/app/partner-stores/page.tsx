@@ -7,6 +7,7 @@ export const metadata = {
     description: "Discover trusted retailers and service providers offering exclusive benefits to Renu+ members.",
 };
 
+export const runtime = 'edge';
 export const dynamic = "force-dynamic";
 
 export default async function PartnerStores() {

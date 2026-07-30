@@ -1,6 +1,6 @@
 import React from "react";
 import StoreSwiper, { Store } from "./StoreSwiper";
-export const runtime = 'edge';
+
 export default async function TopPartnerStores() {
     let stores: Store[] = [];
 

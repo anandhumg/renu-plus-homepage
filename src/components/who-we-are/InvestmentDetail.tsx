@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Leaf1 from "../../../public/common/leaf.svg";
+import DynamicCTAButton from "../DynamicCTAButton";
 
 export default function InvestmentDetail() {
   return (
@@ -25,7 +26,7 @@ export default function InvestmentDetail() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h2 className="text-foreground font-ppmori-semibold lg:text-[40px] text-[28px]  md:leading-[52px] leading-tight md:mb-11 mb-2">
+            <h2 className="text-foreground font-ppmori-semibold lg:text-[40px] text-[28px]  md:leading-13 leading-tight md:mb-11 mb-2">
               Beat high costs with<br /> exclusive savings
             </h2>
             {/* Image side - animated */}
@@ -34,7 +35,7 @@ export default function InvestmentDetail() {
               whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative w-full h-[500px] md:h-[600px] rounded-2xl overflow-hidden my-8 md:hidden block"
+              className="relative w-full h-125 md:h-150 rounded-2xl overflow-hidden my-8 md:hidden block"
             >
               <Image
                 src="/about-us/img-3.webp"
@@ -43,11 +44,11 @@ export default function InvestmentDetail() {
                 className="object-cover"
               />
             </motion.div>
-            <div className="md:block hidden text-[#4B5563] font-ppmori lg:text-[16px] text-[16px] leading-[24px] mb-12">
+            <div className="md:block hidden text-[#4B5563] font-ppmori lg:text-[16px] text-[16px] leading-6 mb-12">
               In today's climate of rising prices and inflation, our<br />
               membership provides a much-needed financial<br />reprieve, helping you make ends meet while<br />enjoying the benefits of significant savings.
             </div>
-            <div className="md:hidden block text-[#4B5563] font-ppmori lg:text-[16px] text-[16px] leading-[24px] mb-12">
+            <div className="md:hidden block text-[#4B5563] font-ppmori lg:text-[16px] text-[16px] leading-6 mb-12">
               In today's climate of rising prices and inflation, our membership provides a much-needed financial reprieve, helping you make ends meet while enjoying the benefits of significant savings.
             </div>
             <motion.div
@@ -55,9 +56,8 @@ export default function InvestmentDetail() {
               whileTap={{ scale: 0.98 }}
               className="md:inline-block flex justify-center"
             >
-              <Link href="/sign-up-login" className="bg-primary lg:text-[18px] text-[16px] font-ppmori-semibold leading-none text-white px-8 py-4 rounded-full hover:bg-primary/80 transition-colors shadow-md inline-block">
-                Check out discount offers
-              </Link>
+              <DynamicCTAButton defaultText={"Check out discount offers"} className="bg-primary lg:text-[18px] text-[16px] font-ppmori-semibold leading-none text-white px-8 py-4 rounded-full hover:bg-primary/80 transition-colors shadow-md inline-block" />
+
             </motion.div>
           </motion.div>
           {/* Image side - animated */}
@@ -66,7 +66,7 @@ export default function InvestmentDetail() {
             whileInView={{ opacity: 1, scale: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative w-full h-[400px] md:h-[600px] md:block hidden"
+            className="relative w-full h-100 md:h-150 md:block hidden"
           >
             <Image
               src="/about-us/img-3.webp"

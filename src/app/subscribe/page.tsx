@@ -469,7 +469,7 @@ export default function SubscribePage() {
           </p>
         </div>
         {/* LEFT COLUMN: Checkout Form Steps */}
-        <div className="space-y-12 order-2 lg:order-1 max-w-[480px] w-full">
+        <div className="space-y-12 order-2 lg:order-1 max-w-120 w-full">
           <div className="mb-8 md:flex items-center hidden">
             <Link href="/" className="relative aspect-[1.06] md:w-20 w-15">
               <Image src="/logo.png" alt="Renu Plus Logo" fill priority className="object-contain object-left" />
@@ -567,7 +567,7 @@ export default function SubscribePage() {
                               placeholder="Email"
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
-                              className="w-full pl-12 pr-4 h-[56px] bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[16px] font-ppmori"
+                              className="w-full pl-12 pr-4 h-14 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[16px] font-ppmori"
                               required
                             />
                           </div>
@@ -577,7 +577,7 @@ export default function SubscribePage() {
                         <button
                           type="submit"
                           disabled={!(email.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) || step1Loading}
-                          className="w-full bg-primary text-white h-[56px] leading-0 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary"
+                          className="w-full bg-primary text-white h-14 leading-0 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary"
                         >
                           {step1Loading ? <Loader2 size={18} className="animate-spin" /> : 'Continue'}
                         </button>
@@ -589,7 +589,7 @@ export default function SubscribePage() {
                         <div className="grow border-t border-gray-200"></div>
                       </div>
 
-                      <div className="flex justify-center gap-4  h-[44px] md:h-[48px] w-full">
+                      <div className="flex justify-center gap-4  h-11 md:h-12 w-full">
                         <div className="group relative flex-1 h-full w-full cursor-pointer">
                           <button
                             type="button"
@@ -617,7 +617,7 @@ export default function SubscribePage() {
                         <button
                           type="button"
                           onClick={handleAppleLogin}
-                          className="flex-1 w-full h-full flex items-center justify-center space-x-2 border border-gray-200 bg-white hover:bg-gray-50 rounded-full transition-colors cursor-pointer min-h-[40px]"
+                          className="flex-1 w-full h-full flex items-center justify-center space-x-2 border border-gray-200 bg-white hover:bg-gray-50 rounded-full transition-colors cursor-pointer min-h-10"
                         >
                           <svg className="w-4 h-4" viewBox="0 0 384 512">
                             <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor" />
@@ -710,7 +710,7 @@ export default function SubscribePage() {
                                 placeholder="First Name"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
-                                className="w-full pl-12 pr-4 h-[56px] bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
+                                className="w-full pl-12 pr-4 h-14 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
                                 required
                               />
                             </div>
@@ -725,7 +725,7 @@ export default function SubscribePage() {
                                 placeholder="Last Name"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
-                                className="w-full pl-12 pr-4 h-[56px] bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
+                                className="w-full pl-12 pr-4 h-14 bg-[#F3F4F6] border-none rounded-full focus:ring-2 focus:ring-[#D1D5DB]/20 outline-none transition-all text-foreground placeholder-gray-400 text-[15px] font-ppmori-semibold"
                               />
                             </div>
                           </div>
@@ -880,7 +880,7 @@ export default function SubscribePage() {
         </div>
 
         {/* RIGHT COLUMN: Order Summary Card */}
-        <div className="sticky md:top-20 order-1 lg:order-2 max-w-[508px]">
+        <div className="sticky md:top-20 order-1 lg:order-2 max-w-127">
           <div className="bg-white rounded-xl md:rounded-3xl md:p-8 p-4 border border-[#E2E8F0] shadow-xl shadow-gray-200/40">
             <h3 className="text-[16px] font-ppmori-semibold text-gray-400 tracking-widest mb-6">
               Order Summary
@@ -888,7 +888,7 @@ export default function SubscribePage() {
 
             {/* Collage Banner Card */}
             <div className="bg-linear-to-t from-[#ffe6c595] to-white md:rounded-3xl rounded-xl p-4 border border-[#F0E2D1] flex items-center gap-5 mb-8 shadow-sm">
-              <div className="hidden md:block h-[175px] w-[156px] relative rounded-2xl overflow-hidden shrink-0 shadow-inner">
+              <div className="hidden md:block h-43.75 w-39 relative rounded-2xl overflow-hidden shrink-0 shadow-inner">
                 <Image
                   src="/home/img-5.webp"
                   alt="Membership benefits"
@@ -899,7 +899,7 @@ export default function SubscribePage() {
               </div>
 
               <div className="space-y-2">
-                <div className="relative w-[38px] h-[30px]">
+                <div className="relative w-9.5 h-7.5">
                   <Image
                     src="/logo.png"
                     alt="Membership benefits"

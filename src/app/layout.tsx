@@ -9,8 +9,22 @@ import { Toaster } from "react-hot-toast";
 
 
 export const metadata: Metadata = {
-  title: "Discount Membership - Renu Plus",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://renuplusco.com"),
+  title: {
+    default: "Discount Membership - Renu Plus",
+    template: "%s | Renu Plus",
+  },
   description: "Save big with Renu Plus! Access top retail discounts and maximize your budget. Sign up today and start saving.",
+  openGraph: {
+    title: "Discount Membership - Renu Plus",
+    description: "Save big with Renu Plus! Access top retail discounts and maximize your budget. Sign up today and start saving.",
+    url: "/",
+    siteName: "Renu Plus",
+    type: "website",
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";

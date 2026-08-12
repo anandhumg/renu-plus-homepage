@@ -38,7 +38,7 @@ export default function ExclusiveDiscounts() {
                             initial={{ opacity: 0, y: 40 }}
                             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                             transition={{ duration: 1, ease: "easeOut" }}
-                            className="w-auto h-[500px] relative md:hidden mb-6"
+                            className="w-auto h-125 relative md:hidden mb-6"
                         >
                             <Image src={Img} alt="Exclusive Discounts" fill className="object-contain" priority />
                         </motion.div>
@@ -62,7 +62,7 @@ export default function ExclusiveDiscounts() {
                         initial={{ opacity: 0, y: 40 }}
                         animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                         transition={{ duration: 1, ease: "easeOut" }}
-                        className="w-full h-[300px] md:h-[600px] relative md:block hidden"
+                        className="w-full h-75 md:h-150 relative md:block hidden"
                     >
                         <Image src={Img} alt="Exclusive Discounts" fill className="object-contain" priority />
                     </motion.div>

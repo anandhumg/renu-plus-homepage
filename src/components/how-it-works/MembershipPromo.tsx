@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Leaf1 from "../../../public/common/leaf.svg";
 import { CheckIcon } from "lucide-react";
+import DynamicCTAButton from "../DynamicCTAButton";
 
 export default function MembershipPromo() {
     const benefits = [
@@ -50,7 +51,7 @@ export default function MembershipPromo() {
                         className="flex flex-col items-start text-left lg:max-w-xl"
                     >
                         <div>
-                            <h2 className="text-foreground font-ppmori-semibold lg:text-[48px] md:text-[40px] text-[2rem] md:leading-[52px] md:mb-0 mb-4">
+                            <h2 className="text-foreground font-ppmori-semibold lg:text-[48px] md:text-[40px] text-[2rem] md:leading-13 md:mb-0 mb-4">
                                 Your <span className="text-head">membership</span><br />
                                 Starts now.
                             </h2>
@@ -70,7 +71,7 @@ export default function MembershipPromo() {
                             {benefits.map((benefit) => (
                                 <div key={benefit} className="flex items-center gap-3">
                                     <CheckIcon />
-                                    <span className="text-foreground font-ppmori-regular text-[16px] leading-[24px]">
+                                    <span className="text-foreground font-ppmori-regular text-[16px] leading-6">
                                         {benefit}
                                     </span>
                                 </div>
@@ -81,12 +82,11 @@ export default function MembershipPromo() {
                             <span className="font-ppmori-semibold md:text-[60px] text-[40px]">${process.env.NEXT_PUBLIC_PACKAGE_PRICE}</span><span className="font-ppmori text-[32px]">/year</span>
                         </div>
                         <div className="md:mt-10 mt-8 w-full">
-                            <Link
-                                href="/sign-up-login"
-                                className="inline-flex items-center md:w-[410px] w-full leading-0 justify-center bg-primary hover:bg-[#A3851D] text-white font-ppmori-semibold text-[18px] rounded-full px-8 py-3.5 h-12 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer"
+                            <DynamicCTAButton
+                                defaultText={"Join Renu Plus"}
+                                className="inline-flex items-center md:w-102.5 w-full leading-0 justify-center bg-primary hover:bg-[#A3851D] text-white font-ppmori-semibold text-[18px] rounded-full px-8 py-3.5 h-12 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer"
                             >
-                                Join Renu Plus
-                            </Link>
+                            </DynamicCTAButton>
                         </div>
                     </motion.div>
 

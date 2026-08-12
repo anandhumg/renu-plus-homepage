@@ -1,5 +1,6 @@
 import React from "react";
 import StoreSwiper, { Store } from "./StoreSwiper";
+import Link from "next/link";
 
 export default async function TopPartnerStores() {
     let stores: Store[] = [];
@@ -27,14 +28,14 @@ export default async function TopPartnerStores() {
     }
 
     return (
-        <section className="bg-white pt-20 md:pt-24 overflow-hidden relative md:px-4 md:pl-0 pl-2">
+        <section className="bg-white pt-20 md:pt-24 overflow-hidden relative md:px-4 md:pl-0 pl-2 pb-2">
             <div className="max-w-7xl mx-auto">
                 <StoreSwiper stores={stores} />
             </div>
-            <div className="md:hidden flex justify-center mt-6">
-                <button className="bg-primary text-white px-8 py-2.5 h-12 cursor-pointer md:hidden rounded-full font-ppmori-semibold text-[17px] hover:bg-[#A38000] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+            <div className="flex justify-center mt-6">
+                <Link href="/partner-stores" className="bg-primary text-white px-8 py-2.5 h-12 leading-none flex items-center cursor-pointer rounded-full font-ppmori-semibold text-[17px] hover:bg-[#A38000] transition-all transform hover:scale-105 active:scale-95 shadow-md shadow-primary/20">
                     See all partner stores
-                </button>
+                </Link>
             </div>
         </section>
     );

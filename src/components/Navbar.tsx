@@ -156,7 +156,7 @@ export default function Navbar() {
                   <>
                     <button
                       onClick={() => setIsLoginOpen(true)}
-                      className="flex items-center justify-center space-x-2 h-[42px] w-[120px] border border-[#111827] px-6 py-2 rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-sm font-ppmori-semibold cursor-pointer bg-transparent"
+                      className="flex items-center justify-center space-x-2 h-10.5 w-30 border border-[#111827] px-6 py-2 rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-sm font-ppmori-semibold cursor-pointer bg-transparent"
                     >
                       <span className="leading-none translate-y-[0.5px]">
                         Login
@@ -165,7 +165,7 @@ export default function Navbar() {
 
                     <Link
                       href="/subscribe"
-                      className="bg-primary text-white px-6 py-2 h-[42px] w-[120px] flex justify-center items-center rounded-full hover:bg-primary/90 transition-all text-sm font-ppmori-semibold"
+                      className="bg-primary text-white px-6 py-2 h-10.5 w-30 flex justify-center items-center rounded-full hover:bg-primary/90 transition-all text-sm font-ppmori-semibold"
                     >
                       <span className="leading-none translate-y-[0.5px]">
                         Join now
@@ -209,7 +209,7 @@ export default function Navbar() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 h-full w-full md:w-[450px] bg-[#FAF8F5] md:rounded-l-3xl shadow-2xl z-120 flex flex-col"
+            className="fixed top-0 right-0 h-full w-full md:w-112.5 bg-[#FAF8F5] md:rounded-l-3xl shadow-2xl z-120 flex flex-col"
           >
             {/* Header row */}
             <div className="flex items-center md:justify-between justify-end p-6 sm:p-8">
@@ -223,14 +223,14 @@ export default function Navbar() {
                         setIsOpen(false);
                         setIsLoginOpen(true);
                       }}
-                      className="border border-gray-900 rounded-full h-[40px] px-8 text-sm font-ppmori-semibold text-gray-900 flex items-center justify-center hover:bg-gray-100/50 transition-colors cursor-pointer bg-transparent"
+                      className="border border-gray-900 rounded-full h-10 px-8 text-sm font-ppmori-semibold text-gray-900 flex items-center justify-center hover:bg-gray-100/50 transition-colors cursor-pointer bg-transparent"
                     >
                       Login
                     </button>
                     <Link
                       href="/subscribe"
                       onClick={() => setIsOpen(false)}
-                      className="bg-primary text-white rounded-full h-[40px] px-6 flex items-center justify-center hover:bg-primary/90 transition-all text-sm font-ppmori-semibold cursor-pointer"
+                      className="bg-primary text-white rounded-full h-10 px-6 flex items-center justify-center hover:bg-primary/90 transition-all text-sm font-ppmori-semibold cursor-pointer"
                     >
                       Join now
                     </Link>
@@ -252,7 +252,7 @@ export default function Navbar() {
                       onClick={() => {
                         setIsLogoutConfirmOpen(true);
                       }}
-                      className="border border-red-600 rounded-full h-[40px] px-8 text-sm font-ppmori-semibold text-red-600 flex items-center justify-center hover:bg-gray-100/50 transition-colors cursor-pointer bg-transparent"
+                      className="border border-red-600 rounded-full h-10 px-8 text-sm font-ppmori-semibold text-red-600 flex items-center justify-center hover:bg-gray-100/50 transition-colors cursor-pointer bg-transparent"
                     >
                       Logout
                     </button>

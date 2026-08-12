@@ -9,6 +9,7 @@ export interface User {
     address?: string;
     profilePicture?: string;
     hasActiveSubscription?: boolean;
+    subscriptions?: Subscription[];
 }
 
 export interface RegisterData {

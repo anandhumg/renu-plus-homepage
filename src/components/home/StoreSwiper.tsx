@@ -1,8 +1,15 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+export interface StoreDetailSection {
+    title: string;
+    points: string[];
+    description?: string;
+}
 
 export interface Store {
     id: string;
@@ -12,6 +19,13 @@ export interface Store {
     image: string;
     offerText: string;
     extraOffers?: string; // e.g. "+1 more"
+    address?: string;
+    phone?: string;
+    email?: string;
+    location?: { lat: number; lng: number } | null;
+    storeDetails?: StoreDetailSection[] | null;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 interface StoreSwiperProps {
@@ -20,6 +34,19 @@ interface StoreSwiperProps {
 
 export default function StoreSwiper({ stores }: StoreSwiperProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [selectedStore, setSelectedStore] = useState<Store | null>(null);
+
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        if (selectedStore) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [selectedStore]);
 
     const scroll = (direction: "left" | "right") => {
         if (scrollContainerRef.current) {
@@ -66,21 +93,22 @@ export default function StoreSwiper({ stores }: StoreSwiperProps) {
             {/* Scroll Container */}
             <div
                 ref={scrollContainerRef}
-                className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 px-4 sm:px-6 lg:px-8 pb-8 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 px-4 sm:px-6 lg:px-8 pb-8 pt-2 [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden"
             >
                 {stores.map((store) => (
                     <div
                         key={store.id}
-                        className="snap-start shrink-0 w-[85vw] md:w-1/3 bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm flex flex-col transition-transform hover:shadow-md"
+                        onClick={() => setSelectedStore(store)}
+                        className="snap-start shrink-0 w-[85vw] md:w-1/3 bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm flex flex-col transition-transform hover:shadow-md cursor-pointer group"
                     >
                         {/* Image */}
-                        <div className="relative w-full aspect-16/8 bg-gray-100">
+                        <div className="relative w-full aspect-16/8 bg-gray-100 overflow-hidden">
                             {store.image ? (
                                 <Image
                                     src={store.image}
                                     alt={store.name}
                                     fill
-                                    className="object-cover"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                                     sizes="(max-width: 768px) 85vw, 350px"
                                 />
                             ) : (
@@ -92,8 +120,8 @@ export default function StoreSwiper({ stores }: StoreSwiperProps) {
 
                         {/* Content */}
                         <div className="p-5 flex-1 flex flex-col">
-                            <h3 className="text-xl font-ppmori-semibold text-foreground mb-1">{store.name}</h3>
-                            <p className="text-[15px] font-ppmori text-gray-500 mb-4">{store.description}</p>
+                            <h3 className="text-xl font-ppmori-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{store.name}</h3>
+                            <p className="text-[15px] font-ppmori text-gray-500 mb-4 line-clamp-2">{store.description}</p>
 
                             <div className="flex flex-wrap gap-2 mt-auto mb-2">
                                 {store.tags?.map((tag, index) => (
@@ -126,8 +154,154 @@ export default function StoreSwiper({ stores }: StoreSwiperProps) {
                 ))}
             </div>
 
+            {/* Premium Detail Modal Popup */}
+            <AnimatePresence>
+                {selectedStore && (
+                    <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
+                        {/* Blur Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedStore(null)}
+                            className="absolute inset-0 bg-black/60 backdrop-blur-xs"
+                        />
+
+                        {/* Modal Container */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 220 }}
+                            className="relative flex flex-col w-full max-w-2xl bg-white md:rounded-3xl rounded-xl shadow-2xl overflow-hidden md:h-[90vh] h-[80vh] max-h-175 z-10"
+                        >
+                            {/* Blue Header Banner with image */}
+                            <div className="relative w-full h-50 md:h-62.5 bg-[#008BEA] shrink-0 overflow-hidden">
+                                {selectedStore.image ? (
+                                    <Image
+                                        src={selectedStore.image}
+                                        alt={selectedStore.name}
+                                        fill
+                                        className="object-cover object-center"
+                                        sizes="(max-width: 768px) 100vw, 650px"
+                                        priority
+                                    />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-white/80 font-ppmori-semibold text-2xl">
+                                        {selectedStore.name}
+                                    </div>
+                                )}
+
+                                {/* Close Button */}
+                                <button
+                                    onClick={() => setSelectedStore(null)}
+                                    className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-md hover:bg-gray-100 active:scale-95 transition-all z-50 cursor-pointer"
+                                    aria-label="Close modal"
+                                >
+                                    <X className="w-5 h-5 text-gray-800" strokeWidth={2.5} />
+                                </button>
+                            </div>
+
+                            {/* Scrollable Modal Content */}
+                            <div
+                                data-lenis-prevent
+                                className="overflow-y-auto p-4 md:p-8 flex-1 space-y-6 scrollbar-thin scrollbar-thumb-gray-200"
+                            >
+                                {/* Store Title and Location info */}
+                                <div>
+                                    <h2 className="text-2xl md:text-3xl font-ppmori-semibold text-foreground mb-1">
+                                        {selectedStore.name}
+                                    </h2>
+                                    <p className="text-[15px] font-ppmori text-gray-500">
+                                        {selectedStore.description || "Available at participating locations across Canada."}
+                                    </p>
+                                </div>
+
+                                {/* Member benefit Container */}
+                                <div className="bg-white border border-[#E7DAD1]/70 rounded-2xl md:p-5 p-3 flex items-start gap-2 md:gap-4 shadow-xs">
+                                    {/* Starburst/badge icon stamp */}
+                                    <div className="flex items-center justify-center">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                                            {/* Beautiful multi-point stamp badge shape */}
+                                            <path d="M12 2L13.9 4.3L16.8 3.7L17.7 6.5L20.6 6.8L20.3 9.7L22.6 11.5L21.1 14.1L22.6 16.9L19.9 18L19 20.8L16.1 20.5L14.4 22.8L12 21.8L9.6 22.8L7.9 20.5L5 20.8L4.1 18L1.4 16.9L2.9 14.1L1.4 11.5L3.7 9.7L3.4 6.8L6.3 6.5L7.2 3.7L10.1 4.3L12 2Z" fill="#7C5D48" />
+                                            {/* White Percentage symbol inside */}
+                                            <path d="M9 10C9.55228 10 10 9.55228 10 9C10 8.44772 9.55228 8 9 8C8.44772 8 8 8.44772 8 9C8 9.55228 8.44772 10 9 10Z" fill="white" />
+                                            <path d="M15 16C15.5523 16 16 15.5523 16 15C16 14.4477 15.5523 14 15 14C14.4477 14 14 14.4477 14 15C14 15.5523 14.4477 16 15 16Z" fill="white" />
+                                            <line x1="14.5" y1="8.5" x2="9.5" y2="15.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-ppmori-semibold text-foreground text-[16px] mb-1">
+                                            Member benefit
+                                        </h4>
+                                        <p className="text-[14px] md:text-[15px] font-ppmori text-gray-600 leading-relaxed">
+                                            {selectedStore.offerText}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Dynamic details sections */}
+                                {selectedStore.storeDetails && selectedStore.storeDetails.length > 0 ? (
+                                    selectedStore.storeDetails.map((section, idx) => (
+                                        <div key={idx} className="border-t border-gray-100 pt-6">
+                                            <h3 className="font-ppmori-semibold text-foreground text-[17px] md:text-[18px] mb-3">
+                                                {section.title}
+                                            </h3>
+                                            {section.description && (
+                                                <p className="text-[14px] font-ppmori text-gray-500 mb-3 leading-relaxed">
+                                                    {section.description}
+                                                </p>
+                                            )}
+                                            <ul className="list-disc pl-5 space-y-2.5 text-gray-600 font-ppmori text-[14px] md:text-[15px]">
+                                                {section.points?.map((point, pIdx) => (
+                                                    <li key={pIdx} className="leading-relaxed">
+                                                        {point}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))
+                                ) : (
+                                    /* Fallback if storeDetails is empty */
+                                    <div className="border-t border-gray-100 pt-6">
+                                        <h3 className="font-ppmori-semibold text-foreground text-[17px] mb-3">
+                                            What you can save on
+                                        </h3>
+                                        <ul className="list-disc pl-5 space-y-2 text-gray-600 font-ppmori text-[14px] md:text-[15px]">
+                                            <li className="leading-relaxed">Exclusive member pricing across all categories</li>
+                                            <li className="leading-relaxed">Special offers dynamically applied to Renu+ memberships</li>
+                                        </ul>
+                                    </div>
+                                )}
+
+                                {/* Location & Contact Footer details */}
+                                {(selectedStore.address || selectedStore.phone || selectedStore.email) && (
+                                    <div className="border-t border-gray-100 pt-6 text-[13px] md:text-[14px] font-ppmori text-gray-400 space-y-1.5">
+                                        {selectedStore.address && (
+                                            <p className="flex items-center gap-2">
+                                                <span className="font-semibold text-gray-500">Address:</span> {selectedStore.address}
+                                            </p>
+                                        )}
+                                        {selectedStore.phone && (
+                                            <p className="flex items-center gap-2">
+                                                <span className="font-semibold text-gray-500">Phone:</span> {selectedStore.phone}
+                                            </p>
+                                        )}
+                                        {selectedStore.email && (
+                                            <p className="flex items-center gap-2">
+                                                <span className="font-semibold text-gray-500">Email:</span> {selectedStore.email}
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
             {/* Spacer for outer visual separation if needed */}
             <div className="w-8 shrink-0"></div>
         </div>
     );
 }
+

@@ -4,6 +4,7 @@ import { useLoading } from "@/contexts/LoadingContext";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import DynamicCTAButton from "../DynamicCTAButton";
 import IMG1 from "../../../public/about-us/img-1.webp"
 export default function WhoWeAreHero() {
   const { isLoaded } = useLoading();
@@ -37,10 +38,10 @@ export default function WhoWeAreHero() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
             <div className="flex md:flex-row flex-col gap-4">
-              <Link href="/subscribe" className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white flex justify-center items-center
-                md:h-[48px] h-[48px] md:w-fit px-6 rounded-full leading-none hover:bg-primary/80 transition-colors cursor-pointer">
-                Join Renu+ now
-              </Link>
+              <DynamicCTAButton
+                className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white flex justify-center items-center md:h-12 h-12 md:w-fit px-6 rounded-full leading-none hover:bg-primary/80 transition-colors cursor-pointer"
+                defaultText="Join Renu+ now"
+              />
             </div>
           </motion.div>
         </div>

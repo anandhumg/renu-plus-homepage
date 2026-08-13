@@ -11,6 +11,8 @@ export default function Footer() {
   const pathname = usePathname();
   if (pathname === "/subscribe") return null;
 
+  const contactMail = process.env.NEXT_PUBLIC_CONTACT_MAIL || ''
+
   const socialMedias = [
     {
       name: "Instagram",
@@ -58,8 +60,8 @@ export default function Footer() {
                 <path d="M18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 4L10 9L2 4V2L10 7L18 2V4Z" fill="#BC9C23" />
               </svg>
 
-              <a href="mailto:hello@renuplus.shop" className="hover:text-primary transition-colors font-medium border-b border-transparent hover:border-primary">
-                hello@renuplus.shop
+              <a href={`mailto:${contactMail}`} className="hover:text-primary transition-colors font-medium border-b border-transparent hover:border-primary">
+                {contactMail}
               </a>
             </div>
             <div>
@@ -99,8 +101,8 @@ export default function Footer() {
                   <li><Link href="/subscribe" className="text-foreground hover:text-primary transition-colors">Login/Sign Up</Link></li>
               }
               <li><Link href="/contact-us" className="text-foreground hover:text-primary transition-colors">Contact Us</Link></li>
-              <li><Link href="#" className="text-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
-              <li><Link href="#" className="text-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms-and-conditions" className="text-foreground hover:text-primary transition-colors">Terms and Conditions</Link></li>
+              <li><Link href="/privacy-policy" className="text-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
 
@@ -108,7 +110,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-100 bg-[#F1EAE8] py-5 flex flex-col md:flex-row  items-center gap-6 md:px-20 px-4">
           <p className="text-black text-[14px] font-ppmori-semibold">
-            © 2026 Renu Plus. All Rights Reserved.
+            © {new Date().getFullYear()} Renu Plus. All Rights Reserved.
           </p>
         </div>
 

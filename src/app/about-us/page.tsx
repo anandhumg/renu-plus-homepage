@@ -4,8 +4,11 @@ import MissionSection from "@/components/who-we-are/MissionSection";
 import WhoWeAreHero from "@/components/who-we-are/WhoWeAreHero";
 
 export const metadata = {
-  title: "Who We Are - Renu Plus",
+  title: "Who We Are",
   description: "Learn about Renu Plus and how we help you save on essential purchases.",
+  alternates: {
+    canonical: "/about-us",
+  },
 };
 
 export default function WhoWeArePage() {

@@ -50,7 +50,7 @@ const HIWCards = () => {
                 </p>
             </div>
 
-            <div className="flex md:flex-row flex-col md:space-x-[125px] space-y-8 md:space-y-0 justify-center md:items-start items-center mx-auto max-w-7xl">
+            <div className="flex md:flex-row flex-col md:space-x-31.25 space-y-8 md:space-y-0 justify-center md:items-start items-center mx-auto max-w-7xl">
                 {whyJoinData.map((item, idx) => (
                     <motion.div
                         key={idx}
@@ -58,9 +58,9 @@ const HIWCards = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-                        className={`flex flex-col items-center text-center transition-all duration-300 max-w-[208px]`}
+                        className={`flex flex-col items-center text-center transition-all duration-300 max-w-52`}
                     >
-                        <div className="relative aspect-square w-[114px] h-auto">
+                        <div className="relative aspect-square w-28.5 h-auto">
                             <Image src={item.icon} alt={item.title} className="object-contain" />
                         </div>
                         <h4 className="font-ppmori-semibold text-[#7C5D48] lg:text-[22px] text-[18px] my-4">

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Leaf1 from "../../../public/common/leaf.svg"
+import DynamicCTAButton from "../DynamicCTAButton";
 
 
 type Step = {
@@ -118,13 +119,13 @@ export default function HowItWorks() {
 
     return (
         <section className="md:py-24 py-10 px-4 md:px-12 lg:px-24 relative">
-            <div className="max-w-[1248px] mx-auto">
+            <div className="max-w-312 mx-auto">
 
                 {/* Grid Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 relative">
                     {/* Left Side: Sticky Image Track (Hidden on Mobile) */}
                     {/* The sticky wrapper */}
-                    <div className="hidden md:block sticky top-25 w-full aspect-[0.8] lg:max-h-[600px] overflow-hidden rounded-2xl border border-[#DACCBA]/40 bg-[#FDFBF7]">
+                    <div className="hidden md:block sticky top-25 w-full aspect-[0.8] lg:max-h-150 overflow-hidden rounded-2xl border border-[#DACCBA]/40 bg-[#FDFBF7]">
                         {stepsData.map((step, index) => {
                             // Determine the state of each image based on the active index
                             let state = "next";
@@ -195,12 +196,11 @@ export default function HowItWorks() {
                                 </p>
 
                                 <div className="flex md:justify-start justify-center md:w-fit w-full">
-                                    <Link
-                                        href={step.buttonLink}
+                                    <DynamicCTAButton
+                                        defaultText={step.buttonText}
                                         className="inline-flex text-[1rem] leading-none items-center justify-center w-full px-6 py-4 rounded-full bg-primary text-white font-medium hover:bg-gray-800 hover:scale-105 active:scale-95 transition-all duration-200 font-ppmori"
                                     >
-                                        {step.buttonText}
-                                    </Link>
+                                    </DynamicCTAButton>
                                 </div>
                             </motion.div>
                         ))}

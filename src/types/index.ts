@@ -12,6 +12,7 @@ export interface User {
     status?: 'ACTIVE' | 'DELETION_PENDING' | 'DELETED';
     deletionRequestedAt?: string;
     deletionScheduledAt?: string;
+    subscriptions?: Subscription[];
 }
 
 export interface RegisterData {

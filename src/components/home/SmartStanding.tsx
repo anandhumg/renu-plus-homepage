@@ -25,6 +25,7 @@ import Logo2 from "../../../public/logo-2.svg"
 import StepOne from "../../../public/home/sec-step-1.svg"
 import StepTwo from "../../../public/home/sec-step-2.svg"
 import StepThree from "../../../public/home/sec-step-3.svg"
+import DynamicCTAButton from "../DynamicCTAButton";
 
 export default function SmartStanding() {
     const price = process.env.NEXT_PUBLIC_PACKAGE_PRICE || "49";
@@ -69,9 +70,9 @@ export default function SmartStanding() {
                 <div className="text-center mb-12">
                     <p className="md:text-[50px] text-[28px] font-ppmori-semibold text-foreground md:leading-13 leading-10">Your gateway to </p>
                     <p className="md:text-[50px] text-[28px] font-ppmori-semibold text-head">Smarter Spending.</p>
-                    <div className="flex items-center justify-center my-[63px]">
-                        <div className="relative md:w-[227px] w-[150px] aspect-[1.2]">
-                            <Image src={Logo2} alt={""} className="object-contain" />
+                    <div className="flex items-center justify-center my-15.75">
+                        <div className="relative md:w-56.75 w-37.5 aspect-[1.2]">
+                            <Image src={Logo2} alt="Renu Plus logo secondary" className="object-contain" />
                         </div>
                     </div>
                     <div className="flex items-center justify-center">
@@ -97,7 +98,7 @@ export default function SmartStanding() {
                 <div className="flex flex-wrap justify-start lg:justify-between lg:max-w-7xl gap-10  w-full mt-10 md:px-10 mx-auto">
                     <div className="flex gap-3 items-start">
                         <div>
-                            <div className="relative aspect-square md:w-[48px] w-[40px] mt-0.5">
+                            <div className="relative aspect-square md:w-12 w-10 mt-0.5">
                                 <Image src={StepOne} alt="Step One" fill className="object-contain" />
                             </div>
 
@@ -109,7 +110,7 @@ export default function SmartStanding() {
                     </div>
                     <div className="flex gap-3 items-start">
                         <div>
-                            <div className="relative aspect-square md:w-[48px] w-[40px] mt-0.5">
+                            <div className="relative aspect-square md:w-12 w-10 mt-0.5">
                                 <Image src={StepTwo} alt="Step Two" fill className="object-contain" />
                             </div>
                         </div>
@@ -120,7 +121,7 @@ export default function SmartStanding() {
                     </div>
                     <div className="flex gap-3 items-start">
                         <div>
-                            <div className="relative aspect-square md:w-[48px] w-[40px]">
+                            <div className="relative aspect-square md:w-12 w-10">
                                 <Image src={StepThree} alt="Step Three" fill className="object-contain" />
                             </div>
                         </div>
@@ -131,12 +132,10 @@ export default function SmartStanding() {
                     </div>
                 </div>
                 <div className="my-20 flex justify-center">
-                    <button className="bg-primary text-[18px] font-ppmori-semibold text-white px-12 py-3 h-12  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
-                        Unlock Your Membership
-                    </button>
+                    <DynamicCTAButton defaultText={"Unlock Your Membership"} className="bg-primary text-[18px] font-ppmori-semibold items-center flex leading-none text-white px-12 py-3 h-12  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer" />
                 </div>
             </div>
-            <div className=" relative flex justify-center lg:h-[115vh] md:h-[700px] w-full mt-20">
+            <div className=" relative flex justify-center lg:h-[115vh] md:h-175 w-full mt-20">
                 <motion.div
                     initial={{ opacity: 0, y: 150 }}
                     whileInView={{ opacity: 1, y: 0 }}

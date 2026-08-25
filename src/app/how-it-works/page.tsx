@@ -6,8 +6,11 @@ import HaveQuestions from "@/components/home/HaveQuestions";
 import HIWCards from "@/components/how-it-works/HIWCards";
 
 export const metadata = {
-    title: "How it works - Renu Plus",
+    title: "How it works",
     description: "Learn about Renu Plus and how it works.",
+    alternates: {
+        canonical: "/how-it-works",
+    },
 };
 
 export default function HowItWorks() {

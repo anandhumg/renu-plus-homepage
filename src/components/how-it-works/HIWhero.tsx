@@ -48,7 +48,7 @@ export default function HIWhero() {
                     <h1 className="font-ppmori-semibold text-foreground text-[2rem] md:text-[44px] lg:text-[48px] leading-[1.1]">
                         How Renu+ Works
                     </h1>
-                    <p className="text-[#1F2937] font-ppmori lg:text-[18px] md:text-[18px] text-[1rem] max-w-[419px]">
+                    <p className="text-[#1F2937] font-ppmori lg:text-[18px] md:text-[18px] text-[1rem] max-w-104.75">
                         One membership, hundreds of opportunities to save, explore, and enjoy more from everyday life.
                     </p>
                 </motion.div>

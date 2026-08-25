@@ -3,8 +3,11 @@ import PartnerStoresHero from "@/components/partner-stores/HIWhero";
 import StoresGrid, { Store } from "@/components/partner-stores/StoresGrid";
 
 export const metadata = {
-    title: "Partner Stores - Renu Plus",
+    title: "Partner Stores",
     description: "Discover trusted retailers and service providers offering exclusive benefits to Renu+ members.",
+    alternates: {
+        canonical: "/partner-stores",
+    },
 };
 
 export const runtime = 'edge';

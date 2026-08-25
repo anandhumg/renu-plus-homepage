@@ -16,7 +16,7 @@ export default function HaveQuestions() {
                 Contact us today to learn more about our membership benefits and how you can start saving immediately.
             </div>
             <div className="flex justify-center mt-10">
-                <Link href="/contact-us" className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white inline-flex items-center justify-center leading-none  h-12 w-[188px] md:w-[148px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer">
+                <Link href="/contact-us" className="bg-primary md:text-[18px] text-[17px] font-ppmori-semibold text-white inline-flex items-center justify-center h-12 w-[188px] md:w-[148px]  rounded-full  hover:bg-primary/80 transition-colors cursor-pointer leading-none">
                     Talk to us
                 </Link>
             </div>

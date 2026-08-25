@@ -23,19 +23,24 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect, useState, Suspense } from 'react';
 import { toast } from 'react-hot-toast';
 import LogoBadge from "./profile/renu-plus-badge.svg";
 import LogoutConfirmModal from '@/components/LogoutConfirmModal';
+
 import DeleteAccountModal from '@/components/DeleteAccountModal';
 
-export default function ProfilePage() {
+function ProfileContent() {
     const { user, isAuthenticated, loading: authLoading, logout, updateUser, refreshProfile } = useAuth();
     const router = useRouter();
+    const searchParams = useSearchParams();
 
     // Tab state
-    const [activeTab, setActiveTab] = useState<'profile' | 'renu' | 'help'>('profile');
+    const activeTab = (searchParams.get('tab') as 'profile' | 'renu' | 'help') || 'profile';
+    const setActiveTab = (tab: 'profile' | 'renu' | 'help') => {
+        router.push(`/profile?tab=${tab}`);
+    };
     const [isMobileDetailOpen, setIsMobileDetailOpen] = useState(false);
     const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
     const [isDeleteAccountOpen, setIsDeleteAccountOpen] = useState(false);
@@ -374,11 +379,11 @@ export default function ProfilePage() {
             <h2 className="md:block hidden text-3xl font-ppmori-semibold text-gray-900">Your Renu+ Subscription</h2>
 
             {hasActiveSubscription ? (
-                <div className={`space-y-6 ${isMobile ? 'w-full' : 'w-[735px]'}`}>
+                <div className={`space-y-6 ${isMobile ? 'w-full' : 'w-183.75'}`}>
                     {/* Main Card */}
                     <div className="rounded-2xl overflow-hidden border border-[#DACCBA] shadow-sm relative w-full">
                         {/* Card Header (Logo + Badge) */}
-                        <div className="flex  md:justify-between justify-center md:h-[188px] h-[280px] md:p-10 p-6 border-b border-gray-100 relative w-full">
+                        <div className="flex  md:justify-between justify-center md:h-47 h-70 md:p-10 p-6 border-b border-gray-100 relative w-full">
                             <Image src={"/profile/sub-card.png"} alt="" fill className="object-cover absolute w-full h-full" />
                             <div className="absolute top-0 left-0 w-full h-full bg-linear-to-b from-[#FAEACD] via-[#FAEACD] to-transparent md:opacity-100 opacity-40"></div>
                             <div className="h-full flex items-center md:flex-row flex-col ">
@@ -575,7 +580,7 @@ export default function ProfilePage() {
                     <div className="mt-2 md:p-8 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6 animate-in slide-in-from-top-1 duration-200">
                         <div className="flex-1 text-left">
                             <h4 className="font-ppmori-semibold text-2xl text-foreground">Get More From Your Membership</h4>
-                            <p className="text-[16px] text-sub-foreground max-w-[480px] mt-5">
+                            <p className="text-[16px] text-sub-foreground max-w-120 mt-5">
                                 The Renu+ app puts your membership card, partner offers, exclusive benefits, and account information right in your pocket.
                             </p>
                             <Link
@@ -585,7 +590,7 @@ export default function ProfilePage() {
                                 Get the Renu+ app
                             </Link>
                         </div>
-                        <div className='relative h-[108px] w-[96px] md:block hidden'>
+                        <div className='relative h-27 w-24 md:block hidden'>
                             <Image src={"/profile/gift.svg"} alt="App" fill className="object-contain" />
                         </div>
                     </div>
@@ -594,10 +599,10 @@ export default function ProfilePage() {
                 /* Inactive Subscription State / Upgrade Call to Action */
                 <div className="space-y-6">
                     {/* Inactive Membership Card Preview */}
-                    <div className="relative overflow-hidden bg-linear-to-br from-gray-200 to-gray-300 rounded-2xl p-8 shadow-sm border border-gray-300/40 flex flex-col justify-between min-h-[200px] text-gray-600">
+                    <div className="relative overflow-hidden bg-linear-to-br from-gray-200 to-gray-300 rounded-2xl p-8 shadow-sm border border-gray-300/40 flex flex-col justify-between min-h-50 text-gray-600">
                         <div className="flex justify-between items-start">
                             <div className="flex items-center gap-4">
-                                <div className="w-14 h-14 rounded-full bg-gray-400/30 flex items-center justify-center flex-shrink-0">
+                                <div className="w-14 h-14 rounded-full bg-gray-400/30 flex items-center justify-center shrink-0">
                                     <UserIcon size={28} className="text-gray-500" />
                                 </div>
                                 <div>
@@ -785,7 +790,7 @@ export default function ProfilePage() {
                 {/* Desktop layout: tradicional side-by-side tabs */}
                 <div className="hidden md:grid grid-cols-12 gap-8">
                     {/* Left Sidebar Tab Navigation */}
-                    <div className="md:col-span-4 lg:col-span-3 flex flex-col justify-between h-full min-h-[350px]">
+                    <div className="md:col-span-4 lg:col-span-3 flex flex-col justify-between h-full min-h-87.5">
                         <div className="space-y-2">
                             {/* Profile Tab Link */}
                             <button
@@ -844,7 +849,7 @@ export default function ProfilePage() {
                     </div>
 
                     {/* Right View content panel (Separated by vertical border) */}
-                    <div className="md:col-span-8 lg:col-span-9 md:border-l md:border-gray-200 md:pl-8 lg:pl-12 min-h-[450px]">
+                    <div className="md:col-span-8 lg:col-span-9 md:border-l md:border-gray-200 md:pl-8 lg:pl-12 min-h-112.5">
                         <AnimatePresence mode="wait">
                             {activeTab === 'profile' && renderProfileTab()}
                             {activeTab === 'renu' && renderRenuTab(false)}
@@ -1008,5 +1013,13 @@ export default function ProfilePage() {
                 userEmail={user?.email}
             />
         </div>
+    );
+}
+
+export default function ProfilePage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-white" />}>
+            <ProfileContent />
+        </Suspense>
     );
 }

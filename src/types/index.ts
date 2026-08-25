@@ -9,6 +9,9 @@ export interface User {
     address?: string;
     profilePicture?: string;
     hasActiveSubscription?: boolean;
+    status?: 'ACTIVE' | 'DELETION_PENDING' | 'DELETED';
+    deletionRequestedAt?: string;
+    deletionScheduledAt?: string;
 }
 
 export interface RegisterData {

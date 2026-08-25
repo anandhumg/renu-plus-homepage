@@ -28,6 +28,8 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import LogoBadge from "./profile/renu-plus-badge.svg";
 import LogoutConfirmModal from '@/components/LogoutConfirmModal';
+import DeleteAccountModal from '@/components/DeleteAccountModal';
+
 export default function ProfilePage() {
     const { user, isAuthenticated, loading: authLoading, logout, updateUser, refreshProfile } = useAuth();
     const router = useRouter();
@@ -36,6 +38,7 @@ export default function ProfilePage() {
     const [activeTab, setActiveTab] = useState<'profile' | 'renu' | 'help'>('profile');
     const [isMobileDetailOpen, setIsMobileDetailOpen] = useState(false);
     const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
+    const [isDeleteAccountOpen, setIsDeleteAccountOpen] = useState(false);
 
     // Subscription & page state
     const [subscription, setSubscription] = useState<any>(null);
@@ -193,6 +196,12 @@ export default function ProfilePage() {
         toast.success('Signed out successfully.');
     };
 
+    const handleDeleteAccountSuccess = () => {
+        router.push('/');
+        logout();
+        setIsDeleteAccountOpen(false);
+    };
+
     // Default perks fallback if API doesn't return any
     const defaultPerks = [
         {
@@ -251,6 +260,9 @@ export default function ProfilePage() {
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         return diffDays <= 30 && end > now;
     };
+
+    const isDeletionPending = user?.status === 'DELETION_PENDING';
+    const isExpired = user?.status !== 'DELETION_PENDING' && subscription?.status === 'EXPIRED';
 
     const hasActiveSubscription = subscription && subscription.status === 'ACTIVE';
 
@@ -604,6 +616,48 @@ export default function ProfilePage() {
                         </div>
                     </div>
 
+                    {isDeletionPending && (
+                        <div className="bg-[#FFF5F5] border border-[#FED7D7] rounded-2xl p-6 flex items-start gap-4 shadow-sm animate-in slide-in-from-top-1 duration-200">
+                            <div className="mt-1">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#E53E3E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-ppmori-semibold text-[#E53E3E]">Account Deletion Pending</h3>
+                                <p className="text-sm text-[#E53E3E] mt-1">
+                                    Your account is scheduled for deletion. You cannot purchase a subscription at this time.
+                                </p>
+                                <button 
+                                    onClick={() => profileService.cancelAccountDeletion().then(() => {
+                                        toast.success('Account deletion cancelled.');
+                                        refreshProfile();
+                                        window.location.reload();
+                                    }).catch(err => toast.error('Failed to cancel deletion.'))}
+                                    className="text-sm font-ppmori-semibold text-[#E53E3E] underline mt-3 hover:text-red-700 cursor-pointer transition-colors"
+                                >
+                                    Cancel Deletion Request
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {isExpired && (
+                        <div className="bg-[#FFFAF0] border border-[#FBD38D] rounded-2xl p-6 flex items-start gap-4 shadow-sm animate-in slide-in-from-top-1 duration-200">
+                            <div className="mt-1">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 16H12V12H11M12 8H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#DD6B20" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-ppmori-semibold text-[#DD6B20]">Subscription Expired</h3>
+                                <p className="text-sm text-[#DD6B20] mt-1">
+                                    Your subscription has expired. Please renew below to continue enjoying Renu Plus benefits.
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Beautiful CTA Promo Container */}
                     <div className="bg-[#f6f0e5] rounded-4xl p-6 md:p-8 border border-[#7C5D48]/10 text-center space-y-4">
                         <Crown size={36} className="text-primary mx-auto animate-bounce" />
@@ -616,12 +670,21 @@ export default function ProfilePage() {
                             </p>
                         </div>
                         <div className="pt-2">
-                            <Link
-                                href="/subscribe"
-                                className="inline-block bg-primary hover:bg-[#9c7b00] text-white font-bold px-8 py-3.5 rounded-full text-sm uppercase tracking-widest transition-colors shadow-md shadow-[#B68F00]/10 hover:scale-[1.01] transition-transform cursor-pointer"
-                            >
-                                Subscribe Now
-                            </Link>
+                            {isDeletionPending ? (
+                                <button
+                                    disabled
+                                    className="inline-block bg-gray-400 text-white font-bold px-8 py-3.5 rounded-full text-sm uppercase tracking-widest cursor-not-allowed opacity-70"
+                                >
+                                    Purchases Disabled
+                                </button>
+                            ) : (
+                                <Link
+                                    href="/subscribe"
+                                    className="inline-block bg-primary hover:bg-[#9c7b00] text-white font-bold px-8 py-3.5 rounded-full text-sm uppercase tracking-widest transition-colors shadow-md shadow-[#B68F00]/10 hover:scale-[1.01] transition-transform cursor-pointer"
+                                >
+                                    Subscribe Now
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -762,13 +825,20 @@ export default function ProfilePage() {
                         </div>
 
                         {/* Sign Out Button at the bottom */}
-                        <div className="mt-12 md:mt-24">
+                        <div className="mt-12 md:mt-24 space-y-2">
                             <button
                                 onClick={handleSignOut}
                                 className="w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-sm font-ppmori-semibold text-gray-500 hover:text-red-600 hover:bg-red-50/50 transition-all cursor-pointer border border-transparent hover:border-red-100"
                             >
                                 <LogOut size={18} className="text-gray-400 group-hover:text-red-600" />
                                 <span>Sign out</span>
+                            </button>
+                            
+                            <button
+                                onClick={() => setIsDeleteAccountOpen(true)}
+                                className="w-full flex items-center justify-center py-2 text-xs font-ppmori text-gray-400 hover:text-red-500 hover:underline transition-all cursor-pointer"
+                            >
+                                Delete Account
                             </button>
                         </div>
                     </div>
@@ -875,6 +945,15 @@ export default function ProfilePage() {
                                         <ChevronRight size={18} className="text-[#E53E3E]/60" />
                                     </button>
                                 </div>
+
+                                <div className="pt-2 pb-6 flex justify-center">
+                                    <button
+                                        onClick={() => setIsDeleteAccountOpen(true)}
+                                        className="text-xs text-gray-400 hover:text-red-500 hover:underline cursor-pointer transition-all"
+                                    >
+                                        Delete Account
+                                    </button>
+                                </div>
                             </motion.div>
                         ) : (
                             <motion.div
@@ -920,6 +999,13 @@ export default function ProfilePage() {
                 isOpen={isLogoutConfirmOpen}
                 onClose={() => setIsLogoutConfirmOpen(false)}
                 onConfirm={handleConfirmSignOut}
+            />
+            
+            <DeleteAccountModal
+                isOpen={isDeleteAccountOpen}
+                onClose={() => setIsDeleteAccountOpen(false)}
+                onConfirmSuccess={handleDeleteAccountSuccess}
+                userEmail={user?.email}
             />
         </div>
     );

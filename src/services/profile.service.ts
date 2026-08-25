@@ -34,3 +34,20 @@ export const fileToBase64 = (file: File): Promise<string> => {
         reader.onerror = (error) => reject(error);
     });
 };
+
+// --- Account Deletion ---
+
+export const requestAccountDeletion = async (confirmEmail: string): Promise<any> => {
+    const response = await api.post('/users/delete-account', { confirmEmail });
+    return response.data;
+};
+
+export const cancelAccountDeletion = async (): Promise<any> => {
+    const response = await api.post('/users/cancel-deletion');
+    return response.data;
+};
+
+export const getDeletionStatus = async (): Promise<any> => {
+    const response = await api.get('/users/deletion-status');
+    return response.data;
+};

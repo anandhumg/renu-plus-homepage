@@ -31,10 +31,12 @@ const CheckoutForm = ({
   plan,
   paymentIntentId,
   onSuccess,
+  isDeletionPending,
 }: {
   plan: SubscriptionPlan;
   paymentIntentId: string;
   onSuccess: () => void;
+  isDeletionPending?: boolean;
 }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -103,10 +105,12 @@ const CheckoutForm = ({
 
       <button
         type="submit"
-        disabled={!stripe || loading}
+        disabled={!stripe || loading || isDeletionPending}
         className="w-full bg-primary text-white py-4 rounded-full font-ppmori-semibold text-[16px] hover:bg-[#A58000] transition-all shadow-lg shadow-primary/20 flex items-center justify-center space-x-2 disabled:opacity-70 cursor-pointer"
       >
-        {loading ? (
+        {isDeletionPending ? (
+          <span>Purchases Disabled</span>
+        ) : loading ? (
           <>
             <Loader2 size={18} className="animate-spin" />
             <span>Processing…</span>
@@ -167,6 +171,7 @@ export default function SubscribePage() {
   const [prevStepNumber, setPrevStepNumber] = useState(1);
   const currentStepNumber = activeStep === 2 ? 4 : (accountSubStep === 'name' ? 3 : (accountSubStep === 'otp' ? 2 : 1));
   const direction = currentStepNumber >= prevStepNumber ? 1 : -1;
+  const isDeletionPending = user?.status === 'DELETION_PENDING';
 
   useEffect(() => {
     setPrevStepNumber(currentStepNumber);
@@ -822,6 +827,22 @@ export default function SubscribePage() {
                 <h3 className="text-[16px] font-ppmori text-foreground">Payment</h3>
               </div>
 
+              {isDeletionPending && (
+                <div className="mb-6 bg-[#FFF5F5] border border-[#FED7D7] rounded-2xl p-4 flex items-start gap-3 shadow-sm">
+                    <div className="mt-0.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#E53E3E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 className="text-sm font-ppmori-semibold text-[#E53E3E]">Account Deletion Pending</h3>
+                        <p className="text-xs text-[#E53E3E] mt-1">
+                            Your account is scheduled for deletion. You cannot purchase a subscription at this time.
+                        </p>
+                    </div>
+                </div>
+              )}
+
               <AnimatePresence mode="wait" initial={false}>
                 {activeStep === 2 ? (
                   <motion.div
@@ -856,6 +877,7 @@ export default function SubscribePage() {
                           plan={selectedPlan}
                           paymentIntentId={paymentIntentId}
                           onSuccess={() => router.push('/')}
+                          isDeletionPending={isDeletionPending}
                         />
                       </Elements>
                     )}

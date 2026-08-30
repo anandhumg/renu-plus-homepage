@@ -19,7 +19,8 @@ import {
     Phone,
     Sparkles,
     Umbrella,
-    User as UserIcon
+    User as UserIcon,
+    Trash2
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -625,7 +626,7 @@ function ProfileContent() {
                         <div className="bg-[#FFF5F5] border border-[#FED7D7] rounded-2xl p-6 flex items-start gap-4 shadow-sm animate-in slide-in-from-top-1 duration-200">
                             <div className="mt-1">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#E53E3E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#E53E3E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
                             <div>
@@ -633,7 +634,7 @@ function ProfileContent() {
                                 <p className="text-sm text-[#E53E3E] mt-1">
                                     Your account is scheduled for deletion. You cannot purchase a subscription at this time.
                                 </p>
-                                <button 
+                                <button
                                     onClick={() => profileService.cancelAccountDeletion().then(() => {
                                         toast.success('Account deletion cancelled.');
                                         refreshProfile();
@@ -651,7 +652,7 @@ function ProfileContent() {
                         <div className="bg-[#FFFAF0] border border-[#FBD38D] rounded-2xl p-6 flex items-start gap-4 shadow-sm animate-in slide-in-from-top-1 duration-200">
                             <div className="mt-1">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13 16H12V12H11M12 8H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#DD6B20" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M13 16H12V12H11M12 8H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#DD6B20" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
                             <div>
@@ -707,9 +708,9 @@ function ProfileContent() {
             className="space-y-6"
         >
             <div>
-                <h2 className="text-3xl font-ppmori-semibold text-gray-900">Help and Feedback</h2>
+                <h2 className="text-3xl font-ppmori-semibold text-gray-900">Settings & Support</h2>
                 <p className="text-sm text-gray-500 mt-1">
-                    We're here to help! Send us your inquiries, bug reports, or feature requests.
+                    Manage your account settings and get help when you need it.
                 </p>
             </div>
 
@@ -718,6 +719,28 @@ function ProfileContent() {
                 <div className="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-1">
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Email Support</p>
                     <p className="text-sm font-bold text-[#7C5D48]">support@renuplus.co</p>
+                </div>
+            </div>
+
+            {/* Account Settings */}
+            <div className="pt-2">
+                <h3 className="text-lg font-ppmori-semibold text-gray-900 mb-4">Account Settings</h3>
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                    <button
+                        onClick={() => setIsDeleteAccountOpen(true)}
+                        className="w-full flex items-center justify-between p-5 hover:bg-gray-50/50 transition-all text-left cursor-pointer active:bg-gray-50/55"
+                    >
+                        <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 rounded-full bg-[#FFF5F5] text-[#E53E3E] flex items-center justify-center shrink-0">
+                                <Trash2 size={18} />
+                            </div>
+                            <div>
+                                <h3 className="font-ppmori-semibold text-base text-gray-900">Delete Account</h3>
+                                <p className="text-xs text-gray-500 mt-0.5">Permanently remove your account and data</p>
+                            </div>
+                        </div>
+                        <ChevronRight size={18} className="text-gray-400" />
+                    </button>
                 </div>
             </div>
 
@@ -816,7 +839,7 @@ function ProfileContent() {
                                 <span>Renu+</span>
                             </button>
 
-                            {/* Help & Feedback Tab Link */}
+                            {/* Settings & Support Tab Link */}
                             <button
                                 onClick={() => setActiveTab('help')}
                                 className={`w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-sm font-ppmori-semibold transition-all cursor-pointer border ${activeTab === 'help'
@@ -825,7 +848,7 @@ function ProfileContent() {
                                     }`}
                             >
                                 <HelpCircle size={18} className={activeTab === 'help' ? 'text-[#7C5D48]' : 'text-gray-400'} />
-                                <span>Help and Feedback</span>
+                                <span>Settings & Support</span>
                             </button>
                         </div>
 
@@ -837,13 +860,6 @@ function ProfileContent() {
                             >
                                 <LogOut size={18} className="text-gray-400 group-hover:text-red-600" />
                                 <span>Sign out</span>
-                            </button>
-                            
-                            <button
-                                onClick={() => setIsDeleteAccountOpen(true)}
-                                className="w-full flex items-center justify-center py-2 text-xs font-ppmori text-gray-400 hover:text-red-500 hover:underline transition-all cursor-pointer"
-                            >
-                                Delete Account
                             </button>
                         </div>
                     </div>
@@ -911,7 +927,7 @@ function ProfileContent() {
                                         <ChevronRight size={18} className="text-gray-400" />
                                     </button>
 
-                                    {/* Help & Feedback Option */}
+                                    {/* Settings & Support Option */}
                                     <button
                                         onClick={() => {
                                             setActiveTab('help');
@@ -924,8 +940,8 @@ function ProfileContent() {
                                                 <HelpCircle size={18} />
                                             </div>
                                             <div>
-                                                <h3 className="font-ppmori-semibold text-base text-gray-950">Help and Feedback</h3>
-                                                <p className="text-xs text-gray-500 mt-0.5">Get support, report issues, and send feedback</p>
+                                                <h3 className="font-ppmori-semibold text-base text-gray-950">Settings & Support</h3>
+                                                <p className="text-xs text-gray-500 mt-0.5">Manage your account and get support</p>
                                             </div>
                                         </div>
                                         <ChevronRight size={18} className="text-gray-400" />
@@ -933,7 +949,7 @@ function ProfileContent() {
                                 </div>
 
                                 {/* Sign Out Button */}
-                                <div className="pt-2">
+                                <div className="pt-2 pb-6">
                                     <button
                                         onClick={handleSignOut}
                                         className="w-full flex items-center justify-between p-5 bg-[#FFF5F5] hover:bg-[#FFEBEB]/50 text-[#E53E3E] rounded-2xl border border-[#FED7D7] transition-all text-left cursor-pointer active:bg-[#FFEBEB]/55"
@@ -948,15 +964,6 @@ function ProfileContent() {
                                             </div>
                                         </div>
                                         <ChevronRight size={18} className="text-[#E53E3E]/60" />
-                                    </button>
-                                </div>
-
-                                <div className="pt-2 pb-6 flex justify-center">
-                                    <button
-                                        onClick={() => setIsDeleteAccountOpen(true)}
-                                        className="text-xs text-gray-400 hover:text-red-500 hover:underline cursor-pointer transition-all"
-                                    >
-                                        Delete Account
                                     </button>
                                 </div>
                             </motion.div>
@@ -976,7 +983,7 @@ function ProfileContent() {
                                         className="-ml-4 flex items-center justify-start gap-1 text-[#7C5D48] hover:text-[#5d4434] font-ppmori-semibold text-sm cursor-pointer group active:opacity-75"
                                     >
                                         <ChevronRight size={25} className="rotate-180 transition-transform group-hover:-translate-x-1" />
-                                        <span className="text-[18px] mt-1">{activeTab === 'profile' ? 'Profile' : activeTab === 'renu' ? 'Renu+' : 'Help'}</span>
+                                        <span className="text-[18px] mt-1">{activeTab === 'profile' ? 'Profile' : activeTab === 'renu' ? 'Renu+' : 'Settings'}</span>
                                     </button>
                                     {
                                         activeTab === 'profile' && (
@@ -1005,7 +1012,7 @@ function ProfileContent() {
                 onClose={() => setIsLogoutConfirmOpen(false)}
                 onConfirm={handleConfirmSignOut}
             />
-            
+
             <DeleteAccountModal
                 isOpen={isDeleteAccountOpen}
                 onClose={() => setIsDeleteAccountOpen(false)}

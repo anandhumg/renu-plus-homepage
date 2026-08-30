@@ -116,7 +116,7 @@ export default function Navbar() {
                   <div className="relative">
                     <button
                       onClick={() => setIsProfileOpen(!isProfileOpen)}
-                      onBlur={() => setTimeout(() => setIsProfileOpen(false), 200)}
+                      onBlur={() => setTimeout(() => setIsProfileOpen(false), 500)}
                       className="flex items-center space-x-2 bg-gray-50 border border-gray-100 px-4 py-2 rounded-full hover:bg-gray-100 transition-all cursor-pointer"
                     >
                       <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">

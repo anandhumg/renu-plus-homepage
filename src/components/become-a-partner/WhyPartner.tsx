@@ -71,6 +71,7 @@ export default function WhyPartner() {
                                         alt={item.title}
                                         fill
                                         className="object-contain"
+                                        unoptimized
                                     />
                                 </div>
                             </div>

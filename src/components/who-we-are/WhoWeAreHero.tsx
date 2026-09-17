@@ -48,7 +48,7 @@ export default function WhoWeAreHero() {
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 1, delay: 1, ease: "easeOut" }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           className="md:w-auto h-[85vh] w-full aspect-[1.125]  mx-auto relative md:block hidden self-end mt-auto "
         >
           <Image src={IMG1} alt="Hero Image" fill priority className="object-contain object-bottom" />

@@ -53,7 +53,7 @@ const AboutCards = () => {
                         className={`flex flex-col items-center text-center transition-all duration-300 max-w-[208px]`}
                     >
                         <div className="relative aspect-square w-[114px] h-auto">
-                            <Image src={item.icon} alt={item.title} className="object-contain" />
+                            <Image src={item.icon} alt={item.title} className="object-contain" unoptimized />
                         </div>
                         <h4 className="font-ppmori-semibold text-[#7C5D48] lg:text-[22px] text-[18px] my-4">
                             {item.title}

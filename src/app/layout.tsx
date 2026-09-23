@@ -6,7 +6,7 @@ import AppPromotionPopup from "@/components/AppPromotionPopup";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Toaster } from "react-hot-toast";
-
+export const runtime = 'edge';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://renuplusco.com"),

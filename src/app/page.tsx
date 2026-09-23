@@ -1,4 +1,4 @@
-export const runtime = 'edge';
+
 
 import AppPromotionSection from "@/components/home/AppPromotionSection";
 import HaveQuestions from "@/components/home/HaveQuestions";

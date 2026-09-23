@@ -718,7 +718,7 @@ function ProfileContent() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-1">
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Email Support</p>
-                    <p className="text-sm font-bold text-[#7C5D48]">support@renuplus.co</p>
+                    <Link href={`mailto:${process.env.NEXT_PUBLIC_SUPPORT_MAIL}`} className="text-sm font-bold text-[#7C5D48]">{process.env.NEXT_PUBLIC_SUPPORT_MAIL}</Link>
                 </div>
             </div>
 

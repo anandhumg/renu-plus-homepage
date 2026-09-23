@@ -52,7 +52,7 @@ export default function Navbar() {
     { name: "Home", href: "/" },
     { name: "Who We Are", href: "/about-us" },
     { name: "How It Works", href: "/how-it-works" },
-    { name: "Partner Stores", href: "/partner-stores" },
+    // { name: "Partner Stores", href: "/partner-stores" },
     { name: "Become a partner", href: "/become-a-partner" },
     { name: "Contact Us", href: "/contact-us" },
   ];
@@ -103,13 +103,13 @@ export default function Navbar() {
                 >
                   Become a partner
                 </Link>
-                <button
+                {/* <button
                   onClick={handleGetApp}
                   className="flex items-center justify-center space-x-2 px-4 py-2 rounded-full hover:border-primary hover:text-primary transition-colors text-[#18181B] text-sm font-ppmori-semibold cursor-pointer"
                 >
                   <QrCode size={16} />
                   <span>Get the app</span>
-                </button>
+                </button> */}
 
                 {/* Profile / Join Now (Both Mobile & Desktop) */}
                 {isAuthenticated ? (

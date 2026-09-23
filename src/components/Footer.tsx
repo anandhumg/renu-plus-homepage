@@ -64,7 +64,7 @@ export default function Footer() {
                 {contactMail}
               </a>
             </div>
-            <div>
+            {/* <div>
               <div className="text-[14px] mb-4 font-ppmori-semibold text-foreground  inline-block mt-5">Contact us</div>
               <div className="flex gap-2">
                 {socialMedias.map((socialMedia) => (
@@ -78,7 +78,7 @@ export default function Footer() {
                   </Link>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="lg:pl-8">
@@ -86,7 +86,7 @@ export default function Footer() {
             <ul className="space-y-3 font-ppmori text-sm ml-1">
               <li><Link href="/about-us" className="text-foreground hover:text-primary transition-colors">Who We Are</Link></li>
               <li><Link href="/how-it-works" className="text-foreground hover:text-primary transition-colors">How It Works</Link></li>
-              <li><Link href="/partner-stores" className="text-foreground hover:text-primary transition-colors">Partner Stores</Link></li>
+              {/* <li><Link href="/partner-stores" className="text-foreground hover:text-primary transition-colors">Partner Stores</Link></li> */}
               <li><Link href="/become-a-partner" className="text-foreground hover:text-primary transition-colors">Become a Partner</Link></li>
             </ul>
           </div>

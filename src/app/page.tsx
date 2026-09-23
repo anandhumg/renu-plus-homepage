@@ -27,14 +27,14 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <HeroSection />
-      <PartnerLogos />
+      {/* <PartnerLogos /> */}
       <Steps />
       <SmartStanding />
       <MakeTransactionCount />
-      <TopPartnerStores />
+      {/* <TopPartnerStores /> */}
       <SmarterSpending />
       <HaveQuestions />
-      <AppPromotionSection id="app-promotion" />
+      {/* <AppPromotionSection id="app-promotion" /> */}
     </main>
   );
 }

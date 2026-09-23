@@ -23,5 +23,14 @@
 		// Enable image optimization
 		// see https://opennext.js.org/cloudflare/howtos/image
 		"binding": "IMAGES"
+	},
+	"vars": {
+		"NEXT_PUBLIC_API_URL": "https://api.renuplusco.com/api",
+		"NEXT_PUBLIC_CONTACT_MAIL": "hello@renuplusco.com",
+		"NEXT_PUBLIC_GOOGLE_CLIENT_ID": "160024995013-cvmur13hsi2ihrb792t3ee4qdc2prkd4.apps.googleusercontent.com",
+		"NEXT_PUBLIC_PACKAGE_PRICE": "49",
+		"NEXT_PUBLIC_SITE_URL": "https://renuplusco.com",
+		"NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY" : "pk_test_51TqykARW4jOTv0m5Q86KylaQaIlqaJcuK8aEnJ6j9YTBIPK7lo3qPrHWAFBZuX10ubZMwKSe0Q6axLSwoocm75d000QA3YFhCw",
+		"NEXT_PUBLIC_SUPPORT_MAIL": "support@renuplusco.com"
 	}
 }
